@@ -20,8 +20,8 @@ func teleport(body: Node3D, landing_position: Vector3):
 	body.position = landing_position
 	
 func fly(body: Node3D, landing_position: Vector3):
-	teleport(body, landing_position)
-
+	body.position = lerp(body.position, landing_position, 1)
+	
 func _on_interact_area_body_entered(body: Node3D) -> void:
 	var nextFly = get_first_fly_point()
 	print("TP to [", nextFly.flyname, "] from [", flyname, "]")
