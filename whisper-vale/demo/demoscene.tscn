@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnl3whjqlu5jy"]
+
+[ext_resource type="PackedScene" uid="uid://c728mwwjcl3o5" path="res://demo/flypoint/fly_point.tscn" id="2_4lyb4"]
+[ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_g28m0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g28m0"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_4lyb4"]
+sky_material = SubResource("ProceduralSkyMaterial_g28m0")
+
+[sub_resource type="Environment" id="Environment_0vl1j"]
+background_mode = 2
+background_color = Color(1, 0.388756, 0, 1)
+sky = SubResource("Sky_4lyb4")
+sky_rotation = Vector3(0, -0.457276, 0)
+ambient_light_source = 2
+ambient_light_color = Color(0, 0.514898, 0.900531, 1)
+ambient_light_energy = 3.75
+reflected_light_source = 2
+tonemap_mode = 1
+ssao_enabled = true
+ssao_intensity = 2.34
+ssao_detail = 0.39
+ssao_horizon = 0.23
+ssao_sharpness = 0.45
+ssao_light_affect = 0.48
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w5ei6"]
+
+[node name="demoscene" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0vl1j")
+
+[node name="lights" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="lights"]
+transform = Transform3D(-0.21083, 0.773137, -0.598173, -6.21754e-09, 0.611927, 0.790914, 0.977523, 0.166749, -0.129013, -0.345978, 13.0264, -0.159866)
+light_energy = 3.0
+shadow_enabled = true
+shadow_opacity = 0.54
+shadow_blur = 0.0
+
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, -0.522694, 0)
+cast_shadow = 0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_w5ei6")
+
+[node name="Player" parent="." instance=ExtResource("2_g28m0")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.541103, 0, -34.6991)
+
+[node name="fly_point" parent="." groups=["fly_points"] instance=ExtResource("2_4lyb4")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.815412, -0.0352626, -31.0269)
+flyname = &"Havengard"
+
+[node name="fly_point2" parent="." groups=["fly_points"] instance=ExtResource("2_4lyb4")]
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, 60.174, 0, 16.4083)
+flyname = &"Lake Vale"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.619464, 0, 0.785025, 0, 1, 0, -0.785025, 0, -0.619464, 0, 1.80895, 0)
+rotation_edit_mode = 1
