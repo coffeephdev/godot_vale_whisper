@@ -65,15 +65,18 @@ func _physics_process(delta):
 	var movement_vec2 := Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_back")
 	var movement_direction := Vector3(movement_vec2.x, 0, movement_vec2.y)
 	
-	if Input.is_action_pressed("enable_cam"):
-		pass
-	else:
-		#Rotate with Keyboard
-		movement_direction.x = 0
-		var cam_movement = Vector3(0, movement_vec2.x, 0).normalized()
-		
-		if cam_movement.length() > 0:
-			_camera_root.rotate(-cam_movement, CAM_SPEED)
+	var handle_camera_with_keyboard = func():
+		if Input.is_action_pressed("enable_cam"):
+			pass
+		else:
+			#Rotate with Keyboard
+			movement_direction.x = 0
+			var cam_movement = Vector3(0, movement_vec2.x, 0).normalized()
+			
+			if cam_movement.length() > 0:
+				_camera_root.rotate(-cam_movement, CAM_SPEED)
+				
+	handle_camera_with_keyboard.call()
 			
 	movement_direction = cam_basis * movement_direction
 	movement_direction.y = 0
