@@ -58,7 +58,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.541103, 0, -34.6991)
 
 [node name="fly_point" parent="." groups=["fly_points"] instance=ExtResource("2_4lyb4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.815412, -0.0352626, -31.0269)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.815, 0, -31.027)
 flyname = &"Havengard"
 
 [node name="fly_point2" parent="." groups=["fly_points"] instance=ExtResource("2_4lyb4")]

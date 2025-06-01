@@ -5,4 +5,4 @@ extends Node
 func _ready():
 	
 	for point in fly_points:
-		print("Fly found: ", point.flyname)
+		print("Fly found: ", point.flyname, (point.position))
