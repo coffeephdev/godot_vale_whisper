@@ -1,10 +1,10 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://b1ivganoey88f"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dfj33kxsnysbw"]
 
 [resource]
 shading_mode = 2
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.52, 0.2925, 0.13, 1)
+albedo_color = Color(0, 0.34, 0.0487246, 1)
 roughness = 0.92
 rim = 0.09
 rim_tint = 0.61
