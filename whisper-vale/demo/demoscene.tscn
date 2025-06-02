@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=8 format=3 uid="uid://dnl3whjqlu5jy"]
 
+[ext_resource type="Material" uid="uid://dfj33kxsnysbw" path="res://demo/material/pelouse.tres" id="1_4lyb4"]
 [ext_resource type="PackedScene" uid="uid://c728mwwjcl3o5" path="res://demo/flypoint/fly_point.tscn" id="2_4lyb4"]
 [ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_g28m0"]
 
@@ -46,6 +47,7 @@ shadow_blur = 0.0
 
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, -0.522694, 0)
+material_override = ExtResource("1_4lyb4")
 cast_shadow = 0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
