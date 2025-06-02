@@ -30,6 +30,7 @@ movie_writer/movie_file="C:/Users/Light/Videos/godot_whisper_vale.avi"
 [global_group]
 
 fly_points="Points that allows to travel between each others"
+fly_paths="fly paths connect fly routes "
 
 [input]
 

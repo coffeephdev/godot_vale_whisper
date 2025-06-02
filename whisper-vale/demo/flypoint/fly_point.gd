@@ -1,4 +1,4 @@
-class_name flyPoint extends Node3D
+class_name fly_point extends Node3D
 
 @export var flyname: StringName
 
@@ -30,8 +30,21 @@ func setup_label():
 	add_child(fly_label)
 	fly_label.translate(Vector3(0, flyname_offset.x, flyname_offset.y))
 	
-func get_first_fly_point() -> flyPoint:
-	return Flypaths.fly_points.filter(func(fly): return fly.flyname != flyname)[0]
+func get_first_fly_point() -> fly_point:
+	return Flypaths.fly_points.filter(func(fly:fly_point): return fly.flyname != flyname)[0]
+	
+func find_route(next_fly_name:StringName)-> fly_path:
+	var current_point = self.flyname
+	var next_point = next_fly_name
+	var path_road: fly_path = Flypaths.fly_paths.filter(func(path:fly_path):
+		return (( path.fly_point_1.flyname == current_point ||
+		 	path.fly_point_2.flyname == current_point ) &&
+			( path.fly_point_1.flyname == next_point ||
+		 	path.fly_point_2.flyname == next_point ))
+		)[0]
+	
+	print("Fly from ", [current_point], " to ", [next_point], " via ", [path_road.path_name], "road")
+	return path_road
 	
 func teleport(body: Node3D, new_position: Vector3):
 	body.position = new_position
@@ -41,14 +54,12 @@ func start_fly(body: Node3D, new_position: Vector3):
 	flying_body = body
 	starting_position = body.position
 	landing_position = new_position
-	print("Fly from", [starting_position], " to ", [landing_position])
 	
 func update_fly(delta:float):
 	flying_progress += delta
 	flying_body.position = starting_position.lerp(landing_position, flying_progress)
 	
 func stop_fly():
-	print("Fly Complete, new position: ", flying_body.position)
 	is_flying = false
 	flying_progress = 0
 	starting_position = Vector3(0,0,0)
@@ -57,7 +68,7 @@ func stop_fly():
 	
 func _on_interact_area_body_entered(body: Node3D) -> void:
 	var nextFly = get_first_fly_point()
-	print("flying to: ", nextFly.flyname)
+	find_route(nextFly.flyname)
 	start_fly(body, nextFly.position)
 
 #func _on_interact_area_body_exited(body: Node3D) -> void:

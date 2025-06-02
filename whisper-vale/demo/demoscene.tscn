@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=10 format=3 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Material" uid="uid://dfj33kxsnysbw" path="res://demo/material/pelouse.tres" id="1_4lyb4"]
 [ext_resource type="PackedScene" uid="uid://c728mwwjcl3o5" path="res://demo/flypoint/fly_point.tscn" id="2_4lyb4"]
 [ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_g28m0"]
+[ext_resource type="Script" uid="uid://dlpelwkaqhcfn" path="res://demo/flypoint/fly_path.gd" id="4_0vl1j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g28m0"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -29,6 +30,13 @@ ssao_sharpness = 0.45
 ssao_light_affect = 0.48
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5ei6"]
+
+[sub_resource type="Curve3D" id="Curve3D_dogub"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 5.49121, 0, 0, 0, 0, 0, 0, -15.3396, 0, -6.81021, 0, 0, 0, 0, 0, 0, -29.0903, 14.7118, -42.5561, 5, 0, 0, 0, 0, 0, -61.1493, 0.228427, -41.7461),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
 
 [node name="demoscene" type="Node3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -70,3 +78,14 @@ flyname = &"Lake Vale"
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.619464, 0, 0.785025, 0, 1, 0, -0.785025, 0, -0.619464, 0, 1.80895, 0)
 rotation_edit_mode = 1
+
+[node name="fly_route" type="Path3D" parent="." node_paths=PackedStringArray("fly_point_1", "fly_point_2") groups=["fly_paths"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.174, 2.3564, 16.4083)
+curve = SubResource("Curve3D_dogub")
+script = ExtResource("4_0vl1j")
+fly_point_1 = NodePath("../fly_point")
+fly_point_2 = NodePath("../fly_point2")
+metadata/_custom_type_script = "uid://dlpelwkaqhcfn"
+
+[node name="PathFollow3D" type="PathFollow3D" parent="fly_route"]
+transform = Transform3D(0.625617, 0, 0.780131, 0, 1, 0, -0.780131, 0, 0.625617, 0, 0, 5.49121)
