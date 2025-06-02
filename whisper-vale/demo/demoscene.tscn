@@ -66,6 +66,8 @@ shape = SubResource("BoxShape3D_w5ei6")
 [node name="Player" parent="." instance=ExtResource("2_g28m0")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.541103, 0, -34.6991)
+floor_constant_speed = true
+platform_on_leave = 2
 
 [node name="fly_point" parent="." groups=["fly_points"] instance=ExtResource("2_4lyb4")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.815, 0, -31.027)
@@ -88,4 +90,9 @@ fly_point_2 = NodePath("../fly_point2")
 metadata/_custom_type_script = "uid://dlpelwkaqhcfn"
 
 [node name="PathFollow3D" type="PathFollow3D" parent="fly_route"]
-transform = Transform3D(0.625617, 0, 0.780131, 0, 1, 0, -0.780131, 0, 0.625617, 0, 0, 5.49121)
+transform = Transform3D(0.999991, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, -61.1493, 0.228427, -41.7461)
+progress = 95.9809
+rotation_mode = 0
+use_model_front = true
+loop = false
+tilt_enabled = false

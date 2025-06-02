@@ -33,7 +33,7 @@ func setup_label():
 func get_first_fly_point() -> fly_point:
 	return Flypaths.fly_points.filter(func(fly:fly_point): return fly.flyname != flyname)[0]
 	
-func find_route(next_fly_name:StringName)-> fly_path:
+func find_road(next_fly_name:StringName)-> fly_path:
 	var current_point = self.flyname
 	var next_point = next_fly_name
 	var path_road: fly_path = Flypaths.fly_paths.filter(func(path:fly_path):
@@ -43,11 +43,8 @@ func find_route(next_fly_name:StringName)-> fly_path:
 		 	path.fly_point_2.flyname == next_point ))
 		)[0]
 	
-	print("Fly from ", [current_point], " to ", [next_point], " via ", [path_road.path_name], "road")
+	print("Fly from ", [current_point], " to ", [next_point], " via ", [path_road.path_name], " road")
 	return path_road
-	
-func teleport(body: Node3D, new_position: Vector3):
-	body.position = new_position
 	
 func start_fly(body: Node3D, new_position: Vector3):
 	is_flying = true
@@ -66,9 +63,12 @@ func stop_fly():
 	landing_position = Vector3(0,0,0)
 	flying_body = null
 	
-func _on_interact_area_body_entered(body: Node3D) -> void:
+func _on_interact_area_body_entered(body: CharacterBody3D) -> void:
 	var nextFly = get_first_fly_point()
-	find_route(nextFly.flyname)
-	start_fly(body, nextFly.position)
+	var fly_road = find_road(nextFly.flyname)
+	body.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
+	body.reparent(fly_road.path_follow)
+	fly_road.is_flying = true
+	#start_fly(body, nextFly.position)
 
 #func _on_interact_area_body_exited(body: Node3D) -> void:
