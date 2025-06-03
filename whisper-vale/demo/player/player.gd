@@ -79,42 +79,43 @@ func _physics_process(delta):
 	
 	movement_direction = movement_direction.normalized()
 
+	
+			
+	horizontal_direction = movement_direction
+
+	if horizontal_speed < MAX_SPEED:
+			horizontal_speed += ACCEL * delta
+	else:
+		horizontal_speed -= DEACCEL * delta
+		if horizontal_speed < 0:
+			horizontal_speed = 0
+
+	horizontal_velocity = horizontal_direction * horizontal_speed
+
+	var mesh_xform := ($Player/Skeleton as Node3D).get_transform()
+	var facing_mesh := -mesh_xform.basis[0].normalized()
+	facing_mesh = (facing_mesh - Vector3.UP * facing_mesh.dot(Vector3.UP)).normalized()
+
+	facing_mesh = adjust_facing(
+		facing_mesh,
+		movement_direction,
+		delta,
+		1.0 / horizontal_speed * TURN_SPEED,
+		Vector3.UP
+	)
+	
+	var m3 := Basis(
+		-facing_mesh,
+		Vector3.UP,
+		-facing_mesh.cross(Vector3.UP).normalized()
+	).scaled(CHAR_SCALE)
+
+	$Player/Skeleton.set_transform(Transform3D(m3, mesh_xform.origin))
+	
 	if is_on_floor():
-		horizontal_direction = movement_direction
-
-		if horizontal_speed < MAX_SPEED:
-				horizontal_speed += ACCEL * delta
-		else:
-			horizontal_speed -= DEACCEL * delta
-			if horizontal_speed < 0:
-				horizontal_speed = 0
-
-		horizontal_velocity = horizontal_direction * horizontal_speed
-
-		var mesh_xform := ($Player/Skeleton as Node3D).get_transform()
-		var facing_mesh := -mesh_xform.basis[0].normalized()
-		facing_mesh = (facing_mesh - Vector3.UP * facing_mesh.dot(Vector3.UP)).normalized()
-
-		facing_mesh = adjust_facing(
-			facing_mesh,
-			movement_direction,
-			delta,
-			1.0 / horizontal_speed * TURN_SPEED,
-			Vector3.UP
-		)
-		
-		var m3 := Basis(
-			-facing_mesh,
-			Vector3.UP,
-			-facing_mesh.cross(Vector3.UP).normalized()
-		).scaled(CHAR_SCALE)
-
-		$Player/Skeleton.set_transform(Transform3D(m3, mesh_xform.origin))
-
-		if not jumping and Input.is_action_pressed(&"jump"):
-			vertical_velocity = JUMP_VELOCITY
-			jumping = true
-
+			if not jumping and Input.is_action_pressed(&"jump"):
+				vertical_velocity = JUMP_VELOCITY
+				jumping = true
 	else:
 		anim = _Anim.AIR
 

@@ -10,8 +10,9 @@ class_name fly_path extends Path3D
 var is_flying = false
 
 func _process(delta: float) -> void:
-	if path_follow.progress_ratio <= 0:
-		is_flying = false
-		path_follow.progress_ratio = 0
 	if is_flying:
-		path_follow.progress -= delta * fly_speed
+		if path_follow.progress_ratio <= 0:
+			is_flying = false
+			path_follow.progress_ratio = 0
+		if is_flying:
+			path_follow.progress -= delta * fly_speed
