@@ -8,6 +8,7 @@ class_name fly_path extends Path3D
 @onready var path_follow: PathFollow3D = $PathFollow3D
 
 var is_flying = false
+var flying_body = null
 
 func _process(delta: float) -> void:
 	if is_flying:

@@ -43,7 +43,6 @@ func find_road(next_fly_name:StringName)-> fly_path:
 		 	path.fly_point_2.flyname == next_point ))
 		)[0]
 	
-	print("Fly from ", [current_point], " to ", [next_point], " via ", [path_road.path_name], " road")
 	return path_road
 	
 func start_fly(body: Node3D, new_position: Vector3):
@@ -63,12 +62,15 @@ func stop_fly():
 	landing_position = Vector3(0,0,0)
 	flying_body = null
 	
-func _on_interact_area_body_entered(body: CharacterBody3D) -> void:
+func _on_interact_area_body_entered(player: Player) -> void:
 	var nextFly = get_first_fly_point()
 	var fly_road = find_road(nextFly.flyname)
-	body.motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
-	body.reparent(fly_road.path_follow)
-	fly_road.is_flying = true
-	#start_fly(body, nextFly.position)
+	if not fly_road.is_flying:
+		print("Fly from ", [self.flyname], " to ", [nextFly.flyname], " via ", [fly_road.path_name], " road")
+		player.can_move = false
+		fly_road.is_flying = true
+		player.reparent(fly_road.path_follow)
+		player.position = Vector3(0,0,0)
+		#start_fly(body, nextFly.position)
 
 #func _on_interact_area_body_exited(body: Node3D) -> void:

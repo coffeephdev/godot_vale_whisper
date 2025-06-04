@@ -91,8 +91,8 @@ fly_point_2 = NodePath("../fly_point2")
 metadata/_custom_type_script = "uid://dlpelwkaqhcfn"
 
 [node name="PathFollow3D" type="PathFollow3D" parent="fly_route"]
-transform = Transform3D(0.999991, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, -53.6465, 3.2639, -43.4711)
-progress = 95.9809
+transform = Transform3D(0.999991, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, -61.149, 0.483, -41.746)
+progress = 104.305
 rotation_mode = 0
 use_model_front = true
 loop = false

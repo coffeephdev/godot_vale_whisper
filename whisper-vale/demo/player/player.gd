@@ -21,6 +21,7 @@ const SHARP_TURN_THRESHOLD = deg_to_rad(140.0)
 var movement_dir := Vector3()
 var mouse_motion := Vector2()
 var jumping := false
+var can_move := true
 
 @onready var initial_position := position
 @onready var gravity: Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * \
@@ -140,8 +141,9 @@ func _physics_process(delta):
 
 	if is_on_floor():
 		movement_dir = velocity
-
-	move_and_slide()
+	
+	if can_move:
+		move_and_slide()
 
 	if is_on_floor():
 		# How much the player should be blending between the "idle" and "walk/run" animations.
