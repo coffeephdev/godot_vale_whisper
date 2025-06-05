@@ -27,10 +27,10 @@ func find_road(next_fly_name:StringName)-> fly_path:
 	var current_point := self.flyname
 	var next_point := next_fly_name
 	var path_road: fly_path = Flypaths.fly_paths.filter(func(path:fly_path):
-		return (( path.fly_point_1.flyname == current_point ||
-		 	path.fly_point_2.flyname == current_point ) &&
-			( path.fly_point_1.flyname == next_point ||
-		 	path.fly_point_2.flyname == next_point ))
+		return (( path.close_fly_point.flyname == current_point ||
+		 	path.far_fly_point.flyname == current_point ) &&
+			( path.close_fly_point.flyname == next_point ||
+		 	path.far_fly_point.flyname == next_point ))
 		)[0]
 	
 	return path_road

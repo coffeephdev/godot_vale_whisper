@@ -39,7 +39,7 @@ _data = {
 point_count = 4
 
 [node name="demoscene" type="Node3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+top_level = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0vl1j")
@@ -65,7 +65,7 @@ shape = SubResource("BoxShape3D_w5ei6")
 
 [node name="Player" parent="." instance=ExtResource("2_g28m0")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.541103, 0, -34.6991)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.541103, 0, -34.6991)
 floor_constant_speed = true
 platform_on_leave = 2
 
@@ -81,13 +81,11 @@ flyname = &"Lake Vale"
 transform = Transform3D(-0.619464, 0, 0.785025, 0, 1, 0, -0.785025, 0, -0.619464, 0, 1.80895, 0)
 rotation_edit_mode = 1
 
-[node name="fly_route" type="Path3D" parent="." node_paths=PackedStringArray("fly_point_1", "fly_point_2") groups=["fly_paths"]]
+[node name="fly_route" type="Path3D" parent="." groups=["fly_paths"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.174, 2.3564, 16.4083)
 curve = SubResource("Curve3D_dogub")
 script = ExtResource("4_0vl1j")
 fly_speed = 20
-fly_point_1 = NodePath("../fly_point")
-fly_point_2 = NodePath("../fly_point2")
 metadata/_custom_type_script = "uid://dlpelwkaqhcfn"
 
 [node name="PathFollow3D" type="PathFollow3D" parent="fly_route"]
