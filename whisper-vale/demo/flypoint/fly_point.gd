@@ -1,14 +1,9 @@
 class_name fly_point extends Node3D
 
 @export var flyname: StringName
-
 var flyname_offset = Vector3(5, -8, 0)
 
-var is_flying = false
-var flying_progress = 0
-var flying_body: Node3D = null
-var starting_position = Vector3(0,0,0)
-var landing_position = Vector3(0,0,0)
+var available_fly_paths := [] as Array[fly_path]
 
 func _ready() -> void:
 	setup_label()
@@ -39,8 +34,8 @@ func _on_interact_area_body_entered(player: Player) -> void:
 	var nextFly := get_first_fly_point()
 	var fly_road := find_road(nextFly.flyname)
 	if not fly_road.is_flying:
-		print("Fly from ", [self.flyname], " to ", [nextFly.flyname], " via ", [fly_road.path_name], " road")
-		fly_road.start_fly(player)
+		print("Fly from ", [self.flyname], " to ", [nextFly.flyname])
+		fly_road.start_fly(player, nextFly)
 		
 
 #func _on_interact_area_body_exited(body: Node3D) -> void:
