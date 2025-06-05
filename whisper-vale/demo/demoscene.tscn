@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=11 format=3 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Material" uid="uid://dfj33kxsnysbw" path="res://demo/material/pelouse.tres" id="1_4lyb4"]
-[ext_resource type="PackedScene" uid="uid://c728mwwjcl3o5" path="res://demo/flypoint/fly_point.tscn" id="2_4lyb4"]
+[ext_resource type="PackedScene" uid="uid://c728mwwjcl3o5" path="res://demo/flypoint/fly_post.tscn" id="2_4lyb4"]
 [ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_g28m0"]
-[ext_resource type="Script" uid="uid://dlpelwkaqhcfn" path="res://demo/flypoint/fly_path.gd" id="4_0vl1j"]
+[ext_resource type="Script" uid="uid://dlpelwkaqhcfn" path="res://demo/flypoint/fly_road.gd" id="4_0vl1j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g28m0"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -38,6 +38,13 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="Curve3D" id="Curve3D_0vl1j"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 7.63, 0, 0, 0, 0, 0, -0.48, 0, 2.63, 0.685, 0, -5.99, 24.0719, 0, -14.5873, 0, 0, 0, 0, 0, 0, 22.1604, -0.203329, -35.3846, 0, -2.2, 0, 0, 4.035, 0, 22.3106, 5.68356, -46.2827, 0, 0, -1.045, 0, 0, 2.48, 21.0283, 11.2903, -40.9813, 0, 2.405, 0, 0, -4.305, 0, 21.6241, 7.67037, -35.0969, 0.33, 0, 0, 0.805, 0, 0, 23.0899, 1.92619, -42.8394, 0, 0, 0, 0, 0, 0, 28.182, -0.166522, -114.472),
+"tilts": PackedFloat32Array(0, -0.93, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
 [node name="demoscene" type="Node3D"]
 top_level = true
 
@@ -69,29 +76,49 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.541
 floor_constant_speed = true
 platform_on_leave = 2
 
-[node name="fly_point" parent="." groups=["fly_points"] instance=ExtResource("2_4lyb4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.815, 0, -31.027)
-flyname = &"Havengard"
-
-[node name="fly_point2" parent="." groups=["fly_points"] instance=ExtResource("2_4lyb4")]
-transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, 60.174, 0, 16.4083)
-flyname = &"Lake Vale"
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.619464, 0, 0.785025, 0, 1, 0, -0.785025, 0, -0.619464, 0, 1.80895, 0)
 rotation_edit_mode = 1
 
-[node name="fly_route" type="Path3D" parent="." groups=["fly_paths"]]
+[node name="Fly" type="Node" parent="."]
+
+[node name="fly_post_havengard" parent="Fly" groups=["fly_posts"] instance=ExtResource("2_4lyb4")]
+transform = Transform3D(-0.40436, 0, 0.9146, 0, 1, 0, -0.9146, 0, -0.40436, -2.44306, 0, -33.5776)
+flyname = &"Havengard"
+
+[node name="fly_post_lakevale" parent="Fly" groups=["fly_posts"] instance=ExtResource("2_4lyb4")]
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, 60.174, 0, 16.4083)
+flyname = &"Lake Vale"
+
+[node name="fly_road" type="Path3D" parent="Fly" groups=["fly_roads"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.174, 2.3564, 16.4083)
 curve = SubResource("Curve3D_dogub")
 script = ExtResource("4_0vl1j")
 fly_speed = 20
 metadata/_custom_type_script = "uid://dlpelwkaqhcfn"
 
-[node name="PathFollow3D" type="PathFollow3D" parent="fly_route"]
+[node name="PathFollow3D" type="PathFollow3D" parent="Fly/fly_road"]
 transform = Transform3D(0.999991, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, -61.149, 0.483, -49.085)
 progress = 104.305
 rotation_mode = 0
 use_model_front = true
 loop = false
-tilt_enabled = false
+
+[node name="fly_post_mansion" parent="Fly" groups=["fly_posts"] instance=ExtResource("2_4lyb4")]
+transform = Transform3D(-0.0867211, 0, 0.996233, 0, 1, 0, -0.996233, 0, -0.0867211, 37.1439, 0, 13.602)
+flyname = &"Mansion"
+
+[node name="fly_post_mountains" parent="Fly" groups=["fly_posts"] instance=ExtResource("2_4lyb4")]
+transform = Transform3D(0.883242, 0, -0.468917, 0, 1, 0, 0.468917, 0, 0.883242, 63.2796, 0, -98.4271)
+flyname = &"Mountains"
+
+[node name="fly_road2" type="Path3D" parent="Fly" groups=["fly_roads"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6181, 2.54624, 14.2416)
+curve = SubResource("Curve3D_0vl1j")
+script = ExtResource("4_0vl1j")
+fly_speed = 20
+metadata/_custom_type_script = "uid://dlpelwkaqhcfn"
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Fly/fly_road2"]
+rotation_mode = 0
+loop = false
