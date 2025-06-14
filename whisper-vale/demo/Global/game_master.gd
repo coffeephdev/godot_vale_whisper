@@ -1,3 +1,3 @@
 extends Node
 
-@onready var fly_menu: Control = null
+@onready var fly_menu: fly_menu = null

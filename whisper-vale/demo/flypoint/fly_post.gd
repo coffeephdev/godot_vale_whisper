@@ -23,32 +23,28 @@ func get_first_fly_post() -> fly_post:
 		return first_road.far_fly_post
 	
 	
-func find_road(next_fly_name:StringName)-> fly_road:
+func find_roads()-> Array[fly_road]:
 	if available_fly_roads.size() <= 0:
-		return
+		return []
 		
 	var current_point := self.flyname
-	var next_point := next_fly_name
-	var path_road: fly_road = available_fly_roads.filter(func(path:fly_road):
-		return (( path.close_fly_post.flyname == current_point ||
-		 	path.far_fly_post.flyname == current_point ) &&
-			( path.close_fly_post.flyname == next_point ||
-		 	path.far_fly_post.flyname == next_point ))
-		)[0]
-	
-	return path_road
+	var path_roads: Array[fly_road] = available_fly_roads.filter(func(path:fly_road):
+		return (path.close_fly_post.flyname == current_point 
+			|| path.far_fly_post.flyname == current_point)
+	)
+	return path_roads
 	
 func _on_interact_area_body_entered(player: Player) -> void:
-	GameMaster.fly_menu.show()
-	return
 	var nextFly := get_first_fly_post()
-	var road := find_road(nextFly.flyname)
-	if road == null || road.is_flying :
+	var roads := find_roads()
+	GameMaster.fly_menu.display_menu(player, roads, self)
+	return #--------------------------------------
+	if !roads.size() <=0:
 		return
 		
-	print("Fly from ", [self.flyname], " to ", [nextFly.flyname])
-	road.start_fly(player, nextFly)
+	#road.start_fly(player, nextFly)
 		
 
 func _on_interact_area_body_exited(body: Node3D) -> void:
-	GameMaster.fly_menu.hide()
+	GameMaster.fly_menu.hide_menu()
+	
