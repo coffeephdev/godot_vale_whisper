@@ -39,6 +39,8 @@ func find_road(next_fly_name:StringName)-> fly_road:
 	return path_road
 	
 func _on_interact_area_body_entered(player: Player) -> void:
+	GameMaster.fly_menu.show()
+	return
 	var nextFly := get_first_fly_post()
 	var road := find_road(nextFly.flyname)
 	if road == null || road.is_flying :
@@ -48,4 +50,5 @@ func _on_interact_area_body_entered(player: Player) -> void:
 	road.start_fly(player, nextFly)
 		
 
-#func _on_interact_area_body_exited(body: Node3D) -> void:
+func _on_interact_area_body_exited(body: Node3D) -> void:
+	GameMaster.fly_menu.hide()

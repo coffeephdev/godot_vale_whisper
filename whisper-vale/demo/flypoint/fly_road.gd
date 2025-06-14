@@ -47,13 +47,11 @@ func update_fly(delta:float):
 			stop_fly()
 		if is_flying:
 			path_follow.progress -= delta * fly_speed
-			prints(path_follow.progress_ratio)
 	else:
 		if path_follow.progress_ratio >= 1:
 			stop_fly()
 		if is_flying:
 			path_follow.progress += delta * fly_speed
-			prints(path_follow.progress_ratio)
 
 func stop_fly():
 	is_flying = false

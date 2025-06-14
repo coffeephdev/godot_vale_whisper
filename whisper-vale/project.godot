@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Flypaths="*res://demo/Global/global_flypaths.gd"
+GameMaster="*res://demo/Global/game_master.gd"
 
 [display]
 
