@@ -22,6 +22,7 @@ var movement_dir := Vector3()
 var mouse_motion := Vector2()
 var jumping := false
 var can_move := true
+var auto_walk := false
 
 @onready var initial_position := position
 @onready var gravity: Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * \
@@ -39,11 +40,17 @@ func _input(event: InputEvent) -> void:
 			mouse_rotate_camera(event.screen_relative * 0.008)
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
+			
 func mouse_rotate_camera(move):
 	_camera_root.rotate_y(-move.x)
 	_camera_root.orthonormalize()
 	_camera_root.rotation.x = clamp(_camera_root.rotation.x + move.y, -.99, .99)
+
+func handle_auto_walk():
+	if Input.is_action_pressed("auto_walk"):
+		auto_walk = !auto_walk
+	if Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_back"):
+		auto_walk = false
 
 func _physics_process(delta):
 	if global_position.y < -12:
@@ -62,8 +69,13 @@ func _physics_process(delta):
 	var horizontal_speed := horizontal_velocity.length()
 
 	# Player input.
+	handle_auto_walk()
+	
 	var cam_basis := _camera.get_global_transform().basis
 	var movement_vec2 := Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_back")
+	if auto_walk:
+		movement_vec2.y = -1
+		
 	var movement_direction := Vector3(movement_vec2.x, 0, movement_vec2.y)
 	
 	#Rotate with Keyboard
