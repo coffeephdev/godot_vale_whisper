@@ -35,16 +35,9 @@ func find_roads()-> Array[fly_road]:
 	return path_roads
 	
 func _on_interact_area_body_entered(player: Player) -> void:
-	var nextFly := get_first_fly_post()
 	var roads := find_roads()
-	GameMaster.fly_menu.display_menu(player, roads, self)
-	return #--------------------------------------
-	if !roads.size() <=0:
-		return
-		
-	#road.start_fly(player, nextFly)
-		
+	GameMaster.fly_interface.display_menu(player, roads, self)
 
-func _on_interact_area_body_exited(body: Node3D) -> void:
-	GameMaster.fly_menu.hide_menu()
+func _on_interact_area_body_exited(_body: Node3D) -> void:
+	GameMaster.fly_interface.hide_menu()
 	
