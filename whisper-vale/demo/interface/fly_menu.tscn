@@ -41,15 +41,10 @@ text = "Where do you want to fly ?"
 label_settings = SubResource("LabelSettings_71kec")
 horizontal_alignment = 1
 
-[node name="fly_points" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -19.168
-offset_top = 49.0
-offset_right = 17.832
-offset_bottom = -26.096
-grow_horizontal = 2
-grow_vertical = 2
+[node name="fly_points" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 69.504
+offset_top = 51.128
+offset_right = 109.504
+offset_bottom = 91.128
+alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=13 format=3 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Material" uid="uid://dfj33kxsnysbw" path="res://demo/material/pelouse.tres" id="1_4lyb4"]
 [ext_resource type="PackedScene" path="res://demo/flypoint/fly_post.tscn" id="2_4lyb4"]
@@ -45,6 +45,13 @@ _data = {
 "tilts": PackedFloat32Array(0, -0.93, 0, 0, 0, 0, 0, 0)
 }
 point_count = 8
+
+[sub_resource type="Curve3D" id="Curve3D_5y0c7"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 5.21715, 3.08234, 3.61475, 0, 0, 0, 0, 0, 0, -60.0191, 2.66079, 69.596),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [node name="demoscene" type="Node3D"]
 top_level = true
@@ -124,6 +131,16 @@ metadata/_custom_type_script = "uid://dlpelwkaqhcfn"
 rotation_mode = 0
 loop = false
 
+[node name="fly_road3" type="Path3D" parent="Fly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.2946, 0, -103.809)
+curve = SubResource("Curve3D_5y0c7")
+script = ExtResource("4_0vl1j")
+fly_speed = 30
+metadata/_custom_type_script = "uid://dlpelwkaqhcfn"
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Fly/fly_road3"]
+transform = Transform3D(-0.71111, -0.00319424, 0.703073, -2.32831e-10, 0.999988, 0.00454322, -0.70308, 0.00323072, -0.711102, 5.21715, 3.08234, 3.61475)
+
 [node name="Interface" type="Node" parent="."]
 
-[node name="Control" parent="Interface" instance=ExtResource("5_dogub")]
+[node name="fly_menu" parent="Interface" instance=ExtResource("5_dogub")]
