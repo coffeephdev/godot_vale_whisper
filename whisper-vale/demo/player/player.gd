@@ -32,6 +32,9 @@ var auto_walk := false
 @onready var _camera := $CamRoot/Camera3D as Camera3D
 @onready var _animation_tree := $AnimationTree as AnimationTree
 
+func _ready() -> void:
+	GameMaster.player = self
+
 func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseMotion:
