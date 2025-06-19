@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=14 format=3 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Material" uid="uid://dfj33kxsnysbw" path="res://demo/material/pelouse.tres" id="1_4lyb4"]
 [ext_resource type="PackedScene" path="res://demo/flypoint/fly_post.tscn" id="2_4lyb4"]
 [ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_g28m0"]
+[ext_resource type="PackedScene" uid="uid://bd0vh3mcc25uf" path="res://demo/player/mob.tscn" id="3_lduio"]
 [ext_resource type="Script" uid="uid://dlpelwkaqhcfn" path="res://demo/flypoint/fly_road.gd" id="4_0vl1j"]
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="5_dogub"]
 
@@ -84,9 +85,8 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.541
 floor_constant_speed = true
 platform_on_leave = 2
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.619464, 0, 0.785025, 0, 1, 0, -0.785025, 0, -0.619464, 0, 1.80895, 0)
-rotation_edit_mode = 1
+[node name="Mob" parent="." instance=ExtResource("3_lduio")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40.0668)
 
 [node name="Fly" type="Node" parent="."]
 
@@ -139,7 +139,7 @@ fly_speed = 30
 metadata/_custom_type_script = "uid://dlpelwkaqhcfn"
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Fly/fly_road3"]
-transform = Transform3D(-0.71111, -0.00319424, 0.703073, -2.32831e-10, 0.999988, 0.00454322, -0.70308, 0.00323072, -0.711102, 5.21715, 3.08234, 3.61475)
+transform = Transform3D(-0.71111, -0.00319423, 0.703073, -1.16415e-10, 0.999988, 0.00454319, -0.70308, 0.0032307, -0.711102, 5.21715, 3.08234, 3.61475)
 
 [node name="Interface" type="Node" parent="."]
 
