@@ -2,7 +2,10 @@ class_name mob extends CharacterBody3D
 
 @export var thoughs: Array[String] = []
 
-@onready var text = $dialog
+@onready var whisper = $whisper
 
-func _on_area_3d_body_entered(body: Player) -> void:
-	text.display_text()
+@export var thought_distance := 20
+
+func _process(_delta: float) -> void:
+	if (GameMaster.player.position.distance_to(self.position) < thought_distance):
+		whisper.handle_text()
