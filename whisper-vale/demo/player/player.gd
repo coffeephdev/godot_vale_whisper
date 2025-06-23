@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody3D
 
+@export var ray_lenght = 100
 
 enum _Anim {
 	FLOOR,
@@ -36,13 +37,20 @@ func _ready() -> void:
 	GameMaster.player = self
 
 func _input(event: InputEvent) -> void:
-
-	if event is InputEventMouseMotion:
-		if Input.is_action_pressed("enable_cam"):
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			mouse_rotate_camera(event.screen_relative * 0.008)
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if event is not InputEventMouseMotion:
+		return
+		
+	if Input.is_action_pressed("enable_cam"):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		mouse_rotate_camera(event.screen_relative * 0.008)
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
+	#raycast()
+	
+	#if event is InputEventMouseButton:
+		#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			#pass
 			
 func mouse_rotate_camera(move):
 	_camera_root.rotate_y(-move.x)
@@ -50,17 +58,20 @@ func mouse_rotate_camera(move):
 	_camera_root.rotation.x = clamp(_camera_root.rotation.x + move.y, -.99, .99)
 
 func handle_auto_walk():
-	if Input.is_action_pressed("auto_walk"):
+	if Input.is_action_just_pressed("auto_walk"):
 		auto_walk = !auto_walk
 	if Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_back"):
 		auto_walk = false
-
-func _physics_process(delta):
+		
+func out_of_bound_reset_position():
 	if global_position.y < -12:
 		# Player hit the reset button or fell off the map.
 		position = initial_position
 		velocity = Vector3.ZERO
 
+func _physics_process(delta):
+	out_of_bound_reset_position()
+	
 	velocity += gravity * delta
 
 	var anim := _Anim.FLOOR
@@ -194,3 +205,21 @@ func adjust_facing(facing: Vector3, target: Vector3, step: float, adjust_rate: f
 	ang = (ang - a) * s
 
 	return (normal * cos(ang) + t * sin(ang)) * facing.length()
+
+func raycast():
+	if Input.mouse_mode != Input.MOUSE_MODE_VISIBLE:
+		return
+		
+	var space := get_world_3d().direct_space_state
+	var mousepos := get_viewport().get_mouse_position()
+	var query := (PhysicsRayQueryParameters3D.create(
+		_camera.project_ray_origin(mousepos), _camera.project_ray_normal(mousepos) * ray_lenght, collision_mask, [self])
+	)
+	query.collide_with_areas = false
+	query.collide_with_bodies = true
+	
+	var result := space.intersect_ray(query)
+	if result != null:
+		var object = result.get("collider")
+		if object != null && object is CharacterBody3D:
+			print(object.mob_name)

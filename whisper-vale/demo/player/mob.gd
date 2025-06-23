@@ -1,5 +1,5 @@
 class_name mob extends CharacterBody3D
-
+@export var mob_name:StringName = ""
 @export_group("Whispers")
 @export var whispers: Array[String] = []
 @export var whisper_distance := 20

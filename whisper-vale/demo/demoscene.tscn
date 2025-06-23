@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Material" uid="uid://dfj33kxsnysbw" path="res://demo/material/pelouse.tres" id="1_4lyb4"]
-[ext_resource type="PackedScene" path="res://demo/flypoint/fly_post.tscn" id="2_4lyb4"]
+[ext_resource type="PackedScene" uid="uid://c728mwwjcl3o5" path="res://demo/flypoint/fly_post.tscn" id="2_4lyb4"]
 [ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_g28m0"]
 [ext_resource type="PackedScene" uid="uid://bd0vh3mcc25uf" path="res://demo/player/mob.tscn" id="3_lduio"]
 [ext_resource type="Script" uid="uid://dlpelwkaqhcfn" path="res://demo/flypoint/fly_road.gd" id="4_0vl1j"]

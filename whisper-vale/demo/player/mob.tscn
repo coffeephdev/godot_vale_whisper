@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dvb6cihf7q3lr" path="res://demo/discussions/floating_text.tscn" id="3_1jkf6"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
-radius = 0.4
+radius = 0.582393
 height = 2.1
 
 [sub_resource type="AnimationNodeAnimation" id="13"]
@@ -83,10 +83,11 @@ fill_to = Vector2(0.5, 0.01)
 floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_1jkf6")
+mob_name = &"Roger"
 whisper_distance = 11
 
 [node name="CollisionCapsule" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0.148781)
 shape = SubResource("1")
 
 [node name="Mob" parent="." instance=ExtResource("2_1jkf6")]
@@ -106,7 +107,8 @@ parameters/speed/blend_amount = 0
 parameters/state/blend_amount = 0.0
 
 [node name="BlobShadow" type="Decal" parent="."]
-size = Vector3(1.6, 12, 1.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.51636, 0)
+size = Vector3(1.6, 6.96729, 1.6)
 texture_albedo = SubResource("GradientTexture2D_kvc1x")
 albedo_mix = 0.8
 upper_fade = 3.99999
@@ -115,7 +117,6 @@ cull_mask = 1048573
 
 [node name="FloatingText" parent="." instance=ExtResource("3_1jkf6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-visible = false
 
 [node name="Timer" type="Timer" parent="."]
 
