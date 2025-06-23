@@ -1,18 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://dvb6cihf7q3lr"]
 
-[ext_resource type="Script" uid="uid://diq6tsy4fafwx" path="res://demo/floating_text/floating_text.gd" id="1_nytjg"]
+[ext_resource type="Script" uid="uid://diq6tsy4fafwx" path="res://demo/discussions/floating_text.gd" id="1_nytjg"]
 
 [node name="FloatingText" type="Node3D"]
 script = ExtResource("1_nytjg")
-near_visibility = 5.0
 
 [node name="Label" type="Label3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-visibility_range_begin = 2.5
-visibility_range_begin_margin = 1.0
-visibility_range_end = 15.1
-visibility_range_end_margin = 1.0
-visibility_range_fade_mode = 1
 pixel_size = 0.002
 billboard = 2
 fixed_size = true
@@ -22,8 +16,8 @@ texture_filter = 0
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(1, 1, 1, 1)
 text = "UwU"
-font_size = 40
-outline_size = 100
+font_size = 20
+outline_size = 20
 autowrap_mode = 2
 width = 1000.0
 text_direction = 1

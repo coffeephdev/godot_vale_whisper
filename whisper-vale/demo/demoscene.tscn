@@ -87,6 +87,7 @@ platform_on_leave = 2
 
 [node name="Mob" parent="." instance=ExtResource("3_lduio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40.0668)
+whispers = Array[String](["What a beautiful demo world !", "Have you seen Wicked already ?", "Mmh. Very green."])
 
 [node name="Fly" type="Node" parent="."]
 
