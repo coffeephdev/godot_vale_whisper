@@ -7,6 +7,7 @@ func display_menu(player:Player, roads: Array[fly_road], start_point: fly_post):
 	flying_body = player
 	for road in roads:
 		var button = Button.new()
+		button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		var destination := (road.far_fly_post
 							if road.close_fly_post.flyname.contains(start_point.flyname)
 							else road.close_fly_post)

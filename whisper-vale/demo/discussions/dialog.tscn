@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh11fdo4nx7bl"]
+[gd_scene load_steps=4 format=3 uid="uid://cxp5jtxftnl2t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3l2g"]
 bg_color = Color(0, 0, 0, 0.564706)
@@ -24,18 +24,10 @@ corner_radius_top_right = 10
 [sub_resource type="SystemFont" id="SystemFont_f3l2g"]
 font_names = PackedStringArray("Candara")
 hinting = 2
+subpixel_positioning = 0
 multichannel_signed_distance_field = true
 
-[node name="dialog" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
+[node name="dialog" type="MarginContainer"]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -45,19 +37,19 @@ offset_right = 440.0
 offset_bottom = 260.0
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_f3l2g")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 30)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/Control"]
+[node name="Panel" type="Panel" parent="VBoxContainer/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,7 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_56jwo")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Control"]
+[node name="Label" type="Label" parent="VBoxContainer/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,17 +70,20 @@ text = "Saucisse"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer2"]
 layout_mode = 2
 theme_override_fonts/normal_font = SubResource("SystemFont_f3l2g")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf "
 fit_content = true
+
+[node name="dialog" type="Control" parent="."]
+layout_mode = 2

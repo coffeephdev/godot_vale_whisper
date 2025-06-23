@@ -46,7 +46,7 @@ func _input(event: InputEvent) -> void:
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
-	#raycast()
+	raycast()
 	
 	#if event is InputEventMouseButton:
 		#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -213,13 +213,19 @@ func raycast():
 	var space := get_world_3d().direct_space_state
 	var mousepos := get_viewport().get_mouse_position()
 	var query := (PhysicsRayQueryParameters3D.create(
-		_camera.project_ray_origin(mousepos), _camera.project_ray_normal(mousepos) * ray_lenght, collision_mask, [self])
+		_camera.global_position, _camera.project_ray_normal(mousepos) * ray_lenght)
 	)
-	query.collide_with_areas = false
-	query.collide_with_bodies = true
+	query.exclude = [self]
 	
 	var result := space.intersect_ray(query)
-	if result != null:
-		var object = result.get("collider")
-		if object != null && object is CharacterBody3D:
-			print(object.mob_name)
+	if result == null:
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		return
+		
+	var object = result.get("collider")
+	if object == null || object is not CharacterBody3D:
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		return
+	
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	

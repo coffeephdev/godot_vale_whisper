@@ -11,15 +11,25 @@ class_name mob extends CharacterBody3D
 @onready var timer:Timer = $Timer
 @onready var floating_text = $FloatingText
 
+@onready var has_whispers := whispers.size() >= 0
+
 var whisper_index = null
 
 func _ready() -> void:
-	timer.timeout.connect(timer_reached)
-	floating_text.set_text(whispers[0])
+	if has_whispers:
+		setup_whispers()
 
 func _process(_delta: float) -> void:
-	if (GameMaster.player.position.distance_to(self.position) < whisper_distance):
+	if has_whispers:
 		handle_whispers()
+	
+func setup_whispers():
+	timer.timeout.connect(timer_reached)
+	floating_text.set_text(whispers[0])
+	
+func handle_whispers():
+	if (GameMaster.player.position.distance_to(self.position) < whisper_distance):
+		update_whispers()
 	else:
 		if timer.is_stopped():
 			return
@@ -29,9 +39,9 @@ func _process(_delta: float) -> void:
 		
 func timer_reached():
 	timer.stop()
-	handle_whispers()
+	update_whispers()
 	
-func handle_whispers():
+func update_whispers():
 	if not timer.is_stopped():
 		return
 	
