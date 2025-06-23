@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=15 format=3 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Material" uid="uid://dfj33kxsnysbw" path="res://demo/material/pelouse.tres" id="1_4lyb4"]
 [ext_resource type="PackedScene" path="res://demo/flypoint/fly_post.tscn" id="2_4lyb4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bd0vh3mcc25uf" path="res://demo/player/mob.tscn" id="3_lduio"]
 [ext_resource type="Script" uid="uid://dlpelwkaqhcfn" path="res://demo/flypoint/fly_road.gd" id="4_0vl1j"]
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="5_dogub"]
+[ext_resource type="PackedScene" uid="uid://dh11fdo4nx7bl" path="res://demo/discussions/dialog.tscn" id="7_lduio"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g28m0"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -145,3 +146,5 @@ transform = Transform3D(-0.71111, -0.00319423, 0.703073, -1.16415e-10, 0.999988,
 [node name="Interface" type="Node" parent="."]
 
 [node name="fly_menu" parent="Interface" instance=ExtResource("5_dogub")]
+
+[node name="dialog" parent="Interface" instance=ExtResource("7_lduio")]
