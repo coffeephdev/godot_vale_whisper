@@ -1,6 +1,8 @@
-class_name mob extends CharacterBody3D
+class_name Mob extends CharacterBody3D
+
 @export var mob_name:StringName = ""
-@export_group("Whispers")
+
+@export_category("Whispers")
 @export var whispers: Array[String] = []
 @export var whisper_distance := 20
 
@@ -8,10 +10,14 @@ class_name mob extends CharacterBody3D
 @export var display_time := 5
 @export var hide_time := 20
 
+@export_category("Dialogues")
+@export var dialogues: Array[Dialogue] = []
+
 @onready var timer:Timer = $Timer
 @onready var floating_text = $FloatingText
 
 @onready var has_whispers := whispers.size() >= 0
+@onready var has_dialogues := dialogues.size() >= 0
 
 var whisper_index = null
 

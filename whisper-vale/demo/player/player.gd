@@ -37,6 +37,10 @@ func _ready() -> void:
 	GameMaster.player = self
 
 func _input(event: InputEvent) -> void:
+	var mob = raycast() as Mob
+	if mob != null && Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		GameMaster.dialogue.show_dialogue(mob.mob_name, mob.dialogues[0])
+		
 	if event is not InputEventMouseMotion:
 		return
 		
@@ -46,7 +50,7 @@ func _input(event: InputEvent) -> void:
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
-	raycast()
+	
 	
 	#if event is InputEventMouseButton:
 		#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -226,6 +230,12 @@ func raycast():
 	if object == null || object is not CharacterBody3D:
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 		return
-	
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+		
+	if object is not Mob:
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		return
+		
+	if object.has_dialogues:
+		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+		return object
 	

@@ -27,7 +27,7 @@ hinting = 2
 subpixel_positioning = 0
 multichannel_signed_distance_field = true
 
-[node name="dialog" type="MarginContainer"]
+[node name="dialogue" type="MarginContainer"]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
