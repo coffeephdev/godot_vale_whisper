@@ -117,6 +117,7 @@ cull_mask = 1048573
 
 [node name="FloatingText" parent="." instance=ExtResource("3_1jkf6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
 
 [node name="Timer" type="Timer" parent="."]
 

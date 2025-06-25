@@ -16,8 +16,8 @@ class_name Mob extends CharacterBody3D
 @onready var timer:Timer = $Timer
 @onready var floating_text = $FloatingText
 
-@onready var has_whispers := whispers.size() >= 0
-@onready var has_dialogues := dialogues.size() >= 0
+@onready var has_whispers := whispers.size() > 0
+@onready var has_dialogues := dialogues.size() > 0
 
 var whisper_index = null
 

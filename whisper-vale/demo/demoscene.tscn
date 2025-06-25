@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Material" uid="uid://dfj33kxsnysbw" path="res://demo/material/pelouse.tres" id="1_4lyb4"]
-[ext_resource type="PackedScene" uid="uid://c728mwwjcl3o5" path="res://demo/flypoint/fly_post.tscn" id="2_4lyb4"]
+[ext_resource type="PackedScene" path="res://demo/flypoint/fly_post.tscn" id="2_4lyb4"]
 [ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_g28m0"]
 [ext_resource type="PackedScene" uid="uid://bd0vh3mcc25uf" path="res://demo/player/mob.tscn" id="3_lduio"]
 [ext_resource type="Script" uid="uid://dlpelwkaqhcfn" path="res://demo/flypoint/fly_road.gd" id="4_0vl1j"]
@@ -135,9 +135,12 @@ floor_constant_speed = true
 platform_on_leave = 2
 
 [node name="Mob" parent="." instance=ExtResource("3_lduio")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40.0668)
-whispers = Array[String](["What a beautiful demo world !", "Have you seen Wicked already ?", "Mmh. Very green."])
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09024, 0, -44.7192)
 dialogues = Array[ExtResource("4_ruo2j")]([SubResource("Resource_uoqtn"), SubResource("Resource_5k3dx"), SubResource("Resource_amas7")])
+
+[node name="Mob2" parent="." instance=ExtResource("3_lduio")]
+transform = Transform3D(0.872658, 0, -0.488332, 0, 1, 0, 0.488332, 0, 0.872658, 12.3953, 0, -45.0265)
+whispers = Array[String](["What a beautiful demo world !", "Have you seen Wicked already ?", "Mmh. Very green."])
 
 [node name="Fly" type="Node" parent="."]
 

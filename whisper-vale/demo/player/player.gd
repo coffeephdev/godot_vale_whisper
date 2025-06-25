@@ -25,6 +25,9 @@ var jumping := false
 var can_move := true
 var auto_walk := false
 
+var raycast_target = null
+var active_speaker = null
+
 @onready var initial_position := position
 @onready var gravity: Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * \
 		ProjectSettings.get_setting("physics/3d/default_gravity_vector")
@@ -37,9 +40,12 @@ func _ready() -> void:
 	GameMaster.player = self
 
 func _input(event: InputEvent) -> void:
-	var mob = raycast() as Mob
-	if mob != null && Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		GameMaster.dialogue.show_dialogue(mob.mob_name, mob.dialogues[0])
+	raycast()
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if raycast_target == null:
+			return
+		active_speaker = raycast_target
+		GameMaster.dialogue.show_dialogue(active_speaker.mob_name, active_speaker.dialogues[0])
 		
 	if event is not InputEventMouseMotion:
 		return
@@ -49,13 +55,7 @@ func _input(event: InputEvent) -> void:
 		mouse_rotate_camera(event.screen_relative * 0.008)
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		
 	
-	
-	#if event is InputEventMouseButton:
-		#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			#pass
-			
 func mouse_rotate_camera(move):
 	_camera_root.rotate_y(-move.x)
 	_camera_root.orthonormalize()
@@ -110,8 +110,6 @@ func _physics_process(delta):
 	
 	movement_direction = movement_direction.normalized()
 
-	
-			
 	horizontal_direction = movement_direction
 
 	if horizontal_speed < MAX_SPEED:
@@ -222,20 +220,28 @@ func raycast():
 	query.exclude = [self]
 	
 	var result := space.intersect_ray(query)
+		
 	if result == null:
-		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		reset_raycast()
 		return
 		
 	var object = result.get("collider")
+	if object == raycast_target:
+		return
+		
 	if object == null || object is not CharacterBody3D:
-		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		reset_raycast()
 		return
 		
 	if object is not Mob:
-		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+		reset_raycast()
 		return
 		
 	if object.has_dialogues:
 		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-		return object
-	
+		raycast_target = object
+		
+func reset_raycast():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	if raycast_target != null:
+		raycast_target = null
