@@ -17,8 +17,8 @@ func _ready() -> void:
 	var start_point_position = self.curve.get_point_position(0) + self.position
 	var end_point_position = self.curve.get_point_position(self.curve.point_count - 1) + self.position
 	
-	close_fly_post = Flypaths.get_nearest_fly_post(start_point_position)
-	far_fly_post = Flypaths.get_nearest_fly_post(end_point_position)
+	close_fly_post = GameMaster.get_nearest_fly_post(start_point_position)
+	far_fly_post = GameMaster.get_nearest_fly_post(end_point_position)
 	
 	close_fly_post.available_fly_roads.append(self)
 	far_fly_post.available_fly_roads.append(self)

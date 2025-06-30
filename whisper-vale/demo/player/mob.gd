@@ -39,10 +39,10 @@ func handle_whispers():
 	else:
 		if timer.is_stopped():
 			return
-			
+
 		hide_whisper()
 		timer.stop()
-		
+
 func timer_reached():
 	timer.stop()
 	update_whispers()

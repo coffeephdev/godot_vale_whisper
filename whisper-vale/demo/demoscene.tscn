@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=23 format=3 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Material" uid="uid://dfj33kxsnysbw" path="res://demo/material/pelouse.tres" id="1_4lyb4"]
 [ext_resource type="PackedScene" path="res://demo/flypoint/fly_post.tscn" id="2_4lyb4"]
@@ -8,8 +8,8 @@
 [ext_resource type="Script" uid="uid://bp4dos28aso7l" path="res://demo/discussions/dialogue.gd" id="4_ruo2j"]
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="5_dogub"]
 [ext_resource type="Script" uid="uid://cplia3u25qb4d" path="res://demo/discussions/response.gd" id="5_uoqtn"]
-[ext_resource type="PackedScene" uid="uid://cxp5jtxftnl2t" path="res://demo/discussions/dialogue.tscn" id="7_lduio"]
-[ext_resource type="Script" uid="uid://csehju6x37bfg" path="res://demo/discussions/dialogue_interface.gd" id="10_pek3y"]
+[ext_resource type="PackedScene" uid="uid://cxp5jtxftnl2t" path="res://demo/interface/dialogue.tscn" id="7_lduio"]
+[ext_resource type="Script" uid="uid://csehju6x37bfg" path="res://demo/interface/dialogue_interface.gd" id="10_pek3y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g28m0"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -39,47 +39,41 @@ ssao_light_affect = 0.48
 
 [sub_resource type="Resource" id="Resource_pek3y"]
 script = ExtResource("5_uoqtn")
-response = "Oui"
-dialog_tag = "Bienvenue"
+response = "Yup !"
+dialog_tag = ""
 metadata/_custom_type_script = "uid://cplia3u25qb4d"
 
 [sub_resource type="Resource" id="Resource_45b0w"]
 script = ExtResource("5_uoqtn")
-response = "J'ai toujours habité là"
-dialog_tag = "Oups"
+response = "Non, j'ai toujours vécu ici !"
+dialog_tag = ""
 metadata/_custom_type_script = "uid://cplia3u25qb4d"
 
 [sub_resource type="Resource" id="Resource_uoqtn"]
 script = ExtResource("4_ruo2j")
+speaker = null
+listener = null
 dialog_tag = ""
 dialogue = "Hey ! T'es nouveau ici ??"
-response = Array[ExtResource("5_uoqtn")]([SubResource("Resource_pek3y"), SubResource("Resource_45b0w")])
+responses = Array[ExtResource("5_uoqtn")]([SubResource("Resource_pek3y"), SubResource("Resource_45b0w")])
 metadata/_custom_type_script = "uid://bp4dos28aso7l"
-
-[sub_resource type="Resource" id="Resource_hmalq"]
-script = ExtResource("5_uoqtn")
-response = "Merci !"
-dialog_tag = ""
-metadata/_custom_type_script = "uid://cplia3u25qb4d"
 
 [sub_resource type="Resource" id="Resource_5k3dx"]
 script = ExtResource("4_ruo2j")
+speaker = null
+listener = null
 dialog_tag = "Bienvenue"
 dialogue = "Ah mais bienvenue alors !"
-response = Array[ExtResource("5_uoqtn")]([SubResource("Resource_hmalq")])
+responses = Array[ExtResource("5_uoqtn")]([])
 metadata/_custom_type_script = "uid://bp4dos28aso7l"
-
-[sub_resource type="Resource" id="Resource_x5el4"]
-script = ExtResource("5_uoqtn")
-response = "Bisous !"
-dialog_tag = ""
-metadata/_custom_type_script = "uid://cplia3u25qb4d"
 
 [sub_resource type="Resource" id="Resource_amas7"]
 script = ExtResource("4_ruo2j")
+speaker = null
+listener = null
 dialog_tag = "Oups"
 dialogue = "Oups ! Malaise haha. Bonne journée du coup !"
-response = Array[ExtResource("5_uoqtn")]([SubResource("Resource_x5el4")])
+responses = Array[ExtResource("5_uoqtn")]([])
 metadata/_custom_type_script = "uid://bp4dos28aso7l"
 
 [sub_resource type="Curve3D" id="Curve3D_dogub"]

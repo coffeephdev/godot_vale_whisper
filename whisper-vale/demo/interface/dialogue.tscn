@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxp5jtxftnl2t"]
+[gd_scene load_steps=6 format=3 uid="uid://cxp5jtxftnl2t"]
+
+[ext_resource type="Theme" uid="uid://bcolu82nrk12l" path="res://demo/interface/main_theme.tres" id="1_f6txh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3l2g"]
 bg_color = Color(0, 0, 0, 0.564706)
@@ -26,6 +28,9 @@ font_names = PackedStringArray("Candara")
 hinting = 2
 subpixel_positioning = 0
 multichannel_signed_distance_field = true
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f6txh"]
+size = Vector2(15, 15)
 
 [node name="dialogue" type="MarginContainer"]
 anchors_preset = 4
@@ -85,5 +90,30 @@ bbcode_enabled = true
 text = "qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf qdsfsdf "
 fit_content = true
 
-[node name="dialog" type="Control" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="responses" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainer/responses"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_f6txh")
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.83, 0.83, 0.83, 1)
+text = "besoin 2 rien envie 2 tout"
+icon = SubResource("PlaceholderTexture2D_f6txh")
+alignment = 0
+
+[node name="Button2" type="Button" parent="VBoxContainer/MarginContainer/responses"]
+layout_mode = 2
+theme = ExtResource("1_f6txh")
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.83, 0.83, 0.83, 1)
+text = "besoin 2 rien envie 2 tout"
+icon = SubResource("PlaceholderTexture2D_f6txh")
+alignment = 0

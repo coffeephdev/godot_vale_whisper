@@ -17,14 +17,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Flypaths="*res://demo/Global/global_flypaths.gd"
 GameMaster="*res://demo/Global/game_master.gd"
+dialogue_manager="*res://demo/discussions/dialogue_manager.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 window/size/borderless=true
 
 [editor]
@@ -35,6 +34,10 @@ movie_writer/movie_file="C:/Users/Light/Videos/godot_whisper_vale.avi"
 
 fly_posts="Points that allows to travel between each others"
 fly_roads="fly paths connect fly routes "
+
+[gui]
+
+theme/custom="uid://bcolu82nrk12l"
 
 [input]
 

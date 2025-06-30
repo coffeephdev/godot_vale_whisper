@@ -1,0 +1,37 @@
+class_name dialogue_interface extends MarginContainer
+
+@onready var dialogue: RichTextLabel = $VBoxContainer/MarginContainer2/RichTextLabel
+@onready var title:Label = $VBoxContainer/Control/Label
+
+var current_dialogue: Dialogue = null
+
+func _ready() -> void:
+	dialogue_manager.dialogue_window = self
+	hide_dialogue()
+
+func hide_dialogue():
+	clear_responses()
+	dialogue.text = ""
+	title.text = ""
+	current_dialogue = null
+	hide()
+	
+func show_dialogue():
+	clear_responses()
+	title.text = current_dialogue.speaker
+	dialogue.text = current_dialogue.dialogue
+	if current_dialogue.responses.size() > 0:
+		build_responses()
+	show()
+	
+func build_responses():
+	for response in current_dialogue.responses:
+		var button = Button.new()
+		button.text = response.response
+		button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		%responses.add_child(button)
+		
+func clear_responses():
+	for button:Button in %responses.get_children():
+		button.queue_free()
+		%responses.remove_child(button)

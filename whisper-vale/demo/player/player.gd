@@ -26,7 +26,6 @@ var can_move := true
 var auto_walk := false
 
 var raycast_target = null
-var active_speaker = null
 
 @onready var initial_position := position
 @onready var gravity: Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * \
@@ -44,8 +43,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if raycast_target == null:
 			return
-		active_speaker = raycast_target
-		GameMaster.dialogue.show_dialogue(active_speaker.mob_name, active_speaker.dialogues[0])
+		dialogue_manager.start_dialogue(raycast_target)
 		
 	if event is not InputEventMouseMotion:
 		return
@@ -207,7 +205,7 @@ func adjust_facing(facing: Vector3, target: Vector3, step: float, adjust_rate: f
 	ang = (ang - a) * s
 
 	return (normal * cos(ang) + t * sin(ang)) * facing.length()
-
+	
 func raycast():
 	if Input.mouse_mode != Input.MOUSE_MODE_VISIBLE:
 		return
