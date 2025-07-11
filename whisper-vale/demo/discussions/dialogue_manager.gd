@@ -17,7 +17,9 @@ func _process(_delta: float) -> void:
 	
 func start_dialogue(mob: Mob):
 	active_speaker = mob
-	dialogue_window.current_dialogue = mob.dialogues[0]
+	var dialogue = Dialogue.new()
+	dialogue.dialogue = (await DialogueManager.get_next_dialogue_line(mob.test_dialogue, "start")).text
+	dialogue_window.current_dialogue = dialogue
 	dialogue_window.current_dialogue.speaker = mob.mob_name
 	dialogue_window.show_dialogue()
 	

@@ -235,7 +235,7 @@ func raycast():
 		reset_raycast()
 		return
 		
-	if object.has_dialogues:
+	if object.test_dialogue != null:
 		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 		raycast_target = object
 		

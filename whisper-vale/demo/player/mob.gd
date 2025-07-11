@@ -1,6 +1,7 @@
 class_name Mob extends CharacterBody3D
 
 @export var mob_name:StringName = ""
+@export var test_dialogue:Resource
 
 @export_category("Whispers")
 @export var whispers: Array[String] = []

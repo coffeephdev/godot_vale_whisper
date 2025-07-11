@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=24 format=3 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Material" uid="uid://dfj33kxsnysbw" path="res://demo/material/pelouse.tres" id="1_4lyb4"]
 [ext_resource type="PackedScene" path="res://demo/flypoint/fly_post.tscn" id="2_4lyb4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bp4dos28aso7l" path="res://demo/discussions/dialogue.gd" id="4_ruo2j"]
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="5_dogub"]
 [ext_resource type="Script" uid="uid://cplia3u25qb4d" path="res://demo/discussions/response.gd" id="5_uoqtn"]
+[ext_resource type="Resource" uid="uid://cglq0or2nii0p" path="res://demo/data/dialogue/demo_dialogue.dialogue" id="6_45b0w"]
 [ext_resource type="PackedScene" uid="uid://cxp5jtxftnl2t" path="res://demo/interface/dialogue.tscn" id="7_lduio"]
 [ext_resource type="Script" uid="uid://csehju6x37bfg" path="res://demo/interface/dialogue_interface.gd" id="10_pek3y"]
 
@@ -134,6 +135,7 @@ dialogues = Array[ExtResource("4_ruo2j")]([SubResource("Resource_uoqtn"), SubRes
 
 [node name="Mob2" parent="." instance=ExtResource("3_lduio")]
 transform = Transform3D(0.872658, 0, -0.488332, 0, 1, 0, 0.488332, 0, 0.872658, 12.3953, 0, -45.0265)
+test_dialogue = ExtResource("6_45b0w")
 whispers = Array[String](["What a beautiful demo world !", "Have you seen Wicked already ?", "Mmh. Very green."])
 
 [node name="Fly" type="Node" parent="."]
