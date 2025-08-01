@@ -3,10 +3,10 @@ class_name dialogue_interface extends MarginContainer
 @onready var dialogue: RichTextLabel = $VBoxContainer/MarginContainer2/RichTextLabel
 @onready var title:Label = $VBoxContainer/Control/Label
 
-var current_dialogue: Dialogue = null
+var current_dialogue: DialogueManager.DialogueLine = null
 
 func _ready() -> void:
-	dialogue_manager.dialogue_window = self
+	DialogueLead.dialogue_window = self
 	hide_dialogue()
 
 func hide_dialogue():
@@ -18,8 +18,8 @@ func hide_dialogue():
 	
 func show_dialogue():
 	clear_responses()
-	title.text = current_dialogue.speaker
-	dialogue.text = current_dialogue.dialogue
+	title.text = current_dialogue.character
+	dialogue.text = current_dialogue.text
 	if current_dialogue.responses.size() > 0:
 		build_responses()
 	show()

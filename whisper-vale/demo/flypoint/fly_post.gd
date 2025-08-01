@@ -36,8 +36,8 @@ func find_roads()-> Array[fly_road]:
 	
 func _on_interact_area_body_entered(player: Player) -> void:
 	var roads := find_roads()
-	GameMaster.fly_interface.display_menu(player, roads, self)
+	GameLead.fly_interface.display_menu(player, roads, self)
 
 func _on_interact_area_body_exited(_body: Node3D) -> void:
-	GameMaster.fly_interface.hide_menu()
+	GameLead.fly_interface.hide_menu()
 	

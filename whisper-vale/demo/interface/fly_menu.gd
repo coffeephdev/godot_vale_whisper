@@ -24,7 +24,7 @@ func hide_menu():
 	hide()
 
 func _ready() -> void:
-	GameMaster.fly_interface = self
+	GameLead.fly_interface = self
 	hide_menu()
 
 func _button_pressed(road: fly_road, destination: fly_post) -> void:

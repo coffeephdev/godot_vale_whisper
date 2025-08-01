@@ -35,7 +35,7 @@ func setup_whispers():
 	floating_text.set_text(whispers[0])
 	
 func handle_whispers():
-	if (GameMaster.player.position.distance_to(self.position) < whisper_distance):
+	if (GameLead.player.position.distance_to(self.position) < whisper_distance):
 		update_whispers()
 	else:
 		if timer.is_stopped():

@@ -36,14 +36,14 @@ var raycast_target = null
 @onready var _animation_tree := $AnimationTree as AnimationTree
 
 func _ready() -> void:
-	GameMaster.player = self
+	GameLead.player = self
 
 func _input(event: InputEvent) -> void:
 	raycast()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if raycast_target == null:
 			return
-		dialogue_manager.start_dialogue(raycast_target)
+		DialogueLead.start_dialogue(raycast_target)
 		
 	if event is not InputEventMouseMotion:
 		return

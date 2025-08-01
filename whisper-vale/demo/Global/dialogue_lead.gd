@@ -17,16 +17,13 @@ func _process(_delta: float) -> void:
 	
 func start_dialogue(mob: Mob):
 	active_speaker = mob
-	var dialogue = Dialogue.new()
-	dialogue.dialogue = (await DialogueManager.get_next_dialogue_line(mob.test_dialogue, "start")).text
-	dialogue_window.current_dialogue = dialogue
-	dialogue_window.current_dialogue.speaker = mob.mob_name
+	dialogue_window.current_dialogue = (await DialogueManager.get_next_dialogue_line(mob.test_dialogue, "start"))
 	dialogue_window.show_dialogue()
 	
 func active_speaker_checker():
 	if not active_speaker:
 		return
 		
-	if GameMaster.player.global_position.distance_to(active_speaker.global_position) > SPEAKER_DISTANCE:
+	if GameLead.player.global_position.distance_to(active_speaker.global_position) > SPEAKER_DISTANCE:
 		dialogue_window.hide_dialogue()
 		active_speaker = null

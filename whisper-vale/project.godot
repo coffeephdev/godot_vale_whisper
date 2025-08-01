@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameMaster="*res://demo/Global/game_master.gd"
-dialogue_manager="*res://demo/discussions/dialogue_manager.gd"
+GameLead="*res://demo/Global/game_lead.gd"
+DialogueLead="*res://demo/Global/dialogue_lead.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
