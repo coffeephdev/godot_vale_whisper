@@ -20,17 +20,20 @@ func show_dialogue():
 	clear_responses()
 	title.text = current_dialogue.character
 	dialogue.text = current_dialogue.text
-	if current_dialogue.responses.size() > 0:
-		build_responses()
+	
+	build_responses()
 	show()
 	
 func build_responses():
-	for response in current_dialogue.responses:
-		var button = Button.new()
-		button.text = response.response
-		button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-		%responses.add_child(button)
-		
+	if current_dialogue.responses.size() > 0:
+		for response in current_dialogue.responses:
+			var button = Button.new()
+			button.text = response.response
+			button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+			%responses.add_child(button)
+	elif current_dialogue.next_id != null:
+		pass
+		# NEED TO IMPLEMENT THE BALLOON DIALOGUE
 func clear_responses():
 	for button:Button in %responses.get_children():
 		button.queue_free()
