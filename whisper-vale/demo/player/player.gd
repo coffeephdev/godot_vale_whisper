@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody3D
 
-@export var ray_lenght = 100
+@export var ray_lenght = 10
 
 enum _Anim {
 	FLOOR,
@@ -212,9 +212,10 @@ func raycast():
 		
 	var space := get_world_3d().direct_space_state
 	var mousepos := get_viewport().get_mouse_position()
-	var query := (PhysicsRayQueryParameters3D.create(
-		_camera.global_position, _camera.project_ray_normal(mousepos) * ray_lenght)
-	)
+	var query := PhysicsRayQueryParameters3D.create(
+		_camera.global_position,
+		_camera.project_position(mousepos, ray_lenght)
+		)
 	query.exclude = [self]
 	
 	var result := space.intersect_ray(query)
