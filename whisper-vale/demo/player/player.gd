@@ -39,11 +39,11 @@ func _ready() -> void:
 	GameLead.player = self
 
 func _input(event: InputEvent) -> void:
-	raycast()
+	#raycast()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if raycast_target == null:
 			return
-		DialogueLead.start_dialogue(raycast_target)
+		#DialogueLead.start_dialogue(raycast_target)
 		
 	if event is not InputEventMouseMotion:
 		return
@@ -66,10 +66,7 @@ func handle_auto_walk():
 		auto_walk = false
 		
 func out_of_bound_reset_position():
-	if global_position.y < -12:
-		# Player hit the reset button or fell off the map.
-		position = initial_position
-		velocity = Vector3.ZERO
+	pass
 
 func _physics_process(delta):
 	out_of_bound_reset_position()
