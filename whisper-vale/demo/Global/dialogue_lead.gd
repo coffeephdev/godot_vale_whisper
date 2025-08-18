@@ -9,7 +9,7 @@ var whisper_pool = []
 var active_speaker:Mob = null
 const SPEAKER_DISTANCE = 110
 
-@onready var dialogue_window: dialogue_interface = null
+@onready var dialogue_window: DialogueManagerExampleBalloon = null
 
 
 func _process(_delta: float) -> void:
@@ -17,8 +17,8 @@ func _process(_delta: float) -> void:
 	
 func start_dialogue(mob: Mob):
 	active_speaker = mob
-	dialogue_window.current_dialogue = (await DialogueManager.get_next_dialogue_line(mob.test_dialogue, "start"))
-	dialogue_window.show_dialogue()
+	#dialogue_window.current_dialogue = (await DialogueManager.get_next_dialogue_line(mob.test_dialogue, "start"))
+	#dialogue_window.show_dialogue()
 	
 func active_speaker_checker():
 	if not active_speaker:

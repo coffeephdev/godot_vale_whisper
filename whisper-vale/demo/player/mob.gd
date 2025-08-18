@@ -1,7 +1,9 @@
 class_name Mob extends CharacterBody3D
 
 @export var mob_name:StringName = ""
-@export var test_dialogue:Resource
+
+@export_category("Dialogues")
+@export var dialogue: Resource = null
 
 @export_category("Whispers")
 @export var whispers: Array[String] = []
@@ -11,14 +13,11 @@ class_name Mob extends CharacterBody3D
 @export var display_time := 5
 @export var hide_time := 20
 
-@export_category("Dialogues")
-@export var dialogues: Array[Dialogue] = []
 
 @onready var timer:Timer = $Timer
-@onready var floating_text = $FloatingText
 
 @onready var has_whispers := whispers.size() > 0
-@onready var has_dialogues := dialogues.size() > 0
+@onready var has_dialogue := dialogue != null
 
 var whisper_index = null
 
@@ -32,7 +31,6 @@ func _process(_delta: float) -> void:
 	
 func setup_whispers():
 	timer.timeout.connect(timer_reached)
-	floating_text.set_text(whispers[0])
 	
 func handle_whispers():
 	if (GameLead.player.position.distance_to(self.position) < whisper_distance):
@@ -49,24 +47,10 @@ func timer_reached():
 	update_whispers()
 	
 func update_whispers():
-	if not timer.is_stopped():
-		return
-	
-	if floating_text.visible:
-		hide_whisper()
-		timer.start(hide_time)
-	else:
-		show_whisper()
-		timer.start(display_time)
+	pass
 
 func hide_whisper():
-	floating_text.hide_text()
+	pass
 	
 func show_whisper():
-	if whisper_index == null || whisper_index >= whispers.size() - 1:
-		whisper_index = 0
-	else:
-		whisper_index = whisper_index+1
-		
-	floating_text.set_text(whispers[whisper_index])
-	floating_text.display_text()
+	pass

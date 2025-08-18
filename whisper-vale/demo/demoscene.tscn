@@ -1,16 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=15 format=3 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Material" uid="uid://dfj33kxsnysbw" path="res://demo/material/pelouse.tres" id="1_4lyb4"]
 [ext_resource type="PackedScene" path="res://demo/flypoint/fly_post.tscn" id="2_4lyb4"]
 [ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_g28m0"]
 [ext_resource type="PackedScene" uid="uid://bd0vh3mcc25uf" path="res://demo/player/mob.tscn" id="3_lduio"]
 [ext_resource type="Script" uid="uid://dlpelwkaqhcfn" path="res://demo/flypoint/fly_road.gd" id="4_0vl1j"]
-[ext_resource type="Script" uid="uid://bp4dos28aso7l" path="res://demo/discussions/dialogue.gd" id="4_ruo2j"]
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="5_dogub"]
-[ext_resource type="Script" uid="uid://cplia3u25qb4d" path="res://demo/discussions/response.gd" id="5_uoqtn"]
 [ext_resource type="Resource" uid="uid://cglq0or2nii0p" path="res://demo/data/dialogue/demo_dialogue.dialogue" id="6_45b0w"]
-[ext_resource type="PackedScene" uid="uid://cxp5jtxftnl2t" path="res://demo/interface/dialogue.tscn" id="7_lduio"]
-[ext_resource type="Script" uid="uid://csehju6x37bfg" path="res://demo/interface/dialogue_interface.gd" id="10_pek3y"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g28m0"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -37,45 +33,6 @@ ssao_sharpness = 0.45
 ssao_light_affect = 0.48
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5ei6"]
-
-[sub_resource type="Resource" id="Resource_pek3y"]
-script = ExtResource("5_uoqtn")
-response = "Yup !"
-dialog_tag = ""
-metadata/_custom_type_script = "uid://cplia3u25qb4d"
-
-[sub_resource type="Resource" id="Resource_45b0w"]
-script = ExtResource("5_uoqtn")
-response = "Non, j'ai toujours vécu ici !"
-dialog_tag = ""
-metadata/_custom_type_script = "uid://cplia3u25qb4d"
-
-[sub_resource type="Resource" id="Resource_uoqtn"]
-script = ExtResource("4_ruo2j")
-speaker = null
-listener = null
-dialog_tag = ""
-dialogue = "Hey ! T'es nouveau ici ??"
-responses = Array[ExtResource("5_uoqtn")]([SubResource("Resource_pek3y"), SubResource("Resource_45b0w")])
-metadata/_custom_type_script = "uid://bp4dos28aso7l"
-
-[sub_resource type="Resource" id="Resource_5k3dx"]
-script = ExtResource("4_ruo2j")
-speaker = null
-listener = null
-dialog_tag = "Bienvenue"
-dialogue = "Ah mais bienvenue alors !"
-responses = Array[ExtResource("5_uoqtn")]([])
-metadata/_custom_type_script = "uid://bp4dos28aso7l"
-
-[sub_resource type="Resource" id="Resource_amas7"]
-script = ExtResource("4_ruo2j")
-speaker = null
-listener = null
-dialog_tag = "Oups"
-dialogue = "Oups ! Malaise haha. Bonne journée du coup !"
-responses = Array[ExtResource("5_uoqtn")]([])
-metadata/_custom_type_script = "uid://bp4dos28aso7l"
 
 [sub_resource type="Curve3D" id="Curve3D_dogub"]
 _data = {
@@ -131,12 +88,11 @@ platform_on_leave = 2
 
 [node name="Mob" parent="." instance=ExtResource("3_lduio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09024, 0, -44.7192)
-dialogues = Array[ExtResource("4_ruo2j")]([SubResource("Resource_uoqtn"), SubResource("Resource_5k3dx"), SubResource("Resource_amas7")])
+dialogue = ExtResource("6_45b0w")
 
 [node name="Mob2" parent="." instance=ExtResource("3_lduio")]
 transform = Transform3D(0.872658, 0, -0.488332, 0, 1, 0, 0.488332, 0, 0.872658, 12.3953, 0, -45.0265)
-test_dialogue = ExtResource("6_45b0w")
-whispers = Array[String](["What a beautiful demo world !", "Have you seen Wicked already ?", "Mmh. Very green."])
+mob_name = &"Laïa"
 
 [node name="Fly" type="Node" parent="."]
 
@@ -195,6 +151,3 @@ transform = Transform3D(-0.71111, -0.00319423, 0.703073, -1.16415e-10, 0.999988,
 
 [node name="fly_menu" parent="Interface" instance=ExtResource("5_dogub")]
 mouse_filter = 1
-
-[node name="dialogue" parent="Interface" instance=ExtResource("7_lduio")]
-script = ExtResource("10_pek3y")
