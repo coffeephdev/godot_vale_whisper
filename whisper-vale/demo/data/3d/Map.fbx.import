@@ -1,0 +1,83 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://kgqrdxntstcr"
+path="res://.godot/imported/Map.fbx-c2aeec48e75092682de4c7a17bc73202.scn"
+
+[deps]
+
+source_file="res://demo/data/3d/Map.fbx"
+dest_files=["res://.godot/imported/Map.fbx-c2aeec48e75092682de4c7a17bc73202.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=0.1
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:Anor Londo": {
+"generate/physics": true
+},
+"PATH:Ash Lake": {
+"generate/physics": true
+},
+"PATH:Blighttown": {
+"generate/physics": true
+},
+"PATH:Catacombs": {
+"generate/physics": true
+},
+"PATH:Darkroot Garden and Basin": {
+"generate/physics": true
+},
+"PATH:Demon Ruins and Lost Izalith": {
+"generate/physics": true
+},
+"PATH:Depths": {
+"generate/physics": true
+},
+"PATH:Duke's Archive and Crystal Caves": {
+"generate/physics": true
+},
+"PATH:Firelink Shrine": {
+"generate/physics": true
+},
+"PATH:Kiln of the first Flame": {
+"generate/physics": true
+},
+"PATH:New Londo Ruins and Valley of Drakes": {
+"generate/physics": true
+},
+"PATH:Sen's Fortress": {
+"generate/physics": true
+},
+"PATH:Tomb of the Giants": {
+"generate/physics": true
+},
+"PATH:Undead Burg": {
+"generate/physics": true
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
