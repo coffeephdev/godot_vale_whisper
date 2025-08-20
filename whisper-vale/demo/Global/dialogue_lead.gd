@@ -17,8 +17,7 @@ func _process(_delta: float) -> void:
 	
 func start_dialogue(mob: Mob):
 	active_speaker = mob
-	#dialogue_window.current_dialogue = (await DialogueManager.get_next_dialogue_line(mob.test_dialogue, "start"))
-	#dialogue_window.show_dialogue()
+	DialogueManager.show_dialogue_balloon(active_speaker.dialogue)
 	
 func active_speaker_checker():
 	if not active_speaker:

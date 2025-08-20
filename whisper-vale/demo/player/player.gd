@@ -25,7 +25,7 @@ var jumping := false
 var can_move := true
 var auto_walk := false
 
-var raycast_target = null
+var dialogue_target = null
 
 @onready var initial_position := position
 @onready var gravity: Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * \
@@ -35,15 +35,22 @@ var raycast_target = null
 @onready var _camera := $CamRoot/Camera3D as Camera3D
 @onready var _animation_tree := $AnimationTree as AnimationTree
 
+func _init() -> void:
+	unique_name_in_owner = true
+
 func _ready() -> void:
 	GameLead.player = self
+	DialogueManager.dialogue_started.connect(_on_dialogue_started)
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
 func _input(event: InputEvent) -> void:
-	#raycast()
+	if !can_move:
+		return 
+	raycast()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if raycast_target == null:
+		if dialogue_target == null:
 			return
-		#DialogueLead.start_dialogue(raycast_target)
+		DialogueLead.start_dialogue(dialogue_target)
 		
 	if event is not InputEventMouseMotion:
 		return
@@ -69,6 +76,9 @@ func out_of_bound_reset_position():
 	pass
 
 func _physics_process(delta):
+	if !can_move:
+		return
+	
 	out_of_bound_reset_position()
 	
 	velocity += gravity * delta
@@ -165,8 +175,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		movement_dir = velocity
 	
-	if can_move:
-		move_and_slide()
+	move_and_slide()
 
 	if is_on_floor():
 		# How much the player should be blending between the "idle" and "walk/run" animations.
@@ -222,7 +231,7 @@ func raycast():
 		return
 		
 	var object = result.get("collider")
-	if object == raycast_target:
+	if object == dialogue_target:
 		return
 		
 	if object == null || object is not CharacterBody3D:
@@ -233,11 +242,14 @@ func raycast():
 		reset_raycast()
 		return
 		
-	if object.test_dialogue != null:
+	if object.has_dialogue:
 		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-		raycast_target = object
+		dialogue_target = object
 		
 func reset_raycast():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-	if raycast_target != null:
-		raycast_target = null
+	if dialogue_target != null:
+		dialogue_target = null
+
+func _on_dialogue_started(_resource): can_move = false
+func _on_dialogue_ended(_resource): can_move = true
