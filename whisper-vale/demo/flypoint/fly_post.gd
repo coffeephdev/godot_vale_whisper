@@ -5,6 +5,9 @@ var flyname_offset = Vector3(5, -8, 0)
 
 var available_fly_roads := [] as Array[fly_road]
 
+func _init() -> void:
+	add_to_group("fly_posts")
+
 func _ready() -> void:
 	setup_label()
 	

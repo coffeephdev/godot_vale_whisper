@@ -1,12 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c728mwwjcl3o5"]
+[gd_scene load_steps=12 format=3 uid="uid://w2xt4xovidnu"]
 
 [ext_resource type="Material" uid="uid://b1ivganoey88f" path="res://demo/material/wood.tres" id="1_lkl4q"]
 [ext_resource type="Script" uid="uid://calsfwkbbe6sk" path="res://demo/flypoint/fly_post.gd" id="1_t3now"]
 [ext_resource type="Script" uid="uid://c5na552vggo2o" path="res://demo/tools/Marker.gd" id="2_muub5"]
 [ext_resource type="Texture2D" uid="uid://cgow8dqpnhb4h" path="res://demo/flypoint/waypoint.svg" id="3_pwolr"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_18mk4"]
-size = Vector3(3.64551, 0.736694, 1.22461)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_74qjt"]
 height = 0.503906
@@ -15,7 +12,7 @@ radius = 3.12891
 [sub_resource type="BoxShape3D" id="BoxShape3D_0cdqn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_74qjt"]
-size = Vector3(3.6084, 1, 4.98607)
+size = Vector3(3.6084, 1, 1.70895)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkl4q"]
 albedo_color = Color(1, 0, 0, 1)
@@ -33,7 +30,7 @@ radius = 1.19871
 script = ExtResource("1_t3now")
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.71671, -8.04554)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.71671, -3.00262)
 
 [node name="Control" type="Control" parent="Marker3D"]
 layout_mode = 3
@@ -51,35 +48,10 @@ pivot_offset = Vector2(-15.82, -64.065)
 texture = ExtResource("3_pwolr")
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.24728, -6.30669)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.24728, -1.26377)
 
 [node name="Model" type="Node3D" parent="."]
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.349958, -0.121582)
-material_override = ExtResource("1_lkl4q")
-size = Vector3(3.65039, 0.729492, 1.24316)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00612855, 1.90842, -3.41901)
-material_override = ExtResource("1_lkl4q")
-size = Vector3(3.65039, 0.729492, 1.24316)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Model/CSGBox3D5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/CSGBox3D5/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00262451, 0)
-shape = SubResource("BoxShape3D_18mk4")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Model"]
-transform = Transform3D(0.99878, 0, -0.0493727, 0, 1, 0, 0.0493727, 0, 0.99878, -0.0085181, 0.818543, -1.27431)
-material_override = ExtResource("1_lkl4q")
-size = Vector3(3.65039, 0.729492, 1.24316)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Model"]
-transform = Transform3D(0.999704, 0, 0.0243449, 0, 1, 0, -0.0243449, 0, 0.999704, 0.00454986, 1.35815, -2.35312)
-material_override = ExtResource("1_lkl4q")
-size = Vector3(3.65039, 0.729492, 1.24316)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.04292)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98937, -6.34078)
@@ -114,7 +86,7 @@ shape = SubResource("BoxShape3D_0cdqn")
 [node name="StaticBody3D" type="StaticBody3D" parent="Model"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Model/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.893465, -0.449132, 0, 0.449132, 0.893465, 0.00273466, 0.694811, -0.811578)
+transform = Transform3D(1, 0, 0, 0, 0.893465, -0.449132, 0, 0.449132, 0.893465, 0.00273466, 1.40966, -2.84713)
 shape = SubResource("BoxShape3D_74qjt")
 
 [node name="pin" type="CSGCylinder3D" parent="Model"]
@@ -166,7 +138,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000190911, 0.0026567, -0.0
 shape = SubResource("BoxShape3D_lkl4q")
 
 [node name="InteractArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.89163, -7.06143)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.89163, -2.01851)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.290719)
