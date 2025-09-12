@@ -4,6 +4,7 @@
 shading_mode = 2
 diffuse_mode = 3
 specular_mode = 1
+vertex_color_use_as_albedo = true
 albedo_color = Color(0.52, 0.2925, 0.13, 1)
 roughness = 0.92
 rim = 0.09
@@ -14,3 +15,5 @@ heightmap_min_layers = 8
 heightmap_max_layers = 32
 heightmap_flip_tangent = true
 heightmap_flip_binormal = true
+texture_filter = 1
+stencil_flags = 2

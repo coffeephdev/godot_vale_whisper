@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6j4pqn5m176d"]
+
+[ext_resource type="PackedScene" uid="uid://by5wi4no3ws76" path="res://demo/data/3d/enviro-test.glb" id="1_qy0ng"]
+[ext_resource type="Material" uid="uid://b011vxgbsboof" path="res://demo/material/new_standard_material_3d.tres" id="2_h6hvd"]
+
+[node name="enviro-test" instance=ExtResource("1_qy0ng")]
+
+[node name="m_house_wall" parent="." index="0"]
+material_override = ExtResource("2_h6hvd")
+gi_mode = 0
+
+[node name="m_house_interior" parent="." index="1"]
+material_override = ExtResource("2_h6hvd")
+gi_mode = 0
+
+[node name="m_house_door" parent="." index="2"]
+material_override = ExtResource("2_h6hvd")
+gi_mode = 0
+
+[node name="m_house_roof" parent="." index="3"]
+material_override = ExtResource("2_h6hvd")
+gi_mode = 0
+
+[node name="m_house_interior_001" parent="." index="4"]
+material_override = ExtResource("2_h6hvd")
+gi_mode = 0
+
+[node name="s-path" parent="." index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.440147, 35.217033, 24.886465)

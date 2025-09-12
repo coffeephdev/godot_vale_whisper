@@ -1,12 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=9 format=3 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_ptubf"]
 [ext_resource type="PackedScene" uid="uid://bd0vh3mcc25uf" path="res://demo/player/mob.tscn" id="3_g5c70"]
 [ext_resource type="Resource" uid="uid://cglq0or2nii0p" path="res://demo/data/dialogue/demo_dialogue.dialogue" id="4_pd8a3"]
-[ext_resource type="PackedScene" uid="uid://w2xt4xovidnu" path="res://demo/flypoint/fly_post.tscn" id="5_7141o"]
-[ext_resource type="Script" uid="uid://dlpelwkaqhcfn" path="res://demo/flypoint/fly_road.gd" id="6_0rr5y"]
+[ext_resource type="PackedScene" uid="uid://b6j4pqn5m176d" path="res://demo/scene/enviro_test.tscn" id="7_1uu8a"]
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="7_o2kgk"]
-[ext_resource type="PackedScene" uid="uid://kgqrdxntstcr" path="res://demo/data/3d/Map.fbx" id="8_ptubf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g28m0"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -22,7 +20,7 @@ sky = SubResource("Sky_4lyb4")
 sky_rotation = Vector3(0, -0.457276, 0)
 ambient_light_source = 2
 ambient_light_color = Color(0, 0.514898, 0.900531, 1)
-ambient_light_energy = 3.75
+ambient_light_energy = 2.0
 reflected_light_source = 2
 tonemap_mode = 1
 ssao_enabled = true
@@ -31,13 +29,6 @@ ssao_detail = 0.39
 ssao_horizon = 0.23
 ssao_sharpness = 0.45
 ssao_light_affect = 0.48
-
-[sub_resource type="Curve3D" id="Curve3D_1uu8a"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -16.855, -2.865, 0, 16.07, 1.595, -0.185, 2.39602, 10.4647, 13.6119, 0, 5.125, -6.525, 0, -7.875, 12.305, 73.9652, 46.8574, 10.2218, -45.68, 0, 0, 32.665, 0, 0, 223.288, 249.771, 504.838, 20.005, 0, 0, -17.22, 0, 0, 299.949, 267.131, 637.641, 0, 0, 0, 0, 0, 0, 268.343, 255.168, 628.905),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
-}
-point_count = 6
 
 [node name="demoscene" type="Node3D"]
 top_level = true
@@ -51,11 +42,9 @@ environment = SubResource("Environment_0vl1j")
 transform = Transform3D(-0.21083, 0.773137, -0.598173, -6.21754e-09, 0.611927, 0.790914, 0.977523, 0.166749, -0.129013, -0.345978, 13.0264, -0.159866)
 light_energy = 3.0
 shadow_enabled = true
-shadow_opacity = 0.54
-shadow_blur = 0.0
 
 [node name="Player" parent="." instance=ExtResource("2_ptubf")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 69.717, -77.4105, -60.9305)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.9394836, 0, 7.9049797)
 wall_min_slide_angle = 0.0
 floor_stop_on_slope = true
 floor_constant_speed = true
@@ -63,40 +52,17 @@ floor_max_angle = 1.51844
 floor_snap_length = 0.14
 
 [node name="Mob" parent="." instance=ExtResource("3_g5c70")]
-transform = Transform3D(0.796076, 0, 0.605197, 0, 1, 0, -0.605197, 0, 0.796076, 69.0638, -78.8092, -68.035)
+transform = Transform3D(0.796076, 0, 0.605197, 0, 1, 0, -0.605197, 0, 0.796076, 4.286278, 0, 0.8004761)
 dialogue = ExtResource("4_pd8a3")
 
 [node name="Mob2" parent="." instance=ExtResource("3_g5c70")]
-transform = Transform3D(-0.806517, 0, -0.591211, 0, 1, 0, 0.591211, 0, -0.806517, 78.6541, -75.5886, -54.0176)
+transform = Transform3D(-0.806517, 0, -0.591211, 0, 1, 0, 0.591211, 0, -0.806517, 13.876579, 0, 14.817879)
 mob_name = &"Laïa"
-
-[node name="Mob3" parent="." instance=ExtResource("3_g5c70")]
-transform = Transform3D(-0.993224, 0, 0.11622, 0, 1, 0, -0.11622, 0, -0.993224, 336.072, 174.134, 569.107)
-mob_name = &"Smough"
-
-[node name="Fly" type="Node" parent="."]
-
-[node name="fly_point" parent="Fly" instance=ExtResource("5_7141o")]
-transform = Transform3D(0.732377, 0, -0.6809, 0, 1, 0, 0.6809, 0, 0.732377, 73.2575, -80.8423, -67.7013)
-flyname = &"Fire"
-
-[node name="fly_point2" parent="Fly" instance=ExtResource("5_7141o")]
-transform = Transform3D(0.732377, 0, -0.6809, 0, 1, 0, 0.6809, 0, 0.732377, 341.836, 173.324, 561.579)
-flyname = &"Anor Londo"
-
-[node name="fly_road" type="Path3D" parent="Fly"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.8032, -79.27, -65.8324)
-curve = SubResource("Curve3D_1uu8a")
-script = ExtResource("6_0rr5y")
-fly_speed = 40
-metadata/_custom_type_script = "uid://dlpelwkaqhcfn"
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Fly/fly_road"]
-transform = Transform3D(-0.984858, -0.104647, -0.138211, 0, 0.797255, -0.603642, 0.173359, -0.594502, -0.785183, 0, 0, 0)
 
 [node name="Interface" type="Node" parent="."]
 
 [node name="fly_menu" parent="Interface" instance=ExtResource("7_o2kgk")]
 mouse_filter = 1
 
-[node name="Map" parent="." instance=ExtResource("8_ptubf")]
+[node name="enviro-test" parent="." instance=ExtResource("7_1uu8a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
