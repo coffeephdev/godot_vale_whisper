@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cqexitjebbo46"]
+
+[ext_resource type="Shader" uid="uid://cmku8c4wtn44p" path="res://demo/material/cell_shader.gdshader" id="1_amuek"]
+[ext_resource type="Texture2D" uid="uid://cuk2poli6f70f" path="res://demo/material/cel_grad.tres" id="2_n8i2j"]
+[ext_resource type="Texture2D" uid="uid://cxhgcompgdjr0" path="res://demo/material/col_ramp.tres" id="3_n8i2j"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_amuek")
+shader_parameter/albedo = Color(0, 0.06832397, 0.40495878, 1)
+shader_parameter/normal_scale = 16.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(50, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/color_gradient = ExtResource("2_n8i2j")
+shader_parameter/color_ramp3 = ExtResource("3_n8i2j")

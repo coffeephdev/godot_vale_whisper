@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://bd0vh3mcc25uf"]
+[gd_scene load_steps=20 format=3 uid="uid://bd0vh3mcc25uf"]
 
 [ext_resource type="Script" uid="uid://ctomomaaqqarb" path="res://demo/player/mob.gd" id="1_1jkf6"]
 [ext_resource type="PackedScene" uid="uid://yd1e7ai2k5cr" path="res://demo/player/player.glb" id="2_1jkf6"]
+[ext_resource type="Material" uid="uid://cqexitjebbo46" path="res://demo/material/cell_material.tres" id="3_1jkf6"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.582393
@@ -40,6 +41,7 @@ filters = ["Skeleton/Skeleton3D:MASTER", "Skeleton/Skeleton3D:chest", "Skeleton/
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_bivc5"]
 
 [sub_resource type="AnimationNodeBlendTree" id="23"]
+nodes/output/position = Vector2(880, 140)
 nodes/Animation/node = SubResource("17")
 nodes/Animation/position = Vector2(-260, -400)
 "nodes/Animation 2/node" = SubResource("13")
@@ -56,7 +58,6 @@ nodes/air_dir/node = SubResource("18")
 nodes/air_dir/position = Vector2(110, 20)
 nodes/gun/node = SubResource("19")
 nodes/gun/position = Vector2(680, 140)
-nodes/output/position = Vector2(880, 140)
 nodes/run/node = SubResource("22")
 nodes/run/position = Vector2(80, -260)
 nodes/scale/node = SubResource("20")
@@ -65,7 +66,7 @@ nodes/speed/node = SubResource("AnimationNodeBlend2_lxtyk")
 nodes/speed/position = Vector2(-80, -200)
 nodes/state/node = SubResource("AnimationNodeBlend2_bivc5")
 nodes/state/position = Vector2(460, 10)
-node_connections = [&"air_dir", 0, &"Animation 3", &"air_dir", 1, &"Animation 4", &"gun", 0, &"state", &"gun", 1, &"Animation 5", &"output", 0, &"gun", &"run", 0, &"Animation", &"run", 1, &"speed", &"scale", 0, &"run", &"speed", 0, &"Animation 6", &"speed", 1, &"Animation 2", &"state", 0, &"scale", &"state", 1, &"air_dir"]
+node_connections = [&"output", 0, &"gun", &"air_dir", 0, &"Animation 3", &"air_dir", 1, &"Animation 4", &"gun", 0, &"state", &"gun", 1, &"Animation 5", &"run", 0, &"Animation", &"run", 1, &"speed", &"scale", 0, &"run", &"speed", 0, &"Animation 6", &"speed", 1, &"Animation 2", &"state", 0, &"scale", &"state", 1, &"air_dir"]
 
 [sub_resource type="Gradient" id="Gradient_p2tu5"]
 interpolation_mode = 2
@@ -93,6 +94,7 @@ shape = SubResource("1")
 
 [node name="Robot" parent="Mob/Skeleton/Skeleton3D" index="0"]
 layers = 2
+material_override = ExtResource("3_1jkf6")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Mob")
@@ -102,7 +104,7 @@ parameters/air_dir/blend_amount = 0.0
 parameters/gun/blend_amount = 0.0
 parameters/run/blend_amount = 0.0
 parameters/scale/scale = 1.5
-parameters/speed/blend_amount = 0
+parameters/speed/blend_amount = 0.0
 parameters/state/blend_amount = 0.0
 
 [node name="BlobShadow" type="Decal" parent="."]
