@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody3D
 
 @export var ray_lenght = 10
+@export var MAX_SPEED = 6.0
 
 enum _Anim {
 	FLOOR,
@@ -8,7 +9,6 @@ enum _Anim {
 }
 
 const CHAR_SCALE = Vector3(0.3, 0.3, 0.3)
-const MAX_SPEED = 6.0
 const TURN_SPEED = 100.0
 const CAM_SPEED = 0.1
 const JUMP_VELOCITY = 12.5
