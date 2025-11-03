@@ -47,7 +47,7 @@ void fragment() {
 }
 
 void light() {
-float dotproduct = clamp(dot(NORMAL, LIGHT), -0.9, 0.9);
+	float dotproduct = clamp(dot(NORMAL, LIGHT), -0.9, 0.9);
 	float sample = clamp((dotproduct + 1.0) * ATTENUATION / 2.1, 0.05, 0.95);
 	vec4 shaded = texture(color_gradient, vec2(sample, 0.0));
 	DIFFUSE_LIGHT += (shaded.rgb * LIGHT_COLOR) / 2.0;

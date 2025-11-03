@@ -9,9 +9,6 @@ var whisper_pool = []
 var active_speaker:Mob = null
 const SPEAKER_DISTANCE = 110
 
-@onready var dialogue_window: DialogueManagerExampleBalloon = null
-
-
 func _process(_delta: float) -> void:
 	active_speaker_checker()
 	
@@ -23,6 +20,5 @@ func active_speaker_checker():
 	if not active_speaker:
 		return
 		
-	if GameLead.player.global_position.distance_to(active_speaker.global_position) > SPEAKER_DISTANCE:
-		dialogue_window.hide_dialogue()
-		active_speaker = null
+	# if GameLead.player.global_position.distance_to(active_speaker.global_position) > SPEAKER_DISTANCE:
+	# 	active_speaker = null

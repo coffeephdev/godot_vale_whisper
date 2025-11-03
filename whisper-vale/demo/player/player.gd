@@ -2,6 +2,7 @@ class_name Player extends CharacterBody3D
 
 @export var ray_lenght = 10
 @export var MAX_SPEED = 6.0
+@export var CAM_SPEED = 0.1
 
 enum _Anim {
 	FLOOR,
@@ -10,11 +11,10 @@ enum _Anim {
 
 const CHAR_SCALE = Vector3(0.3, 0.3, 0.3)
 const TURN_SPEED = 100.0
-const CAM_SPEED = 0.1
 const JUMP_VELOCITY = 12.5
 const BULLET_SPEED = 20.0
 const AIR_IDLE_DEACCEL = false
-const ACCEL = 14.0
+const ACCEL = 140.0
 const DEACCEL = 14.0
 const AIR_ACCEL_FACTOR = 0.5
 const SHARP_TURN_THRESHOLD = deg_to_rad(140.0)
@@ -55,11 +55,11 @@ func _input(event: InputEvent) -> void:
 	if event is not InputEventMouseMotion:
 		return
 		
-	if Input.is_action_pressed("enable_cam"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		mouse_rotate_camera(event.screen_relative * 0.008)
-	else:
+	if Input.is_action_pressed("enable_mousecontrol"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		mouse_rotate_camera(event.screen_relative * CAM_SPEED / 1000)
 	
 func mouse_rotate_camera(move):
 	_camera_root.rotate_y(-move.x)
@@ -102,7 +102,7 @@ func _physics_process(delta):
 	var movement_direction := Vector3(movement_vec2.x, 0, movement_vec2.y)
 	
 	#Rotate with Keyboard
-	if not Input.is_action_pressed("enable_cam"):
+	if Input.is_action_pressed("enable_mousecontrol"):
 		movement_direction.x = 0
 		var cam_movement = Vector3(0, movement_vec2.x, 0).normalized()
 		
