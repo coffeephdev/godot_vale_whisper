@@ -3,6 +3,7 @@ class_name Player extends CharacterBody3D
 @export var ray_lenght = 10
 @export var MAX_SPEED = 6.0
 @export var CAM_SPEED = 0.1
+@export var CAMERA : Camera3D = null
 
 enum _Anim {
 	FLOOR,
@@ -31,9 +32,7 @@ var dialogue_target = null
 @onready var gravity: Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * \
 		ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 
-@onready var _camera_root : Node3D
-@onready var _camera : Camera3D
-@onready var _animation_tree : AnimationTree
+@onready var _animation_tree := $AnimationTree as AnimationTree
 
 func _init() -> void:
 	unique_name_in_owner = true
@@ -44,10 +43,9 @@ func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
 func _input(event: InputEvent) -> void:
-	return
 	if !can_move:
 		return 
-	#raycast()
+	raycast()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if dialogue_target == null:
 			return
@@ -62,10 +60,11 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		mouse_rotate_camera(event.screen_relative * CAM_SPEED / 1000)
 	
-func mouse_rotate_camera(move):
-	_camera_root.rotate_y(-move.x)
-	_camera_root.orthonormalize()
-	_camera_root.rotation.x = clamp(_camera_root.rotation.x + move.y, -.99, .99)
+func mouse_rotate_camera(_move):
+	pass
+	#_camera_root.rotate_y(-move.x)
+	#_camera_root.orthonormalize()
+	#_camera_root.rotation.x = clamp(_camera_root.rotation.x + move.y, -.99, .99)
 
 func handle_auto_walk():
 	if Input.is_action_just_pressed("auto_walk"):
@@ -94,8 +93,8 @@ func _physics_process(delta):
 
 	# Player input.
 	handle_auto_walk()
-	return
-	var cam_basis := _camera.get_global_transform().basis
+	
+	var cam_basis := CAMERA.get_global_transform().basis
 	var movement_vec2 := Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_back")
 	if auto_walk:
 		movement_vec2.y = -1
@@ -108,7 +107,8 @@ func _physics_process(delta):
 		var cam_movement = Vector3(0, movement_vec2.x, 0).normalized()
 		
 		if cam_movement.length() > 0:
-			_camera_root.rotate(-cam_movement, CAM_SPEED)
+			return
+			#_camera_root.rotate(-cam_movement, CAM_SPEED)
 				
 			
 	movement_direction = cam_basis * movement_direction
@@ -220,8 +220,8 @@ func raycast():
 	var space := get_world_3d().direct_space_state
 	var mousepos := get_viewport().get_mouse_position()
 	var query := PhysicsRayQueryParameters3D.create(
-		_camera.global_position,
-		_camera.project_position(mousepos, ray_lenght)
+		CAMERA.global_position,
+		CAMERA.project_position(mousepos, ray_lenght)
 		)
 	query.exclude = [self]
 	
