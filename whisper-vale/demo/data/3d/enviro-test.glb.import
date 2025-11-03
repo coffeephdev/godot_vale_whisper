@@ -34,13 +34,90 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-materials/extract=2
+materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
-"nodes": {
-"PATH:s-path": {
-"node/node_type": "Path3D"
+"materials": {
+"@MATERIAL:0": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_0.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_0.tres"
+},
+"@MATERIAL:1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_1.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_1.tres"
+},
+"@MATERIAL:10": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_10.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_10.tres"
+},
+"@MATERIAL:11": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_11.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_11.tres"
+},
+"@MATERIAL:12": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_12.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_12.tres"
+},
+"@MATERIAL:13": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_13.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_13.tres"
+},
+"@MATERIAL:14": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_14.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_14.tres"
+},
+"@MATERIAL:15": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_15.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_15.tres"
+},
+"@MATERIAL:2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_2.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_2.tres"
+},
+"@MATERIAL:3": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_3.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_3.tres"
+},
+"@MATERIAL:4": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_4.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_4.tres"
+},
+"@MATERIAL:5": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_5.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_5.tres"
+},
+"@MATERIAL:6": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_6.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_6.tres"
+},
+"@MATERIAL:8": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_8.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_8.tres"
+},
+"@MATERIAL:9": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/data/3d/@MATERIAL_9.tres",
+"use_external/path": "res://demo/data/3d/@MATERIAL_9.tres"
+},
+"Material.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://demo/material/cell_material.tres",
+"use_external/path": "uid://cqexitjebbo46"
 }
 }
 }

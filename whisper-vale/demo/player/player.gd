@@ -31,9 +31,9 @@ var dialogue_target = null
 @onready var gravity: Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * \
 		ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 
-@onready var _camera_root := $CamRoot as Node3D
-@onready var _camera := $CamRoot/Camera3D as Camera3D
-@onready var _animation_tree := $AnimationTree as AnimationTree
+@onready var _camera_root : Node3D
+@onready var _camera : Camera3D
+@onready var _animation_tree : AnimationTree
 
 func _init() -> void:
 	unique_name_in_owner = true
@@ -44,9 +44,10 @@ func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
 func _input(event: InputEvent) -> void:
+	return
 	if !can_move:
 		return 
-	raycast()
+	#raycast()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if dialogue_target == null:
 			return
@@ -93,7 +94,7 @@ func _physics_process(delta):
 
 	# Player input.
 	handle_auto_walk()
-	
+	return
 	var cam_basis := _camera.get_global_transform().basis
 	var movement_vec2 := Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_back")
 	if auto_walk:

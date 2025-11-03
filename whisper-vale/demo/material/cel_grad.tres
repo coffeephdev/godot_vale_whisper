@@ -2,9 +2,10 @@
 
 [sub_resource type="Gradient" id="Gradient_ls0nl"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.5610687, 0.71374047, 0.8206107)
-colors = PackedColorArray(0, 0, 0, 1, 0.15, 0.15, 0.15, 1, 0.31, 0.31, 0.31, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.284, 0.572, 0.84)
+colors = PackedColorArray(0, 0, 0, 1, 0.08, 0.08, 0.08, 1, 0.31, 0.31, 0.31, 1, 1, 1, 1, 1)
 
 [resource]
 gradient = SubResource("Gradient_ls0nl")
+width = 256
 height = 4

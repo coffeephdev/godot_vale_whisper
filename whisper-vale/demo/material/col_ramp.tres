@@ -2,9 +2,10 @@
 
 [sub_resource type="Gradient" id="Gradient_co33w"]
 interpolation_mode = 1
-interpolation_color_space = 2
-offsets = PackedFloat32Array(0, 0.67175573, 0.9465649)
-colors = PackedColorArray(0, 0, 0, 1, 0.08, 0.08, 0.08, 1, 0.29, 0.29, 0.29, 1)
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.67175573, 0.8816794)
+colors = PackedColorArray(0, 0, 0, 1, 0.03, 0.03, 0.03, 1, 0.06, 0.06, 0.06, 1)
 
 [resource]
 gradient = SubResource("Gradient_co33w")
+width = 128

@@ -35,12 +35,11 @@ void fragment() {
 	vec2 base_uv = UV;
 	vec4 base_col = COLOR;
 	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb + (basic_fresnel * texture(color_ramp3, vec2(basic_fresnel, 0.0)).rgb * 1.0) + base_col.rgb;
+	ALBEDO = albedo.rgb * albedo_tex.rgb + (basic_fresnel * texture(color_ramp3, vec2(basic_fresnel, 0.0)).rgb * 2.0) + base_col.rgb;
 	//float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
 	//METALLIC = metallic_tex * metallic;
-	vec4 roughness_texture_channel = vec4(0.0,1.0,0.0,0.0);
-	//float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	//ROUGHNESS = roughness_tex * roughness;
+	// vec4 roughness_texture_channel = vec3(0.0,1.0,0.0);
+	// ROUGHNESS = roughness_texture_channel
 	SPECULAR = 0.0;
 	//NORMAL_MAP = texture(texture_normal,base_uv).rgb;
 	//NORMAL_MAP_DEPTH = normal_scale;

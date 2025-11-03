@@ -5,6 +5,7 @@ extends Node
 # gérer le nombre de whispers en cours
 # pouvoir cacher les dialogues et les whispers en cas de cinématique par ex.
 # checker la distance entre le player et les mobs avant de trigger
+
 var whisper_pool = []
 var active_speaker:Mob = null
 const SPEAKER_DISTANCE = 110
@@ -19,6 +20,3 @@ func start_dialogue(mob: Mob):
 func active_speaker_checker():
 	if not active_speaker:
 		return
-		
-	# if GameLead.player.global_position.distance_to(active_speaker.global_position) > SPEAKER_DISTANCE:
-	# 	active_speaker = null

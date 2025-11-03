@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cc4idhykjp5f5"]
+[gd_scene load_steps=18 format=3 uid="uid://cc4idhykjp5f5"]
 
 [ext_resource type="Script" uid="uid://cgetsd75oigl1" path="res://demo/player/player.gd" id="1"]
 [ext_resource type="Material" uid="uid://cqexitjebbo46" path="res://demo/material/cell_material.tres" id="3_exbir"]
@@ -69,17 +69,6 @@ nodes/state/node = SubResource("AnimationNodeBlend2_bivc5")
 nodes/state/position = Vector2(460, 10)
 node_connections = [&"output", 0, &"gun", &"air_dir", 0, &"Animation 3", &"air_dir", 1, &"Animation 4", &"gun", 0, &"state", &"gun", 1, &"Animation 5", &"run", 0, &"Animation", &"run", 1, &"speed", &"scale", 0, &"run", &"speed", 0, &"Animation 6", &"speed", 1, &"Animation 2", &"state", 0, &"scale", &"state", 1, &"air_dir"]
 
-[sub_resource type="Gradient" id="Gradient_p2tu5"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.2, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kvc1x"]
-gradient = SubResource("Gradient_p2tu5")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0.01)
-
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 floor_stop_on_slope = false
@@ -106,18 +95,5 @@ parameters/run/blend_amount = 0.0
 parameters/scale/scale = 1.5
 parameters/speed/blend_amount = 0.0
 parameters/state/blend_amount = 0.0
-
-[node name="BlobShadow" type="Decal" parent="."]
-size = Vector3(1.6, 12, 1.6)
-texture_albedo = SubResource("GradientTexture2D_kvc1x")
-albedo_mix = 0.8
-upper_fade = 3.99999
-lower_fade = 1.0
-cull_mask = 1048573
-
-[node name="CamRoot" type="Node3D" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="CamRoot"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.99128, -4.20983)
 
 [editable path="Player"]

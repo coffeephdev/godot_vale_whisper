@@ -7,8 +7,8 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_amuek")
-shader_parameter/albedo = Color(0, 0.06832397, 0.40495878, 1)
-shader_parameter/normal_scale = 16.0
+shader_parameter/albedo = Color(0, 0.04, 0.027333336, 1)
+shader_parameter/normal_scale = 1.000000807500001
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(50, 1, 1)
