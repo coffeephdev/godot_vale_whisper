@@ -1,20 +1,26 @@
 extends Camera3D
 
 @export var player: CharacterBody3D
-@export var distance_max: int
+@export var distance_max: int = 3
 
-const camera_height: int = 10
-const speed = 10
+@export var camera_height: int = 2
+@export var speed = 7
+
+const target_height_offset = 2
+
 
 func _physics_process(delta: float) -> void:
-	var player_height: float = player.position.y
-	var distance_to_player: float = player.position.distance_to(self.position)
+	self.transform = self.transform.looking_at(player.global_position + Vector3.UP * target_height_offset)
 
-	self.position.z = player_height + camera_height
+	var player_height: float = player.global_position.y + target_height_offset
+
+	self.global_position.y = player_height + camera_height
+
+	var distance_to_player: float = player.global_position.distance_to(self.global_position)
+
+	var moving_speed = -delta * speed * max(abs(distance_to_player - distance_max), 0)
 
 	if (distance_to_player > distance_max):
-		self.translate_object_local(Vector3(0, 0, -delta * speed))
+		self.translate_object_local(Vector3(0, 0, moving_speed))
 	else:
-		self.translate_object_local(Vector3(0, 0, delta * speed))
-
-	self.transform = self.transform.looking_at(player.position)
+		self.translate_object_local(Vector3(0, 0, -moving_speed))
