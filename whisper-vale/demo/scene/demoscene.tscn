@@ -110,9 +110,8 @@ mob_name = &"Laïa"
 mouse_filter = 1
 
 [node name="enviro-test" parent="." instance=ExtResource("7_1uu8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="skybox" type="MeshInstance3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 cast_shadow = 0
 extra_cull_margin = 102.1

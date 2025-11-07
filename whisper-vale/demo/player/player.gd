@@ -3,7 +3,7 @@ class_name Player extends CharacterBody3D
 @export var ray_lenght = 10
 @export var MAX_SPEED = 6.0
 @export var CAM_SPEED = 0.1
-@export var CAMERA : Camera3D = null
+@export var CAMERA: Camera3D = null
 
 enum _Anim {
 	FLOOR,
@@ -44,8 +44,8 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if !can_move:
-		return 
-	raycast()
+		return
+	raycast_target()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if dialogue_target == null:
 			return
@@ -109,7 +109,6 @@ func _physics_process(delta):
 		if cam_movement.length() > 0:
 			return
 			#_camera_root.rotate(-cam_movement, CAM_SPEED)
-				
 			
 	movement_direction = cam_basis * movement_direction
 	movement_direction.y = 0
@@ -140,9 +139,9 @@ func _physics_process(delta):
 	)
 	
 	var m3 := Basis(
-		-facing_mesh,
+		- facing_mesh,
 		Vector3.UP,
-		-facing_mesh.cross(Vector3.UP).normalized()
+		- facing_mesh.cross(Vector3.UP).normalized()
 	).scaled(CHAR_SCALE)
 
 	$Player/Skeleton.set_transform(Transform3D(m3, mesh_xform.origin))
@@ -196,7 +195,7 @@ func adjust_facing(facing: Vector3, target: Vector3, step: float, adjust_rate: f
 	var x := normal.dot(facing)
 	var y := t.dot(facing)
 
-	var ang := atan2(y,x)
+	var ang := atan2(y, x)
 
 	if absf(ang) < 0.001:
 		return facing
@@ -213,7 +212,7 @@ func adjust_facing(facing: Vector3, target: Vector3, step: float, adjust_rate: f
 
 	return (normal * cos(ang) + t * sin(ang)) * facing.length()
 	
-func raycast():
+func raycast_target():
 	if Input.mouse_mode != Input.MOUSE_MODE_VISIBLE:
 		return
 		
