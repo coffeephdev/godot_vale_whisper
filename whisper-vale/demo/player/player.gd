@@ -2,8 +2,7 @@ class_name Player extends CharacterBody3D
 
 @export var ray_lenght = 10
 @export var MAX_SPEED = 6.0
-@export var CAM_SPEED = 0.1
-@export var CAMERA: Camera3D = null
+@export var CAMERA: CameraController = null
 
 enum _Anim {
 	FLOOR,
@@ -42,7 +41,7 @@ func _ready() -> void:
 	DialogueManager.dialogue_started.connect(_on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if !can_move:
 		return
 	raycast_target()
@@ -51,21 +50,6 @@ func _input(event: InputEvent) -> void:
 			return
 		DialogueLead.start_dialogue(dialogue_target)
 		
-	if event is not InputEventMouseMotion:
-		return
-		
-	if Input.is_action_pressed("enable_mousecontrol"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	else:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		mouse_rotate_camera(event.screen_relative * CAM_SPEED / 1000)
-	
-func mouse_rotate_camera(_move):
-	pass
-	#_camera_root.rotate_y(-move.x)
-	#_camera_root.orthonormalize()
-	#_camera_root.rotation.x = clamp(_camera_root.rotation.x + move.y, -.99, .99)
-
 func handle_auto_walk():
 	if Input.is_action_just_pressed("auto_walk"):
 		auto_walk = !auto_walk

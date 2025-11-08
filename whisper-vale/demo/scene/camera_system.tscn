@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxlskmq3q77am"]
+
+[ext_resource type="Script" uid="uid://n8jcqmmy4b4b" path="res://demo/Global/camera_controller.gd" id="1_tbtr0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tbtr0"]
+
+[node name="RigidBody3D" type="RigidBody3D"]
+input_ray_pickable = false
+gravity_scale = 0.0
+script = ExtResource("1_tbtr0")
+rotation_speed = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_tbtr0")
+debug_color = Color(0.7, 0, 0.5949999, 0.6784314)
+
+[node name="Camera3D" type="Camera3D" parent="."]

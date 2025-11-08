@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_ptubf"]
 [ext_resource type="PackedScene" uid="uid://bd0vh3mcc25uf" path="res://demo/player/mob.tscn" id="3_g5c70"]
 [ext_resource type="Resource" uid="uid://cglq0or2nii0p" path="res://demo/data/dialogue/demo_dialogue.dialogue" id="4_pd8a3"]
-[ext_resource type="Script" uid="uid://bs5ppuv4lso2c" path="res://demo/Global/camera_3d.gd" id="6_y4ynk"]
+[ext_resource type="PackedScene" uid="uid://dxlskmq3q77am" path="res://demo/scene/camera_system.tscn" id="6_y4ynk"]
 [ext_resource type="PackedScene" uid="uid://b6j4pqn5m176d" path="res://demo/scene/enviro_test.tscn" id="7_1uu8a"]
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="7_o2kgk"]
 
@@ -92,8 +92,8 @@ floor_stop_on_slope = true
 floor_constant_speed = true
 floor_max_angle = 0.90931654
 floor_snap_length = 0.14
-MAX_SPEED = 15.0
-CAM_SPEED = 2.0
+ray_lenght = null
+MAX_SPEED = 12.0
 CAMERA = NodePath("../Camera3D")
 
 [node name="Mob" parent="." instance=ExtResource("3_g5c70")]
@@ -118,10 +118,8 @@ extra_cull_margin = 102.1
 ignore_occlusion_culling = true
 mesh = SubResource("ArrayMesh_es0nq")
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
+[node name="Camera3D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_y4ynk")]
 transform = Transform3D(0.6222961, 0, -0.78278196, 0, 1, 0, 0.78278196, 0, 0.6222961, 30.796803, 2.0982943, 17.719849)
-script = ExtResource("6_y4ynk")
 player = NodePath("../Player")
 distance_max = 4
-camera_height = 1
-speed = 20
+travel_speed = 15
