@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://btknmawbksoku"]
 
-[ext_resource type="Script" uid="uid://cibyut6gx8vcl" path="res://demo/interface/fly_menu.gd" id="1_71kec"]
+[ext_resource type="Script" uid="uid://cibyut6gx8vcl" path="res://demo/script/fly_menu.gd" id="1_71kec"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_71kec"]
 

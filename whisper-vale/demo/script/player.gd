@@ -42,9 +42,11 @@ func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
 func _input(_event: InputEvent) -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 	if !can_move:
 		return
-	raycast_target()
+	#raycast_target()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if dialogue_target == null:
 			return
@@ -232,8 +234,7 @@ func raycast_target():
 		
 func reset_raycast():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-	if dialogue_target != null:
-		dialogue_target = null
+	dialogue_target = null
 
 func _on_dialogue_started(_resource): can_move = false
 func _on_dialogue_ended(_resource): can_move = true

@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://w2xt4xovidnu"]
 
-[ext_resource type="Material" uid="uid://b1ivganoey88f" path="res://demo/material/wood.tres" id="1_lkl4q"]
-[ext_resource type="Script" uid="uid://calsfwkbbe6sk" path="res://demo/flypoint/fly_post.gd" id="1_t3now"]
-[ext_resource type="Script" uid="uid://c5na552vggo2o" path="res://demo/tools/Marker.gd" id="2_muub5"]
+[ext_resource type="Material" path="res://demo/material/wood.tres" id="1_lkl4q"]
+[ext_resource type="Script" uid="uid://calsfwkbbe6sk" path="res://demo/script/fly_post.gd" id="1_t3now"]
+[ext_resource type="Script" uid="uid://c5na552vggo2o" path="res://demo/script/tools/Marker.gd" id="2_muub5"]
 [ext_resource type="Texture2D" uid="uid://cgow8dqpnhb4h" path="res://demo/flypoint/waypoint.svg" id="3_pwolr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_74qjt"]
