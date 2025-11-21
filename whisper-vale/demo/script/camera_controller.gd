@@ -1,9 +1,9 @@
 class_name CameraController extends Node3D
 
 @export var player: CharacterBody3D
-@export var distance_max: int = 3
+@export var distance_max: float = 3
 
-@export var travel_speed: int = 7
+@export var travel_speed: float = 7
 
 @export var target_lookat_offset: float = 2
 @onready var Camera: Camera3D = $Camera3D
@@ -27,9 +27,9 @@ func mouse_rotate_camera(move):
 
 func translate_controller(delta: float):
 	var distance_to_player: float = player.global_position.distance_to(self.global_position)
-	var moving_speed = - delta * travel_speed * max(distance_to_player - distance_max, 0)
-
-	self.translate_object_local(Vector3(0, 0, moving_speed))
+	if (distance_to_player > distance_max):
+		var moving_speed = - delta * travel_speed * max(abs(distance_to_player - distance_max), 0)
+		self.translate_object_local(Vector3(0, 0, moving_speed))
 	
 func player_cast():
 	var space_state := get_world_3d().direct_space_state
@@ -43,7 +43,8 @@ func player_cast():
 	var result := space_state.intersect_ray(req)
 	
 	if (result.size() > 0):
-		var obj = result["collider"]
-		if ( obj ):
-			pass
-			#/!\to finish
+		var collision = result["collider"]
+		if ( collision ):
+			self.position = result["position"]
+			var safety_margin := 0.1
+			self.translate_object_local(Vector3(0, safety_margin, 0))
