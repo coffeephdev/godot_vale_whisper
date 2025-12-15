@@ -1,5 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=13 format=4 uid="uid://dnl3whjqlu5jy"]
 
+[ext_resource type="Script" uid="uid://515nmrlxygp4" path="res://demo/script/startup.gd" id="1_1uu8a"]
+[ext_resource type="Resource" uid="uid://cx51yd4q2l1h8" path="res://demo/data/dialogue/welcome-text.dialogue" id="2_g5c70"]
 [ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_ptubf"]
 [ext_resource type="PackedScene" uid="uid://bd0vh3mcc25uf" path="res://demo/player/mob.tscn" id="3_g5c70"]
 [ext_resource type="Resource" uid="uid://cglq0or2nii0p" path="res://demo/data/dialogue/demo_dialogue.dialogue" id="4_pd8a3"]
@@ -66,6 +68,8 @@ _surfaces = [{
 
 [node name="demoscene" type="Node3D"]
 top_level = true
+script = ExtResource("1_1uu8a")
+dialogue = ExtResource("2_g5c70")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0vl1j")
@@ -86,7 +90,7 @@ directional_shadow_max_distance = 426.0
 directional_shadow_pancake_size = 417.5
 
 [node name="Player" parent="." node_paths=PackedStringArray("CAMERA") instance=ExtResource("2_ptubf")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 31.9646, 0, 12.813482)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58.073296, 4.9441366, -2.4972286)
 wall_min_slide_angle = 0.0
 floor_stop_on_slope = true
 floor_constant_speed = true
@@ -118,7 +122,7 @@ ignore_occlusion_culling = true
 mesh = SubResource("ArrayMesh_es0nq")
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_y4ynk")]
-transform = Transform3D(0.6222961, 0, -0.78278196, 0, 1, 0, 0.78278196, 0, 0.6222961, 34.916077, 3.1673977, 13.857481)
+transform = Transform3D(0.6222961, 0, -0.78278196, 0, 1, 0, 0.78278196, 0, 0.6222961, -64.985306, 7.6535254, -2.5350323)
 player = NodePath("../Player")
 distance_max = 4.0
 travel_speed = 8.0

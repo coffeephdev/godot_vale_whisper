@@ -3,6 +3,7 @@ class_name Player extends CharacterBody3D
 @export var ray_lenght = 10
 @export var MAX_SPEED = 6.0
 @export var CAMERA: CameraController = null
+@export var CAN_MOVE := true
 
 enum _Anim {
 	FLOOR,
@@ -22,7 +23,6 @@ const SHARP_TURN_THRESHOLD = deg_to_rad(140.0)
 var movement_dir := Vector3()
 var mouse_motion := Vector2()
 var jumping := false
-var can_move := true
 var auto_walk := false
 
 var dialogue_target = null
@@ -35,6 +35,7 @@ var dialogue_target = null
 
 func _init() -> void:
 	unique_name_in_owner = true
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _ready() -> void:
 	GameLead.player = self
@@ -42,9 +43,8 @@ func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
 func _input(_event: InputEvent) -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-	if !can_move:
+	if !CAN_MOVE:
 		return
 	#raycast_target()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -62,7 +62,7 @@ func out_of_bound_reset_position():
 	pass
 
 func _physics_process(delta):
-	if !can_move:
+	if !CAN_MOVE:
 		return
 	
 	out_of_bound_reset_position()
@@ -165,7 +165,7 @@ func _physics_process(delta):
 
 	if is_on_floor():
 		# How much the player should be blending between the "idle" and "walk/run" animations.
-		_animation_tree[&"parameters/run/blend_amount"] = horizontal_speed / MAX_SPEED
+		_animation_tree[&"parameters/run/blend_amount"] = velocity.x / MAX_SPEED
 
 		# How much the player should be running (as opposed to walking). 0.0 = fully walking, 1.0 = fully running.
 		_animation_tree[&"parameters/speed/blend_amount"] = minf(1.0, horizontal_speed / (MAX_SPEED * 0.5))
@@ -236,5 +236,9 @@ func reset_raycast():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	dialogue_target = null
 
-func _on_dialogue_started(_resource): can_move = false
-func _on_dialogue_ended(_resource): can_move = true
+func _on_dialogue_started(_resource):
+	CAN_MOVE = false
+	Input.mouse_mode = Input.MouseMode.MOUSE_MODE_CONFINED
+func _on_dialogue_ended(_resource):
+	CAN_MOVE = true
+	Input.mouse_mode = Input.MouseMode.MOUSE_MODE_HIDDEN

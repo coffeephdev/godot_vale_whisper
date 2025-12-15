@@ -16,12 +16,15 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	translate_controller(delta)
-
+	obstacle_player_cast()
+	auto_reset_height(delta)
+	
+	if (!player.CAN_MOVE): return
+	
 	var velocity: Vector2 = Input.get_last_mouse_velocity()
 	mouse_rotate_camera(velocity * rotation_speed * delta / 100)
 	self.transform = self.transform.looking_at(player.global_position + (Vector3.UP * target_lookat_offset))
-	obstacle_player_cast()
-	auto_reset_height(delta)
+		
 
 func mouse_rotate_camera(move):
 	const ratio_compensation: float = 1.5
