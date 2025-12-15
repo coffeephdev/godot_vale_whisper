@@ -35,7 +35,7 @@ var dialogue_target = null
 
 func _init() -> void:
 	unique_name_in_owner = true
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _ready() -> void:
 	GameLead.player = self
@@ -241,4 +241,4 @@ func _on_dialogue_started(_resource):
 	Input.mouse_mode = Input.MouseMode.MOUSE_MODE_CONFINED
 func _on_dialogue_ended(_resource):
 	CAN_MOVE = true
-	Input.mouse_mode = Input.MouseMode.MOUSE_MODE_HIDDEN
+	Input.mouse_mode = Input.MouseMode.MOUSE_MODE_CAPTURED

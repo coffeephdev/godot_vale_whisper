@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=14 format=4 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Script" uid="uid://515nmrlxygp4" path="res://demo/script/startup.gd" id="1_1uu8a"]
 [ext_resource type="Resource" uid="uid://cx51yd4q2l1h8" path="res://demo/data/dialogue/welcome-text.dialogue" id="2_g5c70"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dxlskmq3q77am" path="res://demo/scene/camera_system.tscn" id="6_y4ynk"]
 [ext_resource type="PackedScene" uid="uid://b6j4pqn5m176d" path="res://demo/scene/enviro_test.tscn" id="7_1uu8a"]
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="7_o2kgk"]
+[ext_resource type="PackedScene" uid="uid://cj1r02v2kixiy" path="res://demo/data/3d/collectibles/wheat.glb" id="9_g5c70"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g28m0"]
 sky_top_color = Color(0.45999998, 0.7750001, 1, 1)
@@ -70,6 +71,7 @@ _surfaces = [{
 top_level = true
 script = ExtResource("1_1uu8a")
 dialogue = ExtResource("2_g5c70")
+skip_Dialogue = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0vl1j")
@@ -100,11 +102,11 @@ MAX_SPEED = 9.0
 CAMERA = NodePath("../Camera3D")
 
 [node name="Mob" parent="." instance=ExtResource("3_g5c70")]
-transform = Transform3D(0.796076, 0, 0.605197, 0, 1, 0, -0.605197, 0, 0.796076, 4.286278, 0, 0.8004761)
+transform = Transform3D(0.4389361, 0, -0.8985185, 0, 1, 0, 0.8985185, 0, 0.4389361, 2.644037, 0, 1.795743)
 dialogue = ExtResource("4_pd8a3")
 
 [node name="Mob2" parent="." instance=ExtResource("3_g5c70")]
-transform = Transform3D(-0.806517, 0, -0.591211, 0, 1, 0, 0.591211, 0, -0.806517, 13.876579, 0, 14.817879)
+transform = Transform3D(0.805432, 0, -0.5926883, 0, 1, 0, 0.5926883, 0, 0.805432, 33.450493, 0.8567522, -48.195244)
 mob_name = &"Laïa"
 
 [node name="Interface" type="Node" parent="."]
@@ -122,9 +124,60 @@ ignore_occlusion_culling = true
 mesh = SubResource("ArrayMesh_es0nq")
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_y4ynk")]
-transform = Transform3D(0.6222961, 0, -0.78278196, 0, 1, 0, 0.78278196, 0, 0.6222961, -64.985306, 7.6535254, -2.5350323)
+transform = Transform3D(0.6222961, 0, -0.78278196, 0, 1, 0, 0.78278196, 0, 0.6222961, -63.791237, 3.985723, -2.5350323)
 player = NodePath("../Player")
 distance_max = 4.0
 travel_speed = 8.0
 target_lookat_offset = 2.3
 rotation_speed = 2.0
+
+[node name="collectibles" type="Node" parent="."]
+
+[node name="wheat" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -7.79173, -0.4035315, 19.450802)
+
+[node name="wheat2" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -12.086886, -0.38684404, 18.527176)
+
+[node name="wheat3" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -16.389198, -0.3179415, 17.602013)
+
+[node name="wheat4" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -10.77179, -0.8794174, 33.65875)
+
+[node name="wheat5" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -15.066946, -0.64627784, 32.735123)
+
+[node name="wheat6" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -19.369259, -0.33758807, 31.80996)
+
+[node name="wheat7" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -37.14268, 0.16675818, 29.81205)
+
+[node name="wheat8" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -41.437836, 0.21303234, 28.888424)
+
+[node name="wheat9" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -45.74015, 0.22401822, 27.96326)
+
+[node name="wheat10" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -33.115715, 0.11145496, 14.836141)
+
+[node name="wheat11" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -37.41087, 0.16933829, 13.912515)
+
+[node name="wheat12" parent="collectibles" instance=ExtResource("9_g5c70")]
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -41.713184, 0.36302453, 12.987351)
+
+[connection signal="gathered" from="collectibles/wheat" to="collectibles/wheat" method="_on_gathered"]
+[connection signal="gathered" from="collectibles/wheat2" to="collectibles/wheat2" method="_on_gathered"]
+[connection signal="gathered" from="collectibles/wheat3" to="collectibles/wheat3" method="_on_gathered"]
+[connection signal="gathered" from="collectibles/wheat4" to="collectibles/wheat4" method="_on_gathered"]
+[connection signal="gathered" from="collectibles/wheat5" to="collectibles/wheat5" method="_on_gathered"]
+[connection signal="gathered" from="collectibles/wheat6" to="collectibles/wheat6" method="_on_gathered"]
+[connection signal="gathered" from="collectibles/wheat7" to="collectibles/wheat7" method="_on_gathered"]
+[connection signal="gathered" from="collectibles/wheat8" to="collectibles/wheat8" method="_on_gathered"]
+[connection signal="gathered" from="collectibles/wheat9" to="collectibles/wheat9" method="_on_gathered"]
+[connection signal="gathered" from="collectibles/wheat10" to="collectibles/wheat10" method="_on_gathered"]
+[connection signal="gathered" from="collectibles/wheat11" to="collectibles/wheat11" method="_on_gathered"]
+[connection signal="gathered" from="collectibles/wheat12" to="collectibles/wheat12" method="_on_gathered"]
