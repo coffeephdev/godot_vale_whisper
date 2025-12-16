@@ -86,24 +86,13 @@ func _physics_process(delta):
 		movement_vec2.y = -1
 		
 	var movement_direction := Vector3(movement_vec2.x, 0, movement_vec2.y)
-	
-	#Rotate with Keyboard
-	if Input.is_action_pressed("enable_mousecontrol"):
-		movement_direction.x = 0
-		var cam_movement = Vector3(0, movement_vec2.x, 0).normalized()
-		
-		if cam_movement.length() > 0:
-			return
-			#_camera_root.rotate(-cam_movement, CAM_SPEED)
 			
 	movement_direction = cam_basis * movement_direction
 	movement_direction.y = 0
 	
-	movement_direction = movement_direction.normalized()
+	horizontal_direction = movement_direction.normalized()
 
-	horizontal_direction = movement_direction
-
-	if horizontal_speed < MAX_SPEED:
+	if (horizontal_direction != Vector3.ZERO && horizontal_speed < MAX_SPEED):
 			horizontal_speed += ACCEL * delta
 	else:
 		horizontal_speed -= DEACCEL * delta
@@ -165,7 +154,7 @@ func _physics_process(delta):
 
 	if is_on_floor():
 		# How much the player should be blending between the "idle" and "walk/run" animations.
-		_animation_tree[&"parameters/run/blend_amount"] = velocity.x / MAX_SPEED
+		_animation_tree[&"parameters/run/blend_amount"] = horizontal_speed / MAX_SPEED
 
 		# How much the player should be running (as opposed to walking). 0.0 = fully walking, 1.0 = fully running.
 		_animation_tree[&"parameters/speed/blend_amount"] = minf(1.0, horizontal_speed / (MAX_SPEED * 0.5))

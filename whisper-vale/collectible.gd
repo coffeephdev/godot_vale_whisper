@@ -17,7 +17,6 @@ func _on_gathered() -> void:
 func _ready() -> void:
 	setup_area3D()
 	setup_cooldown()
-	
 	set_collectible_active()
 
 func start_cooldown():
@@ -47,6 +46,8 @@ func setup_area3D():
 	area3D.monitorable = false
 	area3D.monitoring = false
 	area3D.add_child(collision)
+	area3D.set_collision_mask_value(1, false)
+	area3D.set_collision_mask_value(2, true)
 	
 	self.add_child(area3D)
 	area3D.body_entered.connect(_on_body_entered)
