@@ -101,6 +101,15 @@ floor_snap_length = 0.14
 MAX_SPEED = 9.0
 CAMERA = NodePath("../Camera3D")
 
+[node name="Camera3D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_y4ynk")]
+transform = Transform3D(0.6222961, 0, -0.78278196, 0, 1, 0, 0.78278196, 0, 0.6222961, -63.791237, 3.985723, -2.5350323)
+player = NodePath("../Player")
+target_lookat_offset = 2.3
+camera_height_offset = 1.7
+player_distance = 3.5
+travel_speed = 8.0
+rotation_speed = 1.3
+
 [node name="Mob" parent="." instance=ExtResource("3_g5c70")]
 transform = Transform3D(0.4389361, 0, -0.8985185, 0, 1, 0, 0.8985185, 0, 0.4389361, 2.644037, 0, 1.795743)
 dialogue = ExtResource("4_pd8a3")
@@ -123,48 +132,40 @@ extra_cull_margin = 102.1
 ignore_occlusion_culling = true
 mesh = SubResource("ArrayMesh_es0nq")
 
-[node name="Camera3D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_y4ynk")]
-transform = Transform3D(0.6222961, 0, -0.78278196, 0, 1, 0, 0.78278196, 0, 0.6222961, -63.791237, 3.985723, -2.5350323)
-player = NodePath("../Player")
-distance_max = 4.0
-travel_speed = 8.0
-target_lookat_offset = 2.3
-rotation_speed = 2.0
-
 [node name="collectibles" type="Node" parent="."]
 
 [node name="wheat" parent="collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -7.79173, -0.4035315, 19.450802)
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -15.843177, -0.46181047, 27.062687)
 
 [node name="wheat2" parent="collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -12.086886, -0.38684404, 18.527176)
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -29.321379, 0.011588842, 23.791111)
 
 [node name="wheat3" parent="collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -16.389198, -0.3179415, 17.602013)
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -20.612453, -0.17861752, 16.69385)
 
 [node name="wheat4" parent="collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -10.77179, -0.8794174, 33.65875)
+transform = Transform3D(0.48882565, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882565, -18.823236, -0.9656974, 41.270634)
 
 [node name="wheat5" parent="collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -15.066946, -0.64627784, 32.735123)
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -32.301437, -0.102215484, 37.999058)
 
 [node name="wheat6" parent="collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -19.369259, -0.33758807, 31.80996)
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -23.957298, -0.14654936, 32.598164)
 
 [node name="wheat7" parent="collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -37.14268, 0.16675818, 29.81205)
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -36.247494, 0.1542389, 30.00455)
 
 [node name="wheat8" parent="collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -41.437836, 0.21303234, 28.888424)
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -42.937553, 0.21161205, 35.8626)
 
 [node name="wheat9" parent="collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -45.74015, 0.22401822, 27.96326)
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -45.74015, 0.22401814, 27.96326)
 
 [node name="wheat10" parent="collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -33.115715, 0.11145496, 14.836141)
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -33.115715, 0.11145489, 14.836141)
 
 [node name="wheat11" parent="collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -37.41087, 0.16933829, 13.912515)
+transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -38.910587, 0.04300134, 20.88669)
 
 [node name="wheat12" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -41.713184, 0.36302453, 12.987351)
