@@ -108,14 +108,15 @@ target_lookat_offset = 2.3
 camera_height_offset = 1.7
 player_distance = 3.5
 travel_speed = 8.0
-rotation_speed = 1.3
 
 [node name="Mob" parent="." instance=ExtResource("3_g5c70")]
 transform = Transform3D(0.4389361, 0, -0.8985185, 0, 1, 0, 0.8985185, 0, 0.4389361, 2.644037, 0, 1.795743)
+collision_layer = 5
 dialogue = ExtResource("4_pd8a3")
 
 [node name="Mob2" parent="." instance=ExtResource("3_g5c70")]
 transform = Transform3D(0.805432, 0, -0.5926883, 0, 1, 0, 0.5926883, 0, 0.805432, 33.450493, 0.8567522, -48.195244)
+collision_layer = 5
 mob_name = &"Laïa"
 
 [node name="Interface" type="Node" parent="."]

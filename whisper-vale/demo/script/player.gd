@@ -5,6 +5,8 @@ class_name Player extends CharacterBody3D
 @export var CAMERA: CameraController = null
 @export var CAN_MOVE := true
 
+@export var interactor: Interactor
+
 enum _Anim {
 	FLOOR,
 	AIR,

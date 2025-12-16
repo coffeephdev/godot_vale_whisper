@@ -1,8 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cc4idhykjp5f5"]
+[gd_scene load_steps=21 format=3 uid="uid://cc4idhykjp5f5"]
 
 [ext_resource type="Script" uid="uid://cgetsd75oigl1" path="res://demo/script/player.gd" id="1"]
 [ext_resource type="Material" uid="uid://cqexitjebbo46" path="res://demo/material/cell_material.tres" id="3_exbir"]
 [ext_resource type="PackedScene" uid="uid://yd1e7ai2k5cr" path="res://demo/player/player.glb" id="3_uccbe"]
+[ext_resource type="Script" uid="uid://d3pk0ln2w4ptg" path="res://Interactor.gd" id="4_tj6q8"]
+[ext_resource type="PackedScene" uid="uid://bnekjgm8sfepy" path="res://demo/scene/interact_overlay.tscn" id="5_efkpv"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.4
@@ -69,6 +71,9 @@ nodes/state/node = SubResource("AnimationNodeBlend2_bivc5")
 nodes/state/position = Vector2(460, 10)
 node_connections = [&"output", 0, &"gun", &"air_dir", 0, &"Animation 3", &"air_dir", 1, &"Animation 4", &"gun", 0, &"state", &"gun", 1, &"Animation 5", &"run", 0, &"Animation", &"run", 1, &"speed", &"scale", 0, &"run", &"speed", 0, &"Animation 6", &"speed", 1, &"Animation 2", &"state", 0, &"scale", &"state", 1, &"air_dir"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_efkpv"]
+size = Vector3(2.0185547, 1.6826172, 2.0873413)
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 floor_stop_on_slope = false
@@ -95,5 +100,21 @@ parameters/run/blend_amount = 0.0
 parameters/scale/scale = 1.5
 parameters/speed/blend_amount = 0.0
 parameters/state/blend_amount = 0.0
+
+[node name="Interactor" type="Area3D" parent="." node_paths=PackedStringArray("interact_button")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0764046, 0)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("4_tj6q8")
+interact_button = NodePath("../Interact_overlay")
+metadata/_custom_type_script = "uid://d3pk0ln2w4ptg"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactor"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.5034687e-09, -0.026855469, 2.0807953)
+shape = SubResource("BoxShape3D_efkpv")
+
+[node name="Interact_overlay" parent="." instance=ExtResource("5_efkpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59798, 2.0770433)
 
 [editable path="Player"]

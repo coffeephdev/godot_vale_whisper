@@ -1,4 +1,4 @@
-class_name CameraController extends Node3D
+class_name CameraController extends RigidBody3D
 
 @export var player: Player
 @export var target_lookat_offset: float = 2
@@ -20,6 +20,7 @@ const max_cam_distance = 6
 
 func _ready() -> void:
 	self.global_position.y = player.global_position.y + target_lookat_offset
+	GameLead.camera = self
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action("scroll_up")):

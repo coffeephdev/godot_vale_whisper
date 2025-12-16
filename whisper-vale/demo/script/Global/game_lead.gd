@@ -2,7 +2,7 @@ extends Node
 
 # Interface
 @onready var fly_interface: fly_menu = null
-
+@onready var camera:CameraController = null
 @onready var player:Player = null
 @onready var fly_posts = get_tree().get_nodes_in_group("fly_posts") as Array[fly_post]
 

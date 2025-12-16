@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bnekjgm8sfepy"]
+
+[node name="Interact_overlay" type="Node3D"]
+
+[node name="Label3D" type="Label3D" parent="."]
+text = "E"
+font_size = 128
+outline_size = 127
