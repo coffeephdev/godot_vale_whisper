@@ -34,8 +34,12 @@ func get_nearest_contact() -> Node3D:
 	if (contact_list.is_empty()):
 		return null
 		
-	var previous_data = {}
+	var previous_data = { "previous_contact" : null }
+		
 	for contact in contact_list:
+		if !(contact is Mob && contact.has_dialogue): 
+			continue
+			
 		var current_distance = self.global_position.distance_squared_to(contact.global_position)
 		
 		if (!previous_data.has("previous_distance") || previous_data.get("previous_distance") > current_distance):
