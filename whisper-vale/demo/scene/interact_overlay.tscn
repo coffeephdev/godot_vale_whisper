@@ -1,8 +1,12 @@
-[gd_scene format=3 uid="uid://bnekjgm8sfepy"]
+[gd_scene load_steps=2 format=3 uid="uid://bnekjgm8sfepy"]
+
+[ext_resource type="Script" uid="uid://b4pshlpbk05dn" path="res://demo/scene/look_at_cam.gd" id="1_vumwj"]
 
 [node name="Interact_overlay" type="Node3D"]
+script = ExtResource("1_vumwj")
 
 [node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 text = "E"
 font_size = 128
 outline_size = 127
