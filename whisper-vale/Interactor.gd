@@ -14,12 +14,17 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	var contact = get_nearest_contact()
-	if (contact):
-		interact_button.show()
-		interact_button.global_position = contact.global_position
-		interact_button.position.y += 2.5
-	else:
+	if (contact == null):
+		nearest_contact = null
 		interact_button.hide()
+		return
+		
+	if (contact != nearest_contact):
+		interact_button.show()
+		nearest_contact = contact
+		
+	interact_button.global_position = contact.global_position
+	interact_button.position.y += 2.5
 	
 func _physics_process(_delta: float) -> void:
 	self.global_rotation.y = GameLead.camera.global_rotation.y + PI

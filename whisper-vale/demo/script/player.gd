@@ -44,30 +44,15 @@ func _ready() -> void:
 	DialogueManager.dialogue_started.connect(_on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
-func _input(_event: InputEvent) -> void:
-
-	if !CAN_MOVE:
-		return
-	#raycast_target()
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if dialogue_target == null:
-			return
-		DialogueLead.start_dialogue(dialogue_target)
-		
 func handle_auto_walk():
 	if Input.is_action_just_pressed("auto_walk"):
 		auto_walk = !auto_walk
 	if Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_back"):
 		auto_walk = false
 		
-func out_of_bound_reset_position():
-	pass
-
 func _physics_process(delta):
 	if !CAN_MOVE:
 		return
-	
-	out_of_bound_reset_position()
 	
 	velocity += gravity * delta
 
@@ -233,3 +218,7 @@ func _on_dialogue_started(_resource):
 func _on_dialogue_ended(_resource):
 	CAN_MOVE = true
 	Input.mouse_mode = Input.MouseMode.MOUSE_MODE_CAPTURED
+
+func interact():
+	if (interactor.nearest_contact != null):
+		DialogueLead.start_dialogue(interactor.nearest_contact)

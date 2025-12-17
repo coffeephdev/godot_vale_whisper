@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://cc4idhykjp5f5"]
+[gd_scene load_steps=22 format=3 uid="uid://cc4idhykjp5f5"]
 
 [ext_resource type="Script" uid="uid://cgetsd75oigl1" path="res://demo/script/player.gd" id="1"]
 [ext_resource type="Material" uid="uid://cqexitjebbo46" path="res://demo/material/cell_material.tres" id="3_exbir"]
 [ext_resource type="PackedScene" uid="uid://yd1e7ai2k5cr" path="res://demo/player/player.glb" id="3_uccbe"]
 [ext_resource type="Script" uid="uid://d3pk0ln2w4ptg" path="res://Interactor.gd" id="4_tj6q8"]
 [ext_resource type="PackedScene" uid="uid://bnekjgm8sfepy" path="res://demo/scene/interact_overlay.tscn" id="5_efkpv"]
+[ext_resource type="Script" uid="uid://brs06yfsvomwj" path="res://demo/script/player_controller.gd" id="6_jnwkj"]
 
 [sub_resource type="CapsuleShape3D" id="1"]
 radius = 0.4
@@ -116,5 +117,8 @@ shape = SubResource("BoxShape3D_efkpv")
 
 [node name="Interact_overlay" parent="." instance=ExtResource("5_efkpv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59798, 2.0770433)
+
+[node name="Controller" type="Node" parent="."]
+script = ExtResource("6_jnwkj")
 
 [editable path="Player"]

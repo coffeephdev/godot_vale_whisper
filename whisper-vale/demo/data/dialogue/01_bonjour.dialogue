@@ -1,0 +1,11 @@
+Maggy: [[Hello team|OMG hi|Hi dear]] !
+Maggy: [shake rate=20 level=10]Welcome[/shake] in our little town !
+Maggy: Would you be so king to bring me some wheat ?
+Maggy: I really need to wait here for... [wave amp=25 freq=5]Reasons[/wave], you know.
+- Sure !
+	Maggy: Oh [wave amp=25 freq=5]really[/wave] ! Thank you thank you [shake rate=20 level=10]thank you ![/shake]
+	Maggy: I'll be waiting here !
+- Not right know...
+	Maggy: That's alright ! You're busy yourself !
+	Maggy: If ever you change your mind, you know where I am !
+Maggy: [[Bye dear|See you|Tshaw]] !
