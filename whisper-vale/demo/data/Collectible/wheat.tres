@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CollectibleResource" load_steps=2 format=3 uid="uid://cu2b8y5un2qug"]
+
+[ext_resource type="Script" uid="uid://bhfasincrfjv8" path="res://demo/script/collectible_resource.gd" id="1_qietp"]
+
+[resource]
+script = ExtResource("1_qietp")
+name = "Wheat"
+description = "It's wheat."
+metadata/_custom_type_script = "uid://bhfasincrfjv8"

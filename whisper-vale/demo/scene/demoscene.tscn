@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=17 format=4 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Script" uid="uid://515nmrlxygp4" path="res://demo/script/startup.gd" id="1_1uu8a"]
 [ext_resource type="Resource" uid="uid://cx51yd4q2l1h8" path="res://demo/data/dialogue/welcome-text.dialogue" id="2_g5c70"]
@@ -7,8 +7,10 @@
 [ext_resource type="Resource" uid="uid://b6lhqospcmfed" path="res://demo/data/dialogue/01_wheat_quest.dialogue" id="6_g5c70"]
 [ext_resource type="PackedScene" uid="uid://dxlskmq3q77am" path="res://demo/scene/camera_system.tscn" id="6_y4ynk"]
 [ext_resource type="PackedScene" uid="uid://b6j4pqn5m176d" path="res://demo/scene/enviro_test.tscn" id="7_1uu8a"]
+[ext_resource type="Script" uid="uid://dbs4435dsf3ry" path="res://addons/dialogue_manager/dialogue_resource.gd" id="7_7141o"]
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="7_o2kgk"]
 [ext_resource type="PackedScene" uid="uid://cj1r02v2kixiy" path="res://demo/data/3d/collectibles/wheat.glb" id="9_g5c70"]
+[ext_resource type="Resource" uid="uid://cu2b8y5un2qug" path="res://demo/data/Collectible/wheat.tres" id="10_pd8a3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g28m0"]
 sky_top_color = Color(0.45999998, 0.7750001, 1, 1)
@@ -55,6 +57,26 @@ fog_height_density = -16.0
 fog_depth_curve = 1.4142131
 fog_depth_begin = 20.0
 fog_depth_end = 1300.0
+
+[sub_resource type="Resource" id="Resource_0rr5y"]
+script = ExtResource("7_7141o")
+using_states = PackedStringArray()
+character_names = PackedStringArray()
+lines = {
+"0": {
+&"id": "0",
+&"next_id": "1",
+&"type": ""
+},
+"1": {
+&"id": "1",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+}
+}
+metadata/dialogue_manager_version = "3.9.0"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_es0nq"]
 _surfaces = [{
@@ -115,6 +137,12 @@ collision_layer = 5
 mob_name = &"Maggy"
 dialogue = ExtResource("6_g5c70")
 
+[node name="Mob3" parent="." instance=ExtResource("3_g5c70")]
+transform = Transform3D(0.4389361, 0, -0.8985185, 0, 1, 0, 0.8985185, 0, 0.4389361, 3.0003667, 0, -2.0787072)
+collision_layer = 5
+mob_name = &"Maggy2"
+dialogue = SubResource("Resource_0rr5y")
+
 [node name="Mob2" parent="." instance=ExtResource("3_g5c70")]
 transform = Transform3D(0.805432, 0, -0.5926883, 0, 1, 0, 0.5926883, 0, 0.805432, 33.450493, 0.8567522, -48.195244)
 collision_layer = 5
@@ -138,51 +166,51 @@ mesh = SubResource("ArrayMesh_es0nq")
 
 [node name="wheat" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -15.843177, -0.46181047, 27.062687)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat2" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -29.321379, 0.011588842, 23.791111)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat3" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -20.612453, -0.17861752, 16.69385)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat4" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882565, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882565, -18.823236, -0.9656974, 41.270634)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat5" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -32.301437, -0.102215484, 37.999058)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat6" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -23.957298, -0.14654936, 32.598164)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat7" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -36.247494, 0.1542389, 30.00455)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat8" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -42.937553, 0.21161205, 35.8626)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat9" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -45.74015, 0.22401814, 27.96326)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat10" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -33.115715, 0.11145489, 14.836141)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat11" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -38.910587, 0.04300134, 20.88669)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat12" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -41.713184, 0.36302453, 12.987351)
-refresh_cooldown = null
+resource = ExtResource("10_pd8a3")
 
 [connection signal="gathered" from="collectibles/wheat" to="collectibles/wheat" method="_on_gathered"]
 [connection signal="gathered" from="collectibles/wheat2" to="collectibles/wheat2" method="_on_gathered"]

@@ -1,6 +1,7 @@
 class_name Collectible extends Node3D
 
 @export var refresh_cooldown: int = 5
+@export var resource: CollectibleResource
 
 @onready var active_mesh: Node3D = get_node("active")
 @onready var inactive_mesh: Node3D = get_node("inactive")
@@ -11,6 +12,7 @@ var area3D := Area3D.new()
 signal gathered
 
 func _on_gathered() -> void:
+	QuestLead.notice_collected_item(resource)
 	start_cooldown()
 	set_collectible_inactive()
 	
@@ -59,7 +61,3 @@ func setup_cooldown():
 	
 func _on_body_entered(_body: Node3D) -> void:
 	gathered.emit()
-
-enum collectible_type:{
-	wheat
-}
