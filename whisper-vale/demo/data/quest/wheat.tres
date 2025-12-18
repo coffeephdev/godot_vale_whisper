@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="QuestStep" load_steps=2 format=3 uid="uid://bve7sly6vxpkq"]
+
+[ext_resource type="Script" uid="uid://c35k35cdqaxtt" path="res://demo/script/quest_step.gd" id="1_6kwbu"]
+
+[resource]
+script = ExtResource("1_6kwbu")
+Description = "Maggy asked if you can bring them some wheat."
+metadata/_custom_type_script = "uid://c35k35cdqaxtt"

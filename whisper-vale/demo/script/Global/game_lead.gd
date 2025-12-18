@@ -23,3 +23,6 @@ func get_nearest_fly_post(position:Vector3)-> fly_post:
 func _ready():
 	for point in fly_posts:
 		print("Fly found: ", point.flyname, (point.position))
+
+func printer(text:String):
+	print(text)

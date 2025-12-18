@@ -20,8 +20,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameLead="*res://demo/script/Global/game_lead.gd"
-DialogueLead="*res://demo/script/Global/handle_dialogue.gd"
+DialogueLead="*res://demo/script/Global/dialogue_lead.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+QuestLead="*res://demo/script/Global/quest_lead.gd"
 
 [display]
 
@@ -132,7 +133,7 @@ scroll_down={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://demo/data/dialogue/demo_dialogue.dialogue", "res://demo/data/dialogue/welcome-text.dialogue", "res://demo/data/dialogue/01_bonjour.dialogue")
+locale/translations_pot_files=PackedStringArray("res://demo/data/dialogue/demo_dialogue.dialogue", "res://demo/data/dialogue/welcome-text.dialogue", "res://demo/data/dialogue/01_wheat_quest.dialogue")
 
 [layer_names]
 

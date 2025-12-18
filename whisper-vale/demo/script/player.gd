@@ -220,5 +220,5 @@ func _on_dialogue_ended(_resource):
 	Input.mouse_mode = Input.MouseMode.MOUSE_MODE_CAPTURED
 
 func interact():
-	if (interactor.nearest_contact != null):
+	if (CAN_MOVE && interactor.nearest_contact != null):
 		DialogueLead.start_dialogue(interactor.nearest_contact)

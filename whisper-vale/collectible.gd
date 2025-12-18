@@ -59,3 +59,7 @@ func setup_cooldown():
 	
 func _on_body_entered(_body: Node3D) -> void:
 	gathered.emit()
+
+enum collectible_type:{
+	wheat
+}

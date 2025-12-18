@@ -5,6 +5,7 @@ Maggy: I really need to wait here for... [wave amp=25 freq=5]Reasons[/wave], you
 - Sure !
 	Maggy: Oh [wave amp=25 freq=5]really[/wave] ! Thank you thank you [shake rate=20 level=10]thank you ![/shake]
 	Maggy: I'll be waiting here !
+	do QuestLead.start_quest_string("wheat")
 - Not right know...
 	Maggy: That's alright ! You're busy yourself !
 	Maggy: If ever you change your mind, you know where I am !
