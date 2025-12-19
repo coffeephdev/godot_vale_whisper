@@ -17,6 +17,8 @@ const min_cam_distance = 3
 const max_cam_distance = 6
 @onready var cam_distance = player_distance
 
+const screen_ratio = Vector2(1, .56)
+
 
 func _ready() -> void:
 	self.global_position.y = player.global_position.y + target_lookat_offset
@@ -37,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	
 	if (!player.CAN_MOVE): return
 	
-	var velocity: Vector2 = Input.get_last_mouse_velocity()
+	var velocity: Vector2 = Input.get_last_mouse_velocity() * screen_ratio
 	mouse_rotate_camera(velocity * rotation_speed * delta / 100)
 	self.transform = self.transform.looking_at(player.global_position + (Vector3.UP * target_lookat_offset))
 
