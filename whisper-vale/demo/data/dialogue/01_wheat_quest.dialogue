@@ -1,4 +1,4 @@
-if not QuestLead.is_quest_started("wheat"):
+if not QuestLead.is_quest_started_or_completed("wheat")
 	Maggy: [[Hello team|OMG hi|Hi dear]] !
 	Maggy: [shake rate=20 level=10]Welcome[/shake] in our little town !
 	Maggy: Would you be so king to bring me some wheat ?
@@ -10,11 +10,18 @@ if not QuestLead.is_quest_started("wheat"):
 	- Not right know...
 		Maggy: That's alright ! You're busy yourself !
 		Maggy: If ever you change your mind, you know where I am !
-	Maggy: [[Bye dear|See you|Tshaw]] !
-
-else:
+elif QuestLead.is_quest_started("wheat")
 	Maggy: Have you got it ???
 	if QuestLead.is_quest_step_completed("wheat", "collect_wheat"):
-		Maggy: OMG C SUPAIRENT
+		Maggy: OMG OMG [shake rate=20 level=10]OMG[/shake]
+		Maggy: I can make my daughter an apple pie for her birthday now !!!!
+		do QuestLead.set_quest_step_complete("wheat", "talk_maggy")
+		Maggy: Thanks a lot !
 	else
-		Maggy: ouin ouin
+		Maggy: Oh sorry, I don't let you breathe haha.
+		Maggy: I can wait !
+else
+	Maggy: Hi deary ! Thanks again for your help !
+	Maggy: I hope you find yourself at home.
+		
+Maggy: [[Bye dear|See you|Tshaw]] !

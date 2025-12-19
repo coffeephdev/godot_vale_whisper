@@ -72,7 +72,6 @@ _surfaces = [{
 top_level = true
 script = ExtResource("1_1uu8a")
 dialogue = ExtResource("2_g5c70")
-skip_Dialogue = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0vl1j")
@@ -99,7 +98,7 @@ floor_stop_on_slope = true
 floor_constant_speed = true
 floor_max_angle = 0.90931654
 floor_snap_length = 0.14
-MAX_SPEED = 9.0
+MAX_SPEED = 7.0
 CAMERA = NodePath("../Camera3D")
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_y4ynk")]
@@ -109,6 +108,7 @@ target_lookat_offset = 2.3
 camera_height_offset = 1.7
 player_distance = 3.5
 travel_speed = 8.0
+rotation_speed = 0.55
 
 [node name="Interface" type="Node" parent="."]
 
