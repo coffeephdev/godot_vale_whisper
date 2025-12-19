@@ -1,20 +1,20 @@
-if not QuestLead.is_quest_step_completed("wheat", "collect_wheat")
-Maggy: [[Hello team|OMG hi|Hi dear]] !
-Maggy: [shake rate=20 level=10]Welcome[/shake] in our little town !
-Maggy: Would you be so king to bring me some wheat ?
-Maggy: I really need to wait here for... [wave amp=25 freq=5]Reasons[/wave], you know.
-- Sure !
-	Maggy: Oh [wave amp=25 freq=5]really[/wave] ! Thank you thank you [shake rate=20 level=10]thank you ![/shake]
-	Maggy: I'll be waiting here !
-	do QuestLead.start_quest_string("wheat")
-- Not right know...
-	Maggy: That's alright ! You're busy yourself !
-	Maggy: If ever you change your mind, you know where I am !
-Maggy: [[Bye dear|See you|Tshaw]] !
+if not QuestLead.is_quest_started("wheat"):
+	Maggy: [[Hello team|OMG hi|Hi dear]] !
+	Maggy: [shake rate=20 level=10]Welcome[/shake] in our little town !
+	Maggy: Would you be so king to bring me some wheat ?
+	Maggy: I really need to wait here for... [wave amp=25 freq=5]Reasons[/wave], you know.
+	- Sure !
+		Maggy: Oh [wave amp=25 freq=5]really[/wave] ! Thank you thank you [shake rate=20 level=10]thank you ![/shake]
+		Maggy: I'll be waiting here !
+		do QuestLead.start_quest("wheat")
+	- Not right know...
+		Maggy: That's alright ! You're busy yourself !
+		Maggy: If ever you change your mind, you know where I am !
+	Maggy: [[Bye dear|See you|Tshaw]] !
 
-~ CompleteQuest
-Maggy: Have you got it ???
-
-	Maggy: OMG C SUPAIRENT
-else
-	Maggy: ouin ouin
+else:
+	Maggy: Have you got it ???
+	if QuestLead.is_quest_step_completed("wheat", "collect_wheat"):
+		Maggy: OMG C SUPAIRENT
+	else
+		Maggy: ouin ouin

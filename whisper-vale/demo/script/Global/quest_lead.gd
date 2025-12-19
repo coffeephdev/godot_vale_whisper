@@ -6,10 +6,12 @@ const quest_resource_path = "res://demo/data/quest/"
 func _process(_delta: float) -> void:
 	check_quests_completion()
 
-func start_quest(quest: Quest):
+func start_quest(quest_string: String) -> void:
+	var quest = get_quest_instance_from_string(quest_string)
 	started_quests.append(quest)
+	print("Started : " + quest.description)
 	
-func is_quest_step_completed(quest_tag:String, step_tag:String):
+func is_quest_step_completed(quest_tag:String, step_tag:String) -> bool:
 	for quest in started_quests:
 		if (quest.tag != quest_tag):
 			continue
@@ -20,7 +22,11 @@ func is_quest_step_completed(quest_tag:String, step_tag:String):
 				
 	return false
 	
-func notice_collected_item(resource:CollectibleResource):
+func is_quest_started(quest_tag:String) -> bool:
+	return started_quests.any(func(quest:Quest): 
+		return quest.tag == quest_tag)
+	
+func notice_collected_item(resource:CollectibleResource) -> void:
 	for quest in started_quests:
 		for step in quest.quest_steps:
 			if (step is not QuestStepItem || step.completed):
@@ -31,14 +37,7 @@ func notice_collected_item(resource:CollectibleResource):
 				print("Step Completed : " + step.description)
 				step.completed = true
 
-func start_quest_string(quest: String):
-	var resource := load(quest_resource_path.path_join(quest) + ".tres") as Quest
-	var quest_instance = resource.duplicate(true)
-	
-	start_quest(quest_instance)
-	print("Started : " + quest_instance.description)
-
-func check_quests_completion():
+func check_quests_completion() -> void:
 	for quest in started_quests:
 		if quest.completed:
 			continue
@@ -46,3 +45,7 @@ func check_quests_completion():
 		if quest.quest_steps.all(func(step:QuestStep): return step.completed ):
 			quest.completed = true
 			print("Completed : " + quest.description)
+			
+func get_quest_instance_from_string(quest_string:String):
+	var resource := load(quest_resource_path.path_join(quest_string) + ".tres") as Quest
+	return resource.duplicate(true)

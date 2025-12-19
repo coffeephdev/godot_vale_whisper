@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=15 format=4 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Script" uid="uid://515nmrlxygp4" path="res://demo/script/startup.gd" id="1_1uu8a"]
 [ext_resource type="Resource" uid="uid://cx51yd4q2l1h8" path="res://demo/data/dialogue/welcome-text.dialogue" id="2_g5c70"]
@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://b6lhqospcmfed" path="res://demo/data/dialogue/01_wheat_quest.dialogue" id="6_g5c70"]
 [ext_resource type="PackedScene" uid="uid://dxlskmq3q77am" path="res://demo/scene/camera_system.tscn" id="6_y4ynk"]
 [ext_resource type="PackedScene" uid="uid://b6j4pqn5m176d" path="res://demo/scene/enviro_test.tscn" id="7_1uu8a"]
-[ext_resource type="Script" uid="uid://dbs4435dsf3ry" path="res://addons/dialogue_manager/dialogue_resource.gd" id="7_7141o"]
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="7_o2kgk"]
 [ext_resource type="PackedScene" uid="uid://cj1r02v2kixiy" path="res://demo/data/3d/collectibles/wheat.glb" id="9_g5c70"]
 [ext_resource type="Resource" uid="uid://cu2b8y5un2qug" path="res://demo/data/Collectible/wheat.tres" id="10_pd8a3"]
@@ -57,26 +56,6 @@ fog_height_density = -16.0
 fog_depth_curve = 1.4142131
 fog_depth_begin = 20.0
 fog_depth_end = 1300.0
-
-[sub_resource type="Resource" id="Resource_0rr5y"]
-script = ExtResource("7_7141o")
-using_states = PackedStringArray()
-character_names = PackedStringArray()
-lines = {
-"0": {
-&"id": "0",
-&"next_id": "1",
-&"type": ""
-},
-"1": {
-&"id": "1",
-&"is_snippet": false,
-&"next_id": "end",
-&"next_id_after": "",
-&"type": "goto"
-}
-}
-metadata/dialogue_manager_version = "3.9.0"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_es0nq"]
 _surfaces = [{
@@ -130,23 +109,6 @@ target_lookat_offset = 2.3
 camera_height_offset = 1.7
 player_distance = 3.5
 travel_speed = 8.0
-
-[node name="Mob" parent="." instance=ExtResource("3_g5c70")]
-transform = Transform3D(0.4389361, 0, -0.8985185, 0, 1, 0, 0.8985185, 0, 0.4389361, 2.644037, 0, 1.795743)
-collision_layer = 5
-mob_name = &"Maggy"
-dialogue = ExtResource("6_g5c70")
-
-[node name="Mob3" parent="." instance=ExtResource("3_g5c70")]
-transform = Transform3D(0.4389361, 0, -0.8985185, 0, 1, 0, 0.8985185, 0, 0.4389361, 3.0003667, 0, -2.0787072)
-collision_layer = 5
-mob_name = &"Maggy2"
-dialogue = SubResource("Resource_0rr5y")
-
-[node name="Mob2" parent="." instance=ExtResource("3_g5c70")]
-transform = Transform3D(0.805432, 0, -0.5926883, 0, 1, 0, 0.5926883, 0, 0.805432, 33.450493, 0.8567522, -48.195244)
-collision_layer = 5
-mob_name = &"Laïa"
 
 [node name="Interface" type="Node" parent="."]
 
@@ -211,6 +173,19 @@ resource = ExtResource("10_pd8a3")
 [node name="wheat12" parent="collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -41.713184, 0.36302453, 12.987351)
 resource = ExtResource("10_pd8a3")
+
+[node name="NPC" type="Node" parent="."]
+
+[node name="Maggy" parent="NPC" instance=ExtResource("3_g5c70")]
+transform = Transform3D(0.4389361, 0, -0.8985185, 0, 1, 0, 0.8985185, 0, 0.4389361, 2.644037, 0, 1.795743)
+collision_layer = 5
+mob_name = &"Maggy"
+dialogue = ExtResource("6_g5c70")
+
+[node name="Laïa" parent="NPC" instance=ExtResource("3_g5c70")]
+transform = Transform3D(0.805432, 0, -0.5926883, 0, 1, 0, 0.5926883, 0, 0.805432, 33.450493, 0.8567522, -48.195244)
+collision_layer = 5
+mob_name = &"Laïa"
 
 [connection signal="gathered" from="collectibles/wheat" to="collectibles/wheat" method="_on_gathered"]
 [connection signal="gathered" from="collectibles/wheat2" to="collectibles/wheat2" method="_on_gathered"]
