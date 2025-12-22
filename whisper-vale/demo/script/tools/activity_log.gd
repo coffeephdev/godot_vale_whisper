@@ -5,3 +5,9 @@ static func log_quest(status: String, quest:Quest) -> void:
 	
 static func log_quest_step(status: String, quest_step:QuestStep) -> void:
 	print_rich("[b][color=FOREST_GREEN]" + status + ":[/color][/b] " + quest_step.description)
+	
+static func log_savegame(success: bool) -> void:
+	if success:
+		print_rich("[b][color=DEEP_SKY_BLUE]Saving game: [/color][/b]" + "Successful")
+	else:
+		print_rich("[b][color=CRIMSON]Saving game: [/color][/b]" + "Error")

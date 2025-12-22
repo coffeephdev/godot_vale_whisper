@@ -24,6 +24,10 @@ DialogueLead="*res://demo/script/Global/dialogue_lead.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 QuestLead="*res://demo/script/Global/quest_lead.gd"
 
+[dialogue_manager]
+
+editor/wrap_long_lines=true
+
 [display]
 
 window/size/viewport_width=1920
@@ -37,6 +41,11 @@ movie_writer/movie_file="C:/Users/Light/Videos/godot_whisper_vale.avi"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
+[filesystem]
+
+import/fbx2gltf/enabled=false
+import/blender/enabled=false
 
 [global_group]
 
