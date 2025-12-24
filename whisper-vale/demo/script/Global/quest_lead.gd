@@ -4,6 +4,9 @@ extends Node
 @export_storage var completed_quests: Array[Quest] = []
 const quest_resource_path = "res://demo/data/quest/"
 
+func _ready() -> void:
+	SaveLead.add_to_register(self)
+	
 func _process(_delta: float) -> void:
 	check_quests_completion()
 
