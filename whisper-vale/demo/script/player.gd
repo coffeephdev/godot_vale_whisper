@@ -41,6 +41,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	GameLead.player = self
+	SaveLead.add_to_register(self)
 	DialogueManager.dialogue_started.connect(_on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
