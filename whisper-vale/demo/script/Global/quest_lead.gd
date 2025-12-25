@@ -1,17 +1,20 @@
 extends Node
+var quest_list: Array[QuestData] = []
 
-@export_storage var started_quests: Array[Quest] = []
-@export_storage var completed_quests: Array[Quest] = []
+var started_quests: Array[QuestData] = []
+var completed_quests: Array[QuestData] = []
 const quest_resource_path = "res://demo/data/quest/"
 
 func _ready() -> void:
+	build_quest_list()
 	SaveLead.add_to_register(self)
 	
 func _process(_delta: float) -> void:
 	check_quests_completion()
 
-func start_quest(quest_string: String) -> void:
-	var quest = get_quest_instance_from_string(quest_string)
+func start_quest(quest_tag: String) -> void:
+	var id := quest_list.find_custom(func(quest:QuestData): return quest.tag == quest_tag)
+	var quest = quest_list.get(id)
 	started_quests.append(quest)
 	ActivityLog.log_quest("Started", quest)
 	
@@ -42,16 +45,16 @@ func is_quest_started(quest_tag:String) -> bool:
 func notice_collected_item(resource:CollectibleResource) -> void:
 	for quest in started_quests:
 		for step in quest.quest_steps:
-			if (step is not QuestStepItem || step.completed):
+			if (step is not QuestStepItemData || step.completed):
 				continue
 			
-			step = step as QuestStepItem
+			step = step as QuestStepItemData
 			if (is_same(step.item_to_collect, resource)):
 				ActivityLog.log_quest_step("Step Completed", step)
 				step.completed = true
 				
 func set_quest_step_complete(quest_tag:String, quest_step_tag:String) -> void:
-	var quest_step = get_quest_step_from_tag(quest_tag, quest_step_tag) as QuestStep
+	var quest_step = get_started_quest_step(quest_tag, quest_step_tag) as QuestStepData
 	if (quest_step == null || quest_step.completed):
 		return
 		
@@ -70,17 +73,20 @@ func check_quests_completion() -> void:
 			started_quests.erase(quest)
 			ActivityLog.log_quest("Quest Completed", quest)
 			
-func get_quest_instance_from_string(quest_string:String) -> Quest:
-	var resource := load(quest_resource_path.path_join(quest_string) + ".tres") as Quest
-	return resource.duplicate(true)
-	
-func get_quest_from_tag(quest_tag: String) -> Quest:
+func build_quest_list() -> void:
+	var resource_folder = DirAccess.open(quest_resource_path)
+	for file in resource_folder:
+		var resource = file as Quest
+		var quest = QuestData.new(resource)
+		quest_list.append(quest)
+		
+func get_started_quest(quest_tag: String) -> QuestData:
 	var id = started_quests.find_custom(func(quest:Quest):
 		return quest.tag == quest_tag)
 	return started_quests[id]
 		
-func get_quest_step_from_tag(quest_tag: String, quest_step_tag: String) -> QuestStep:
-	var quest = get_quest_from_tag(quest_tag)
+func get_started_quest_step(quest_tag: String, quest_step_tag: String) -> QuestStepData:
+	var quest = get_started_quest(quest_tag)
 	var id = quest.quest_steps.find_custom(func(quest_step:QuestStep):
 		return quest_step.tag == quest_step_tag)
 	return quest.quest_steps[id]

@@ -1,0 +1,14 @@
+if not QuestLead.is_quest_started_or_completed("intro"):
+	do QuestLead.start_quest("01_intro")
+	
+	Oh hello ?!
+	[wave amp=25 freq=5]Hello ![/wave] Are you new here ?
+	- Yes I am.
+		What a bliss ! Welcome !
+	- I was born here.
+		Yes... I believe you. Maybe.
+	[shake rate=20 level=10]Anyway ![/shake] There's much to see !
+	Why don't you talk to this kind person ?
+	Just ahead of the path...
+	do QuestLead.set_quest_step_complete("intro", "intro")
+=> END

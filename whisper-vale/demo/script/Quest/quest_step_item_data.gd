@@ -1,0 +1,3 @@
+class_name QuestStepItemData extends QuestStepData
+
+var item_to_collect: CollectibleResource

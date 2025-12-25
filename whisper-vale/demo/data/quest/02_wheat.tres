@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=7 format=3 uid="uid://dl3vkrjn676g0"]
 
-[ext_resource type="Script" uid="uid://c35k35cdqaxtt" path="res://demo/script/Quest/quest_step.gd" id="1_xxtq2"]
+[ext_resource type="Script" uid="uid://c35k35cdqaxtt" path="res://demo/script/Quest/Resource/quest_step.gd" id="1_xxtq2"]
 [ext_resource type="Resource" uid="uid://cu2b8y5un2qug" path="res://demo/data/Collectible/wheat.tres" id="2_b7imn"]
-[ext_resource type="Script" uid="uid://bdwlyt8kfqvq" path="res://demo/script/Quest/quest_step_item.gd" id="2_cmndm"]
-[ext_resource type="Script" uid="uid://0v3c3jq7o4gm" path="res://demo/script/Quest/quest.gd" id="2_f7v4s"]
+[ext_resource type="Script" uid="uid://bdwlyt8kfqvq" path="res://demo/script/Quest/Resource/quest_step_item.gd" id="2_cmndm"]
+[ext_resource type="Script" uid="uid://0v3c3jq7o4gm" path="res://demo/script/Quest/Resource/quest.gd" id="2_f7v4s"]
 
 [sub_resource type="Resource" id="Resource_b7imn"]
 script = ExtResource("2_cmndm")
@@ -21,6 +21,6 @@ metadata/_custom_type_script = "uid://c35k35cdqaxtt"
 [resource]
 script = ExtResource("2_f7v4s")
 tag = "wheat"
-quest_steps = Array[ExtResource("1_xxtq2")]([SubResource("Resource_b7imn"), SubResource("Resource_cmndm")])
 description = "Maggy asked if you can bring them some wheat."
+quest_steps = Array[ExtResource("1_xxtq2")]([SubResource("Resource_b7imn"), SubResource("Resource_cmndm")])
 metadata/_custom_type_script = "uid://0v3c3jq7o4gm"
