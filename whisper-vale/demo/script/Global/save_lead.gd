@@ -2,7 +2,9 @@ extends Node
 
 var register: Array[Node] = []
 
-var save_path := "user://savegame.txt"
+const SAVE_PATH := "user://savegame.tale"
+const PLAYER_SECTION = "player"
+const QUEST_SECTION = "quest"
 	
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("quicksave")):
@@ -14,37 +16,27 @@ func add_to_register( node: Node ):
 	
 func savegame():
 	#C:\Users\Light\AppData\Roaming\Godot\app_userdata\Whisper-Vale
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	var dico_save:Dictionary
+	var file = ConfigFile.new()
 	for node in register:
 		if (node is Player):
-			dico_save.set("pos_x", node.global_position.x)
-			dico_save.set("pos_y", node.global_position.y)
-			dico_save.set("pos_z", node.global_position.z)
+			file.set_value(PLAYER_SECTION, "position", node.global_position)
 		elif (node is QuestLead):
 			var quest_lead = node as QuestLead
-			dico_save.set("completed_quest", quest_lead.completed_quests)
-			dico_save.set("started_quests", quest_lead.started_quests)
-	var success = file.store_string(JSON.stringify(dico_save))
-	ActivityLog.log_savegame(success,"Game")
-	file.close()
+			file.set_value(QUEST_SECTION, "completed_quests", quest_lead.completed_quests)
+			file.set_value(QUEST_SECTION, "started_quests", quest_lead.started_quests)
+	var success = file.save(SAVE_PATH)
+	ActivityLog.log_savegame(success, 'Game')
 	
 func loadgame():
-	var file = FileAccess.open(save_path, FileAccess.READ)
-	var dico_save:Dictionary = JSON.parse_string(file.get_as_text(true))
+	var file = ConfigFile.new()
+	file.load(SAVE_PATH)
 	for node in register:
 		if (node is Player):
-			node.global_position.x = dico_save.get("pos_x")
-			node.global_position.y = dico_save.get("pos_y")
-			node.global_position.z = dico_save.get("pos_z")
+			node.global_position = file.get_value(PLAYER_SECTION, "position")
 		elif (node is QuestLead):
 			var quest_lead = node as QuestLead
-			quest_lead.completed_quests.clear()
-			quest_lead.completed_quests.assign(dico_save.get("completed_quest")) 
-			# this is not working. Need to save with quest tag and also quest_step tag
-			quest_lead.started_quests.clear()
-			quest_lead.started_quests.assign( dico_save.get("started_quests"))
-	file.close()
+			quest_lead.completed_quests = file.get_value(QUEST_SECTION, "completed_quests")
+			quest_lead.started_quests = file.get_value(QUEST_SECTION, "started_quests")
 	ActivityLog.log_loadgame()
 	
 func get_full_tree() -> String:

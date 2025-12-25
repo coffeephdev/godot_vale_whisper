@@ -1,7 +1,7 @@
 if not QuestLead.is_quest_started_or_completed("wheat")
 	Maggy: [[Hello team|OMG hi|Hi dear]] !
 	Maggy: [shake rate=20 level=10]Welcome[/shake] in our little town !
-	Maggy: Would you be so king to bring me some wheat ?
+	Maggy: Would you be so kind to bring me some wheat ?
 	Maggy: I really need to wait here for... [wave amp=25 freq=5]Reasons[/wave], you know.
 	- Sure !
 		Maggy: Oh [wave amp=25 freq=5]really[/wave] ! Thank you thank you [shake rate=20 level=10]thank you ![/shake]
