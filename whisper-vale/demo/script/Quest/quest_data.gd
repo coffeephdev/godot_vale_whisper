@@ -2,8 +2,11 @@ class_name QuestData extends Object
 
 var tag: String
 var completed: bool = false
-var quest_steps : Array[QuestStepData]
+var quest_steps : Array[QuestStepData] = []
 
-func _init(resource: Quest) -> void:
+func populate(resource:Quest):
 	tag = resource.tag
-	quest_steps = quest_steps.map(func(step:QuestStep): return step.tag )
+	for step_resource in resource.quest_steps:
+		var quest_step = QuestStepData.new()
+		quest_step.tag = step_resource.tag
+		quest_steps.append(quest_step)

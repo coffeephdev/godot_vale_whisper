@@ -1,5 +1,5 @@
 if not QuestLead.is_quest_started_or_completed("intro"):
-	do QuestLead.start_quest("01_intro")
+	do QuestLead.start_quest("intro")
 	
 	Oh hello ?!
 	[wave amp=25 freq=5]Hello ![/wave] Are you new here ?

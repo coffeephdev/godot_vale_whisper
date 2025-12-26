@@ -72,6 +72,7 @@ _surfaces = [{
 top_level = true
 script = ExtResource("1_1uu8a")
 dialogue = ExtResource("2_g5c70")
+skip_Dialogue = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0vl1j")

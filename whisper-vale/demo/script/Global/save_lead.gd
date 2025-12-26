@@ -22,8 +22,8 @@ func savegame():
 			file.set_value(PLAYER_SECTION, "position", node.global_position)
 		elif (node is QuestLead):
 			var quest_lead = node as QuestLead
-			file.set_value(QUEST_SECTION, "completed_quests", quest_lead.completed_quests)
-			file.set_value(QUEST_SECTION, "started_quests", quest_lead.started_quests)
+			file.set_value(QUEST_SECTION, "completed_quests", quest_lead.completed_quests as Variant)
+			file.set_value(QUEST_SECTION, "started_quests", quest_lead.started_quests as Variant)
 	var success = file.save(SAVE_PATH)
 	ActivityLog.log_savegame(success, 'Game')
 	

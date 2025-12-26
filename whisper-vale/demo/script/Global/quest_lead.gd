@@ -14,9 +14,9 @@ func _process(_delta: float) -> void:
 
 func start_quest(quest_tag: String) -> void:
 	var id := quest_list.find_custom(func(quest:QuestData): return quest.tag == quest_tag)
-	var quest = quest_list.get(id)
-	started_quests.append(quest)
-	ActivityLog.log_quest("Started", quest)
+	var quest_data = quest_list.get(id)
+	started_quests.append(quest_data)
+	ActivityLog.log_quest("Quest Started", quest_data)
 	
 func is_quest_step_completed(quest_tag:String, step_tag:String) -> bool:
 	for quest in started_quests:
@@ -35,11 +35,11 @@ func is_quest_started_or_completed(quest_tag:String) -> bool:
 	return is_started || is_completed
 	
 func is_quest_completed(quest_tag:String) -> bool:
-	return completed_quests.any(func(quest:Quest): 
+	return completed_quests.any(func(quest:QuestData): 
 		return quest.tag == quest_tag)
 		
 func is_quest_started(quest_tag:String) -> bool:
-	return started_quests.any(func(quest:Quest): 
+	return started_quests.any(func(quest:QuestData): 
 		return quest.tag == quest_tag)
 		
 func notice_collected_item(resource:CollectibleResource) -> void:
@@ -59,34 +59,35 @@ func set_quest_step_complete(quest_tag:String, quest_step_tag:String) -> void:
 		return
 		
 	ActivityLog.log_quest_step("Step Completed", quest_step)
-	
 	quest_step.completed = true
 
 func check_quests_completion() -> void:
 	for quest in started_quests:
 		if quest.completed:
-			continue
-		
-		if quest.quest_steps.all(func(step:QuestStep): return step.completed ):
-			quest.completed = true
 			completed_quests.append(quest)
 			started_quests.erase(quest)
+			continue
+		
+		if quest.quest_steps.all(func(step:QuestStepData): return step.completed ):
+			quest.completed = true
 			ActivityLog.log_quest("Quest Completed", quest)
 			
 func build_quest_list() -> void:
-	var resource_folder = DirAccess.open(quest_resource_path)
-	for file in resource_folder:
-		var resource = file as Quest
-		var quest = QuestData.new(resource)
+	var resource_folder := DirAccess.open(quest_resource_path)
+	for file_name in resource_folder.get_files():
+		var file_path := quest_resource_path.path_join(file_name)
+		var resource = load(file_path) as Quest
+		var quest = QuestData.new()
+		quest.populate(resource)
 		quest_list.append(quest)
 		
 func get_started_quest(quest_tag: String) -> QuestData:
-	var id = started_quests.find_custom(func(quest:Quest):
+	var id = started_quests.find_custom(func(quest:QuestData):
 		return quest.tag == quest_tag)
 	return started_quests[id]
 		
 func get_started_quest_step(quest_tag: String, quest_step_tag: String) -> QuestStepData:
 	var quest = get_started_quest(quest_tag)
-	var id = quest.quest_steps.find_custom(func(quest_step:QuestStep):
+	var id = quest.quest_steps.find_custom(func(quest_step:QuestStepData):
 		return quest_step.tag == quest_step_tag)
 	return quest.quest_steps[id]
