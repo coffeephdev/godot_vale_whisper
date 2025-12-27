@@ -4,6 +4,7 @@ var register: Array[Node] = []
 
 const SAVE_PATH := "user://savegame.tale"
 const PLAYER_SECTION = "player"
+const CAMERA_SECTION = "camera"
 const QUEST_SECTION = "quest"
 	
 func _input(event: InputEvent) -> void:
@@ -15,14 +16,15 @@ func add_to_register( node: Node ):
 	register.append(node)
 	
 func savegame():
-	#C:\Users\Light\AppData\Roaming\Godot\app_userdata\Whisper-Vale
 	var file = ConfigFile.new()
 	for node in register:
 		if (node is Player):
 			file.set_value(PLAYER_SECTION, "position", node.global_position)
+		elif (node is CameraController):
+			file.set_value(CAMERA_SECTION, "position", node.global_position)
 		elif (node is QuestLead):
 			var quest_lead = node as QuestLead
-			file.set_value(QUEST_SECTION, "completed_quests", quest_lead.completed_quests as Variant)
+			file.set_value(QUEST_SECTION, "completed_quests",quest_lead.completed_quests as Variant)
 			file.set_value(QUEST_SECTION, "started_quests", quest_lead.started_quests as Variant)
 	var success = file.save(SAVE_PATH)
 	ActivityLog.log_savegame(success, 'Game')
@@ -33,6 +35,8 @@ func loadgame():
 	for node in register:
 		if (node is Player):
 			node.global_position = file.get_value(PLAYER_SECTION, "position")
+		elif (node is CameraController):
+			node.global_position = file.get_value(CAMERA_SECTION, "position")
 		elif (node is QuestLead):
 			var quest_lead = node as QuestLead
 			quest_lead.completed_quests = file.get_value(QUEST_SECTION, "completed_quests")

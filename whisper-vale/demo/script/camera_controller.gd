@@ -21,7 +21,8 @@ const screen_ratio = Vector2(1, .56)
 
 
 func _ready() -> void:
-	self.global_position.y = player.global_position.y + target_lookat_offset
+	#self.global_position.y = player.global_position.y + target_lookat_offset
+	SaveLead.add_to_register(self)
 	GameLead.camera = self
 	
 func _unhandled_input(event: InputEvent) -> void:

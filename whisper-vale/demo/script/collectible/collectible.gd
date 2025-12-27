@@ -1,32 +1,22 @@
 class_name Collectible extends Node3D
 
-@export var refresh_cooldown: int = 5
 @export var resource: CollectibleResource
 
 @onready var active_mesh: Node3D = get_node("active")
 @onready var inactive_mesh: Node3D = get_node("inactive")
 
-var cooldown := Timer.new()
 var area3D := Area3D.new()
 
 signal gathered
 
 func _on_gathered() -> void:
 	QuestLead.notice_collected_item(resource)
-	start_cooldown()
 	set_collectible_inactive()
 	
 func _ready() -> void:
 	setup_area3D()
-	setup_cooldown()
 	set_collectible_active()
 
-func start_cooldown():
-	cooldown.start(refresh_cooldown)
-	
-func _timeout():
-	set_collectible_active()
-	
 func set_collectible_active():
 	active_mesh.show()
 	inactive_mesh.hide()
@@ -54,10 +44,5 @@ func setup_area3D():
 	self.add_child(area3D)
 	area3D.body_entered.connect(_on_body_entered)
 
-func setup_cooldown():
-	self.add_child(cooldown)
-	cooldown.timeout.connect(_timeout)
-	cooldown.one_shot = true
-	
 func _on_body_entered(_body: Node3D) -> void:
 	gathered.emit()
