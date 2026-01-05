@@ -1,11 +1,13 @@
 extends Node
 var quest_list: Array[QuestData] = []
-
+var quest_resources: Array[Quest] = []
 var started_quests: Array[QuestData] = []
 var completed_quests: Array[QuestData] = []
-const quest_resource_path = "res://demo/data/quest/"
 
 signal emit_quest_update
+
+const quest_resource_path = "res://demo/data/quest/"
+const seconds_before_ending_quest = 6
 
 func _ready() -> void:
 	build_quest_list()
@@ -71,7 +73,7 @@ func check_quests_completion() -> void:
 		if quest.completed:
 			completed_quests.append(quest)
 			started_quests.erase(quest)
-			emit_quest_update.emit()
+			get_tree().create_timer(seconds_before_ending_quest).timeout.connect(_on_completed_quest.bind(quest))
 			continue
 		
 		if quest.quest_steps.all(func(step:QuestStepData): return step.completed ):
@@ -79,14 +81,19 @@ func check_quests_completion() -> void:
 			ActivityLog.log_quest("Quest Completed", quest)
 			emit_quest_update.emit()
 			
+func _on_completed_quest():
+	emit_quest_update.emit()
+	
 func build_quest_list() -> void:
 	var resource_folder := DirAccess.open(quest_resource_path)
 	for file_name in resource_folder.get_files():
 		var file_path := quest_resource_path.path_join(file_name)
 		var resource = load(file_path) as Quest
-		var quest = QuestData.new()
-		quest.populate(resource)
-		quest_list.append(quest)
+		quest_resources.append(resource)
+		
+		var quest_data = QuestData.new()
+		quest_data.populate(resource)
+		quest_list.append(quest_data)
 		
 func get_started_quest(quest_tag: String) -> QuestData:
 	var id = started_quests.find_custom(func(quest:QuestData):
@@ -98,3 +105,12 @@ func get_started_quest_step(quest_tag: String, quest_step_tag: String) -> QuestS
 	var id = quest.quest_steps.find_custom(func(quest_step:QuestStepData):
 		return quest_step.tag == quest_step_tag)
 	return quest.quest_steps[id]
+	
+func get_quest_description(quest_tag:String) -> String:
+	var id = quest_resources.find_custom(func(quest:Quest):return quest.tag == quest_tag)
+	return quest_resources[id].description
+	
+func get_quest_step_description(quest_tag:String, step_tag:String) -> String:
+	var quest_id = quest_resources.find_custom(func(quest:Quest):return quest.tag == quest_tag)
+	var step_id = quest_resources[quest_id].quest_steps.find_custom(func(quest_step:QuestStep):return quest_step.tag == step_tag)
+	return quest_resources[quest_id].quest_steps[step_id].description
