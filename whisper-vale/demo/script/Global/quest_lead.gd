@@ -5,6 +5,8 @@ var started_quests: Array[QuestData] = []
 var completed_quests: Array[QuestData] = []
 const quest_resource_path = "res://demo/data/quest/"
 
+signal emit_quest_update
+
 func _ready() -> void:
 	build_quest_list()
 	SaveLead.add_to_register(self)
@@ -16,6 +18,7 @@ func start_quest(quest_tag: String) -> void:
 	var id := quest_list.find_custom(func(quest:QuestData): return quest.tag == quest_tag)
 	var quest_data = quest_list.get(id)
 	started_quests.append(quest_data)
+	emit_quest_update.emit()
 	ActivityLog.log_quest("Quest Started", quest_data)
 	
 func is_quest_step_completed(quest_tag:String, step_tag:String) -> bool:
@@ -50,27 +53,31 @@ func notice_collected_item(resource:CollectibleResource) -> void:
 			
 			step = step as QuestStepItemData
 			if (is_same(step.item_to_collect, resource)):
-				ActivityLog.log_quest_step("Step Completed", step)
 				step.completed = true
+				ActivityLog.log_quest_step("Step Completed", step)
+				emit_quest_update.emit()
 				
 func set_quest_step_complete(quest_tag:String, quest_step_tag:String) -> void:
 	var quest_step = get_started_quest_step(quest_tag, quest_step_tag) as QuestStepData
 	if (quest_step == null || quest_step.completed):
 		return
 		
-	ActivityLog.log_quest_step("Step Completed", quest_step)
 	quest_step.completed = true
+	ActivityLog.log_quest_step("Step Completed", quest_step)
+	emit_quest_update.emit()
 
 func check_quests_completion() -> void:
 	for quest in started_quests:
 		if quest.completed:
 			completed_quests.append(quest)
 			started_quests.erase(quest)
+			emit_quest_update.emit()
 			continue
 		
 		if quest.quest_steps.all(func(step:QuestStepData): return step.completed ):
 			quest.completed = true
 			ActivityLog.log_quest("Quest Completed", quest)
+			emit_quest_update.emit()
 			
 func build_quest_list() -> void:
 	var resource_folder := DirAccess.open(quest_resource_path)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=4 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=17 format=4 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Script" uid="uid://515nmrlxygp4" path="res://demo/script/startup.gd" id="1_1uu8a"]
 [ext_resource type="Resource" uid="uid://cx51yd4q2l1h8" path="res://demo/data/dialogue/01_intro.dialogue" id="2_g5c70"]
 [ext_resource type="PackedScene" uid="uid://cc4idhykjp5f5" path="res://demo/player/player.tscn" id="2_ptubf"]
 [ext_resource type="PackedScene" uid="uid://bd0vh3mcc25uf" path="res://demo/player/mob.tscn" id="3_g5c70"]
+[ext_resource type="Script" uid="uid://b4vp5br2qt64b" path="res://demo/script/Interface/quest_journal.gd" id="6_0rr5y"]
 [ext_resource type="Resource" uid="uid://b6lhqospcmfed" path="res://demo/data/dialogue/02_wheat_quest.dialogue" id="6_g5c70"]
 [ext_resource type="PackedScene" uid="uid://dxlskmq3q77am" path="res://demo/scene/camera_system.tscn" id="6_y4ynk"]
 [ext_resource type="PackedScene" uid="uid://b6j4pqn5m176d" path="res://demo/scene/enviro_test.tscn" id="7_1uu8a"]
@@ -73,7 +74,6 @@ _surfaces = [{
 top_level = true
 script = ExtResource("1_1uu8a")
 dialogue = ExtResource("2_g5c70")
-skip_Dialogue = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0vl1j")
@@ -115,7 +115,37 @@ rotation_speed = 0.55
 [node name="Interface" type="Node" parent="."]
 
 [node name="fly_menu" parent="Interface" instance=ExtResource("7_o2kgk")]
+custom_minimum_size = Vector2(250, 200)
+layout_direction = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_right = 76.0
+grow_horizontal = 2
 mouse_filter = 1
+
+[node name="quest_journal" type="Control" parent="Interface"]
+custom_minimum_size = Vector2(200, 200)
+layout_direction = 4
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+script = ExtResource("6_0rr5y")
+
+[node name="text" type="RichTextLabel" parent="Interface/quest_journal"]
+layout_mode = 1
+offset_right = 1.0
+offset_bottom = 299.0
+bbcode_enabled = true
+text = "qsdqsdqsdqsdqsdqsdsqd"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="enviro-test" parent="." instance=ExtResource("7_1uu8a")]
 
