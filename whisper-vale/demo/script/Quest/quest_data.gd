@@ -18,3 +18,6 @@ func populate(resource:Quest):
 		
 		quest_step.tag = step_resource.tag
 		quest_steps.append(quest_step)
+
+func get_description() -> String:
+	return QuestLead.get_quest_description(tag)

@@ -134,18 +134,31 @@ layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
 grow_horizontal = 0
 script = ExtResource("6_0rr5y")
 
 [node name="text" type="RichTextLabel" parent="Interface/quest_journal"]
+clip_contents = false
 layout_mode = 1
-offset_right = 1.0
-offset_bottom = 299.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -275.0
+offset_top = 15.0
+offset_right = -16.0
+offset_bottom = 466.0
+grow_horizontal = 0
 bbcode_enabled = true
 text = "qsdqsdqsdqsdqsdqsdsqd"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+autowrap_trim_flags = 0
+tab_size = 1
+shortcut_keys_enabled = false
+justification_flags = 0
 
 [node name="enviro-test" parent="." instance=ExtResource("7_1uu8a")]
 

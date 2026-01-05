@@ -1,7 +1,9 @@
 class_name QuestJournal extends Control
 
 @onready var content: RichTextLabel = $text
-const color:Color = Color.GOLD
+const color := Color.GOLD
+const outline_color := Color.DARK_GOLDENROD
+const outline_size = 4
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,26 +17,35 @@ func write_journal():
 	content.clear()
 	if (QuestLead.started_quests.size() > 0):
 		content.push_bold()
-		add_paragraph("Quest Journal", HORIZONTAL_ALIGNMENT_CENTER)
+		content.push_outline_color(outline_color)
+		content.push_outline_size(outline_size)
+		content.push_font_size(18)
+		add_paragraph("Quest Journal")
 		add_paragraph(" ")
-		content.pop()
 		for quest in QuestLead.started_quests:
 			write_quest(quest)
 		
 func write_quest(quest: QuestData):
-	if (quest == null):
-		return
+	
+	if (quest.completed):
+		content.push_strikethrough(outline_color)
+	content.push_font_size(16)
 	content.push_bold()
-	add_paragraph(quest.tag)
-	content.pop()
+	content.push_indent(2)
+	add_paragraph(quest.get_description())
 	
 	for step in quest.quest_steps:
+		if (quest.completed):
+			content.push_strikethrough(outline_color)
 		var status = "🗹" if step.completed else "☐"
-		add_paragraph("    " + step.tag + " : " + status, HORIZONTAL_ALIGNMENT_RIGHT)
+		content.push_font_size(16)
+		content.push_indent(4)
+		add_paragraph(step.get_description(quest.tag) + " : " + status, HORIZONTAL_ALIGNMENT_RIGHT)
 
 func add_paragraph(text:String, alignment:HorizontalAlignment = HORIZONTAL_ALIGNMENT_LEFT):
+	content.push_outline_color(outline_color)
+	content.push_outline_size(outline_size)
 	content.push_color(color)
 	content.push_paragraph(alignment)
 	content.append_text(text)
-	content.pop()
-	content.pop()
+	content.pop_all()
