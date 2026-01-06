@@ -73,7 +73,7 @@ func check_quests_completion() -> void:
 		if quest.completed:
 			completed_quests.append(quest)
 			started_quests.erase(quest)
-			get_tree().create_timer(seconds_before_ending_quest).timeout.connect(_on_completed_quest.bind(quest))
+			get_tree().create_timer(seconds_before_ending_quest).timeout.connect(_on_completed_quest)
 			continue
 		
 		if quest.quest_steps.all(func(step:QuestStepData): return step.completed ):
