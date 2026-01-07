@@ -19,7 +19,6 @@ var cam_distance: float
 
 const screen_ratio = Vector2(1, .56)
 
-
 func _ready() -> void:
 	#self.global_position.y = player.global_position.y + target_lookat_offset
 	SaveLead.add_to_register(self)
@@ -35,10 +34,16 @@ func _unhandled_input(event: InputEvent) -> void:
 	cam_distance = clampf(cam_distance, min_cam_distance, max_cam_distance)
 	
 func _physics_process(delta: float) -> void:
-	var distance_to_player: float = player.global_position.distance_to(self.global_position)
+	var distance_to_player := player.global_position.distance_to(self.global_position)
 	
-	translate_controller(delta, distance_to_player)
-	obstacle_player_cast()
+	var obstacle_position = middle_obstacle_position()
+	if (obstacle_position == Vector3.ZERO):
+		translate_controller(delta, distance_to_player, cam_distance)
+	else:
+		var safety_margin := 1
+		var distance_to_obstacle = player.global_position.distance_to(obstacle_position)
+		var needed_dist = distance_to_obstacle - safety_margin
+		translate_controller(delta, distance_to_player, needed_dist)
 	
 	if (!player.CAN_MOVE): return
 	
@@ -50,14 +55,12 @@ func mouse_rotate_camera(move):
 	const ratio_compensation: float = 1.5
 	self.translate_object_local(Vector3(-move.x, move.y * ratio_compensation, 0))
 
-func translate_controller(delta: float, distance_to_player: float):
-	
-	if (distance_to_player > cam_distance):
-		pass
-	var moving_speed = delta * travel_speed * (distance_to_player - cam_distance)
+func translate_controller(delta: float, distance_to_player: float, distance_to_get):
+	var distance_diff = distance_to_player - distance_to_get
+	var moving_speed = delta * travel_speed * distance_diff
 	self.translate_object_local(Vector3(0, 0, -moving_speed))
 	
-func obstacle_player_cast():
+func middle_obstacle_position() -> Vector3:
 	var exclude_array = [player.get_rid(), RID(self)]
 	
 	var req = PhysicsRayQueryParameters3D.new()
@@ -66,10 +69,9 @@ func obstacle_player_cast():
 	req.exclude = exclude_array
 	
 	var result := get_world_3d().direct_space_state.intersect_ray(req)
-	
 	if (result.size() > 0):
 		var collision = result["collider"]
 		if ( collision ):
-			self.position = result["position"]
-			var safety_margin := 0.55
-			self.translate_object_local(Vector3(0, safety_margin, 0))
+			return result["position"]
+			
+	return Vector3.ZERO
