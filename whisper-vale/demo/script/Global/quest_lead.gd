@@ -73,7 +73,7 @@ func check_quests_completion() -> void:
 		if quest.completed:
 			completed_quests.append(quest)
 			started_quests.erase(quest)
-			get_tree().create_timer(seconds_before_ending_quest).timeout.connect(_on_completed_quest)
+			get_tree().create_timer(seconds_before_ending_quest).timeout.connect(emit_quest_update.emit)
 			continue
 		
 		if quest.quest_steps.all(func(step:QuestStepData): return step.completed ):
@@ -81,10 +81,10 @@ func check_quests_completion() -> void:
 			ActivityLog.log_quest("Quest Completed", quest)
 			emit_quest_update.emit()
 			
-func _on_completed_quest():
-	emit_quest_update.emit()
-	
 func build_quest_list() -> void:
+	quest_resources.clear()
+	quest_list.clear()
+	
 	var resource_folder := DirAccess.open(quest_resource_path)
 	for file_name in resource_folder.get_files():
 		var file_path := quest_resource_path.path_join(file_name)
@@ -94,6 +94,8 @@ func build_quest_list() -> void:
 		var quest_data = QuestData.new()
 		quest_data.populate(resource)
 		quest_list.append(quest_data)
+		
+	emit_quest_update.emit()
 		
 func get_started_quest(quest_tag: String) -> QuestData:
 	var id = started_quests.find_custom(func(quest:QuestData):

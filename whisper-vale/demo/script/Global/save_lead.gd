@@ -42,6 +42,7 @@ func loadgame():
 			quest_lead.completed_quests = file.get_value(QUEST_SECTION, "completed_quests")
 			quest_lead.started_quests = file.get_value(QUEST_SECTION, "started_quests")
 	ActivityLog.log_loadgame()
+	QuestLead.build_quest_list()
 	
 func get_full_tree() -> String:
 	return get_tree().root.get_tree_string_pretty()
