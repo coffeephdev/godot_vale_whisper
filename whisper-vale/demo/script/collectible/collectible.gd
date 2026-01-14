@@ -1,31 +1,31 @@
 class_name Collectible extends Node3D
 
 @export var resource: CollectibleResource
+@export var is_collected := false
 
 @onready var active_mesh: Node3D = get_node("active")
 @onready var inactive_mesh: Node3D = get_node("inactive")
 
 var area3D := Area3D.new()
 
-signal gathered
-
-func _on_gathered() -> void:
-	QuestLead.notice_collected_item(resource)
-	set_collectible_inactive()
+func gathered() -> void:
+	is_collected = true
+	set_collectible_state()
 	
 func _ready() -> void:
 	setup_area3D()
-	set_collectible_active()
+	set_collectible_state()
 
-func set_collectible_active():
-	active_mesh.show()
-	inactive_mesh.hide()
-	area3D.set_deferred("monitoring", true)
-	
-func set_collectible_inactive():
-	active_mesh.hide()
-	inactive_mesh.show()
-	area3D.set_deferred("monitoring", false)
+func set_collectible_state():
+	if (is_collected):
+		QuestLead.notice_collected_item(resource)
+		active_mesh.hide()
+		inactive_mesh.show()
+		area3D.set_deferred("monitoring", false)
+	else:
+		active_mesh.show()
+		inactive_mesh.hide()
+		area3D.set_deferred("monitoring", true)
 	
 func setup_area3D():
 	var shape = CylinderShape3D.new()
@@ -36,7 +36,6 @@ func setup_area3D():
 	collision.shape = shape
 	
 	area3D.monitorable = false
-	area3D.monitoring = false
 	area3D.add_child(collision)
 	area3D.set_collision_mask_value(1, false)
 	area3D.set_collision_mask_value(2, true)
@@ -45,4 +44,4 @@ func setup_area3D():
 	area3D.body_entered.connect(_on_body_entered)
 
 func _on_body_entered(_body: Node3D) -> void:
-	gathered.emit()
+	gathered()

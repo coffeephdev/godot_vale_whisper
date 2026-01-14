@@ -46,4 +46,3 @@ func loadgame():
 	
 func get_full_tree() -> String:
 	return get_tree().root.get_tree_string_pretty()
-	

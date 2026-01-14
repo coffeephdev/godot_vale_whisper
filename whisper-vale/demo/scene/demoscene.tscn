@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=16 format=4 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Script" uid="uid://515nmrlxygp4" path="res://demo/script/startup.gd" id="1_1uu8a"]
 [ext_resource type="Resource" uid="uid://cx51yd4q2l1h8" path="res://demo/data/dialogue/01_intro.dialogue" id="2_g5c70"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="7_o2kgk"]
 [ext_resource type="Script" uid="uid://dt8t5dh3rpipk" path="res://demo/script/collectible/collectible_respawn.gd" id="8_7141o"]
 [ext_resource type="PackedScene" uid="uid://cj1r02v2kixiy" path="res://demo/data/3d/collectibles/wheat.glb" id="9_g5c70"]
-[ext_resource type="Resource" uid="uid://cu2b8y5un2qug" path="res://demo/data/Collectible/wheat.tres" id="10_pd8a3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g28m0"]
 sky_top_color = Color(0.45999998, 0.7750001, 1, 1)
@@ -173,76 +172,19 @@ mesh = SubResource("ArrayMesh_es0nq")
 [node name="Collectibles" type="Node" parent="."]
 
 [node name="wheat" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -15.843177, -0.46181047, 27.062687)
+transform = Transform3D(0.45761004, 0, -0.20147718, 0, 0.5, 0, 0.20147718, 0, 0.45761004, -13.631119, -0.2442067, 15.153024)
 script = ExtResource("8_7141o")
 refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
 
 [node name="wheat2" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -29.321379, 0.011588842, 23.791111)
+transform = Transform3D(0.45761004, 0, -0.20147718, 0, 0.5, 0, 0.20147718, 0, 0.45761004, -9.46812, -0.31817758, 17.079128)
 script = ExtResource("8_7141o")
 refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
 
 [node name="wheat3" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -20.612453, -0.17861752, 16.69385)
+transform = Transform3D(0.45761004, 0, -0.20147718, 0, 0.5, 0, 0.20147718, 0, 0.45761004, -5.2893043, -0.36245394, 19.22645)
 script = ExtResource("8_7141o")
 refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
-
-[node name="wheat4" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882565, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882565, -18.823236, -0.9656974, 41.270634)
-script = ExtResource("8_7141o")
-refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
-
-[node name="wheat5" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -32.301437, -0.102215484, 37.999058)
-script = ExtResource("8_7141o")
-refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
-
-[node name="wheat6" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -23.957298, -0.14654936, 32.598164)
-script = ExtResource("8_7141o")
-refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
-
-[node name="wheat7" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -36.247494, 0.1542389, 30.00455)
-script = ExtResource("8_7141o")
-refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
-
-[node name="wheat8" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -42.937553, 0.21161205, 35.8626)
-script = ExtResource("8_7141o")
-refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
-
-[node name="wheat9" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -45.74015, 0.22401814, 27.96326)
-script = ExtResource("8_7141o")
-refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
-
-[node name="wheat10" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -33.115715, 0.11145489, 14.836141)
-script = ExtResource("8_7141o")
-refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
-
-[node name="wheat11" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -38.910587, 0.04300134, 20.88669)
-script = ExtResource("8_7141o")
-refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
-
-[node name="wheat12" parent="Collectibles" instance=ExtResource("9_g5c70")]
-transform = Transform3D(0.48882568, 0, -0.10511646, 0, 0.5, 0, 0.10511646, 0, 0.48882568, -41.713184, 0.36302453, 12.987351)
-script = ExtResource("8_7141o")
-refresh_cooldown = 0.2
-resource = ExtResource("10_pd8a3")
 
 [node name="NPC" type="Node" parent="."]
 
@@ -256,16 +198,3 @@ dialogue = ExtResource("6_g5c70")
 transform = Transform3D(0.805432, 0, -0.5926883, 0, 1, 0, 0.5926883, 0, 0.805432, 33.450493, 0.8567522, -48.195244)
 collision_layer = 5
 mob_name = &"Laïa"
-
-[connection signal="gathered" from="Collectibles/wheat" to="Collectibles/wheat" method="_on_gathered"]
-[connection signal="gathered" from="Collectibles/wheat2" to="Collectibles/wheat2" method="_on_gathered"]
-[connection signal="gathered" from="Collectibles/wheat3" to="Collectibles/wheat3" method="_on_gathered"]
-[connection signal="gathered" from="Collectibles/wheat4" to="Collectibles/wheat4" method="_on_gathered"]
-[connection signal="gathered" from="Collectibles/wheat5" to="Collectibles/wheat5" method="_on_gathered"]
-[connection signal="gathered" from="Collectibles/wheat6" to="Collectibles/wheat6" method="_on_gathered"]
-[connection signal="gathered" from="Collectibles/wheat7" to="Collectibles/wheat7" method="_on_gathered"]
-[connection signal="gathered" from="Collectibles/wheat8" to="Collectibles/wheat8" method="_on_gathered"]
-[connection signal="gathered" from="Collectibles/wheat9" to="Collectibles/wheat9" method="_on_gathered"]
-[connection signal="gathered" from="Collectibles/wheat10" to="Collectibles/wheat10" method="_on_gathered"]
-[connection signal="gathered" from="Collectibles/wheat11" to="Collectibles/wheat11" method="_on_gathered"]
-[connection signal="gathered" from="Collectibles/wheat12" to="Collectibles/wheat12" method="_on_gathered"]
