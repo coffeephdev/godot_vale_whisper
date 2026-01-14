@@ -1,6 +1,6 @@
 class_name CollectibleRespawn extends Collectible
 
-@export var refresh_cooldown: float = 0.2
+@export_custom(PROPERTY_HINT_NONE, "suffix:minute(s)", PROPERTY_USAGE_DEFAULT) var refresh_cooldown: float = 0.2
 
 @onready var refresh_cooldown_minutes = refresh_cooldown * 60
 

@@ -9,6 +9,7 @@ class_name Collectible extends Node3D
 var area3D := Area3D.new()
 
 func gathered() -> void:
+	ActivityLog.log_collectible(resource.name)
 	is_collected = true
 	set_collectible_state()
 	

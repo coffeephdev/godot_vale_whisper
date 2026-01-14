@@ -14,3 +14,6 @@ static func log_savegame(success: Error, topic: String) -> void:
 		
 static func log_loadgame():
 	print_rich("[b][color=DEEP_SKY_BLUE]Game Loaded[/color][/b]")
+
+static func log_collectible(name: String):
+	print_rich("[b][color=DEEP_SKY_BLUE]Obtained: [/color][/b]" + name)

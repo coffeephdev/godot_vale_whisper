@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dnl3whjqlu5jy"]
+[gd_scene load_steps=17 format=4 uid="uid://dnl3whjqlu5jy"]
 
 [ext_resource type="Script" uid="uid://515nmrlxygp4" path="res://demo/script/startup.gd" id="1_1uu8a"]
 [ext_resource type="Resource" uid="uid://cx51yd4q2l1h8" path="res://demo/data/dialogue/01_intro.dialogue" id="2_g5c70"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://btknmawbksoku" path="res://demo/interface/fly_menu.tscn" id="7_o2kgk"]
 [ext_resource type="Script" uid="uid://dt8t5dh3rpipk" path="res://demo/script/collectible/collectible_respawn.gd" id="8_7141o"]
 [ext_resource type="PackedScene" uid="uid://cj1r02v2kixiy" path="res://demo/data/3d/collectibles/wheat.glb" id="9_g5c70"]
+[ext_resource type="Resource" uid="uid://cu2b8y5un2qug" path="res://demo/data/Collectible/wheat.tres" id="10_pd8a3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g28m0"]
 sky_top_color = Color(0.45999998, 0.7750001, 1, 1)
@@ -175,16 +176,19 @@ mesh = SubResource("ArrayMesh_es0nq")
 transform = Transform3D(0.45761004, 0, -0.20147718, 0, 0.5, 0, 0.20147718, 0, 0.45761004, -13.631119, -0.2442067, 15.153024)
 script = ExtResource("8_7141o")
 refresh_cooldown = 0.2
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat2" parent="Collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.45761004, 0, -0.20147718, 0, 0.5, 0, 0.20147718, 0, 0.45761004, -9.46812, -0.31817758, 17.079128)
 script = ExtResource("8_7141o")
 refresh_cooldown = 0.2
+resource = ExtResource("10_pd8a3")
 
 [node name="wheat3" parent="Collectibles" instance=ExtResource("9_g5c70")]
 transform = Transform3D(0.45761004, 0, -0.20147718, 0, 0.5, 0, 0.20147718, 0, 0.45761004, -5.2893043, -0.36245394, 19.22645)
 script = ExtResource("8_7141o")
 refresh_cooldown = 0.2
+resource = ExtResource("10_pd8a3")
 
 [node name="NPC" type="Node" parent="."]
 
