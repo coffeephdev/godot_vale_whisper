@@ -213,10 +213,10 @@ func reset_raycast():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	dialogue_target = null
 
-func _on_dialogue_started(_resource):
+func _on_dialogue_started():
 	CAN_MOVE = false
 	Input.mouse_mode = Input.MouseMode.MOUSE_MODE_CONFINED
-func _on_dialogue_ended(_resource):
+func _on_dialogue_ended():
 	CAN_MOVE = true
 	Input.mouse_mode = Input.MouseMode.MOUSE_MODE_CAPTURED
 

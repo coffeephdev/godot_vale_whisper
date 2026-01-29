@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 func start_fly (body:Player, destination:fly_post):
 	is_flying = true
 	flying_body = body
-	flying_body.can_move = false
+	flying_body._on_dialogue_started()
 	flying_body.reparent(path_follow)
 	flying_body.position = Vector3(0,0,0)
 	
@@ -55,7 +55,7 @@ func update_fly(delta:float):
 
 func stop_fly():
 	is_flying = false
-	flying_body.can_move = true
+	flying_body._on_dialogue_ended()
 	flying_body.reparent(get_tree().root)
 	flying_body = null
 	path_follow.progress_ratio = 0

@@ -1,18 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://w2xt4xovidnu"]
+[gd_scene load_steps=11 format=3 uid="uid://w2xt4xovidnu"]
 
-[ext_resource type="Material" path="res://demo/material/wood.tres" id="1_lkl4q"]
 [ext_resource type="Script" uid="uid://calsfwkbbe6sk" path="res://demo/script/fly_post.gd" id="1_t3now"]
 [ext_resource type="Script" uid="uid://c5na552vggo2o" path="res://demo/script/tools/Marker.gd" id="2_muub5"]
 [ext_resource type="Texture2D" uid="uid://cgow8dqpnhb4h" path="res://demo/flypoint/waypoint.svg" id="3_pwolr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aseco"]
+albedo_color = Color(0.3545207, 0.19482163, 0.09219927, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_74qjt"]
 height = 0.503906
 radius = 3.12891
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0cdqn"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_74qjt"]
-size = Vector3(3.6084, 1, 1.70895)
+size = Vector3(1, 0.5349121, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkl4q"]
 albedo_color = Color(1, 0, 0, 1)
@@ -30,7 +30,7 @@ radius = 1.19871
 script = ExtResource("1_t3now")
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.71671, -3.00262)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.678343, -3.00262)
 
 [node name="Control" type="Control" parent="Marker3D"]
 layout_mode = 3
@@ -48,14 +48,14 @@ pivot_offset = Vector2(-15.82, -64.065)
 texture = ExtResource("3_pwolr")
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.24728, -1.26377)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2089128, -1.26377)
 
 [node name="Model" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.04292)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98937, -6.34078)
-material_override = ExtResource("1_lkl4q")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.048997045, -6.34078)
+material_override = SubResource("StandardMaterial3D_aseco")
 radius = 3.11328
 height = 0.485229
 sides = 15
@@ -66,52 +66,50 @@ sides = 15
 shape = SubResource("CylinderShape3D_74qjt")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Model"]
-transform = Transform3D(0.405495, 0, 0, 0, 5.32473, 0, 0, 0, 0.402379, -2.24143, 2.64519, -7.89074)
-material_override = ExtResource("1_lkl4q")
+transform = Transform3D(0.405495, 0, 0, 0, 5.32473, 0, 0, 0, 0.402379, -2.24143, 1.5571105, -7.89074)
+material_override = SubResource("StandardMaterial3D_aseco")
+size = Vector3(1, 0.6430664, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Model/CSGBox3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Model/CSGBox3D/StaticBody3D"]
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08520508, 0)
 shape = SubResource("BoxShape3D_0cdqn")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Model"]
-transform = Transform3D(0.405495, 0, 0, 0, 5.25054, 0, 0, 0, 0.402379, 2.41276, 2.62072, -7.49144)
-material_override = ExtResource("1_lkl4q")
+transform = Transform3D(0.405495, 0, 0, 0, 5.25054, 0, 0, 0, 0.402379, 2.41276, 1.5296547, -7.49144)
+material_override = SubResource("StandardMaterial3D_aseco")
+size = Vector3(1, 0.63916016, 1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Model/CSGBox3D6"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Model/CSGBox3D6/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0.14733887, 0)
 shape = SubResource("BoxShape3D_0cdqn")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Model"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.893465, -0.449132, 0, 0.449132, 0.893465, 0.00273466, 1.40966, -2.84713)
-shape = SubResource("BoxShape3D_74qjt")
-
 [node name="pin" type="CSGCylinder3D" parent="Model"]
-transform = Transform3D(0.494397, -3.79955e-08, -0.869236, -0.869236, -2.16108e-08, -0.494397, 0, 1, -4.37114e-08, -0.425237, 3.80939, -8.1721)
+transform = Transform3D(0.494397, -3.79955e-08, -0.869236, -0.869236, -2.16108e-08, -0.494397, 0, 1, -4.37114e-08, -0.425237, 1.771023, -8.1721)
 material_override = SubResource("StandardMaterial3D_lkl4q")
 radius = 0.078
 height = 0.028
 sides = 3
 
 [node name="pin2" type="CSGCylinder3D" parent="Model"]
-transform = Transform3D(0.967255, 1.10943e-08, 0.253809, 0.253808, -4.228e-08, -0.967254, 0, 1, -4.37114e-08, 0.477587, 3.26913, -8.17103)
+transform = Transform3D(0.967255, 1.10943e-08, 0.253809, 0.253808, -4.228e-08, -0.967254, 0, 1, -4.37114e-08, 0.477587, 1.230763, -8.17103)
 material_override = SubResource("StandardMaterial3D_tqdhc")
 radius = 0.078
 height = 0.028
 sides = 3
 
 [node name="pin4" type="CSGCylinder3D" parent="Model"]
-transform = Transform3D(-0.727832, 6.17899e-08, 0.685755, 0.685755, 1.83928e-09, 0.727832, 4.37114e-08, 1, -4.37114e-08, -1.0262, 4.15723, -8.17028)
+transform = Transform3D(-0.727832, 6.17899e-08, 0.685755, 0.685755, 1.83928e-09, 0.727832, 4.37114e-08, 1, -4.37114e-08, -1.0262, 2.1188629, -8.17028)
 material_override = SubResource("StandardMaterial3D_tqdhc")
 radius = 0.078
 height = 0.028
 sides = 4
 
 [node name="pin3" type="CSGCylinder3D" parent="Model"]
-transform = Transform3D(0.88289, -2.0526e-08, -0.469579, -0.469579, -3.85924e-08, -0.88289, 0, 1, -4.37114e-08, 0.433377, 4.19264, -8.17103)
+transform = Transform3D(0.88289, -2.0526e-08, -0.469579, -0.469579, -3.85924e-08, -0.88289, 0, 1, -4.37114e-08, 0.433377, 2.1542728, -8.17103)
 material_override = SubResource("StandardMaterial3D_tqdhc")
 radius = 0.078
 height = 0.028
@@ -119,29 +117,29 @@ sides = 3
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Model"]
 transform = Transform3D(1.32846, 0, 0, 0, 1.80032, 0, 0, 0, 1, 0, 3.77423, -8.16779)
-material_override = ExtResource("1_lkl4q")
+material_override = SubResource("StandardMaterial3D_aseco")
 operation = 2
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Model/CSGCombiner3D"]
-material_override = ExtResource("1_lkl4q")
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -1.1322248, 0)
 size = Vector3(2.2771, 1, 0.110352)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Model/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0322809)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -1.1322248, 0.032280922)
 operation = 2
 size = Vector3(2.07983, 0.833008, 0.110352)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Model/CSGCombiner3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Model/CSGCombiner3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000190911, 0.0026567, -0.000980377)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.00019091099, -1.1295681, -0.0009803772)
 shape = SubResource("BoxShape3D_lkl4q")
 
 [node name="InteractArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.89163, -2.01851)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.290719)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.038367, 0.29071903)
 shape = SubResource("SphereShape3D_t3now")
 
 [connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
