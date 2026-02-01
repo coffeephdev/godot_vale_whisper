@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://cui5supvgny4r"]
+
+[ext_resource type="Script" uid="uid://c35k35cdqaxtt" path="res://demo/script/Quest/Resource/quest_step.gd" id="1_ny0ap"]
+[ext_resource type="Script" uid="uid://0v3c3jq7o4gm" path="res://demo/script/Quest/Resource/quest.gd" id="2_126cn"]
+[ext_resource type="Resource" uid="uid://cu2b8y5un2qug" path="res://demo/data/Collectible/wheat.tres" id="2_dodgg"]
+[ext_resource type="Script" uid="uid://bdwlyt8kfqvq" path="res://demo/script/Quest/Resource/quest_step_item.gd" id="3_cu407"]
+
+[sub_resource type="Resource" id="Resource_rjgko"]
+script = ExtResource("3_cu407")
+item_to_collect = ExtResource("2_dodgg")
+tag = "blé"
+description = "Ramasser du blé"
+metadata/_custom_type_script = "uid://bdwlyt8kfqvq"
+
+[sub_resource type="Resource" id="Resource_movvb"]
+script = ExtResource("1_ny0ap")
+tag = "moudre"
+description = "Apporter le blé au moulin"
+metadata/_custom_type_script = "uid://c35k35cdqaxtt"
+
+[sub_resource type="Resource" id="Resource_3mpr4"]
+script = ExtResource("1_ny0ap")
+tag = "farine"
+description = "Récupérer la farine"
+metadata/_custom_type_script = "uid://c35k35cdqaxtt"
+
+[sub_resource type="Resource" id="Resource_dodgg"]
+script = ExtResource("1_ny0ap")
+tag = "luna"
+description = "Ramener la farine à Luna"
+metadata/_custom_type_script = "uid://c35k35cdqaxtt"
+
+[resource]
+script = ExtResource("2_126cn")
+tag = "pain"
+description = "Ramener du pain frais à Luna"
+quest_steps = Array[ExtResource("1_ny0ap")]([SubResource("Resource_rjgko"), SubResource("Resource_movvb"), SubResource("Resource_3mpr4"), SubResource("Resource_dodgg")])
+metadata/_custom_type_script = "uid://0v3c3jq7o4gm"

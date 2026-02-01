@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://6unvw0wwky2a"
+path="res://.godot/imported/02_moulin.dialogue-3bf214c98525af43241f2f04126b4be9.tres"
+
+[deps]
+
+source_file="res://demo/data/dialogue/02_moulin.dialogue"
+dest_files=["res://.godot/imported/02_moulin.dialogue-3bf214c98525af43241f2f04126b4be9.tres"]
+
+[params]
+
+defaults=true

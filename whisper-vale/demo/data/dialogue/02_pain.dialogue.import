@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bu4dhuqkawk3m"
+path="res://.godot/imported/02_pain.dialogue-208f4a6af4fe1863b597394029a838c0.tres"
+
+[deps]
+
+source_file="res://demo/data/dialogue/02_pain.dialogue"
+dest_files=["res://.godot/imported/02_pain.dialogue-208f4a6af4fe1863b597394029a838c0.tres"]
+
+[params]
+
+defaults=true

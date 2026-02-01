@@ -1,0 +1,15 @@
+Reggie dit "le meunier": Salut à vous, vous venez de la ville ?
+if QuestLead.is_quest_step_completed("pain","moudre")
+	Reggie dit "le meunier": Voici ta farine mon gars !
+	do QuestLead.set_quest_step_complete("pain","farine")
+	Reggie dit "le meunier": Ce doit être important, hâte toi !
+elif QuestLead.is_quest_started("pain")
+	Reggie dit "le meunier": Que puis-je pour vous ?
+	- J'ai besoin de moudre du blé en urgence
+		if QuestLead.is_quest_step_completed("pain", "blé")
+			Reggie dit "le meunier": Je suis ton homme !
+			Reggie dit "le meunier": Reviens me parler plus tard
+			do QuestLead.set_quest_step_complete("pain","moudre")
+		elif
+			Reggie dit "le meunier": D'accord mais tu m'as pas apporté de blé !
+			Reggie dit "le meunier": Il va pas venir avec ses petites pattes

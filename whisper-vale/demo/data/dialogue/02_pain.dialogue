@@ -1,0 +1,22 @@
+if not QuestLead.is_quest_started_or_completed("pain")
+	Luna: Hello ! 
+	Luna: J'ai besoin de faire du pain
+	Luna: Mais je n'ai plus de farine, et le seigneur vient ce soir
+	Luna: Peux-tu m'aider ? Il faut ramasser le blé et l'amener au moulin, puis me ramener la farine
+	- Oui
+		Luna: Super je compte sur toi !
+		Luna: Merci beaucoup !
+		do QuestLead.start_quest("pain")
+	- Non
+		Luna: Ah je comprends, tu as autre chose à faire !
+		Luna: Adieu !
+elif QuestLead.is_quest_started("pain")
+	Luna: Tu as pu me l'amener ?
+	if QuestLead.is_quest_step_completed("pain", "farine"):
+		Luna: Super, le seigneur sera ravi !
+		do QuestLead.set_quest_step_complete("pain", "luna")
+		Luna: Il ne me reste plus qu'à faire le pain !
+	else
+		Luna: Rappelle toi, le moulin est en haut de la colline !
+else
+	Luna: Où vais-je trouver un four pour faire cuire le pain...
